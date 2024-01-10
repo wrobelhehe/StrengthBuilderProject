@@ -1,0 +1,12 @@
+<div class="bottom-footer">
+    <div class="bottom-left" [appFadeInOnScroll]="'left'" [once]="true"><span> {{ 'copyright' | translate }} </span>
+    </div>
+    <div class="bottom-right">
+        <div class="inside-bottom-right">
+            <div class="panel" *ngFor="let component of secondComponents" (click)="openDialog(component.component)"
+                [appFadeInOnScroll]="'down'" [once]="true">
+                {{ component.name | translate}}
+            </div>
+        </div>
+    </div>
+</div>

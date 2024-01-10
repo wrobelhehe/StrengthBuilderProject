@@ -1,0 +1,284 @@
+::ng-deep .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: white;
+    --mdc-dialog-subhead-color: rgb(60, 134, 207);
+    --mdc-dialog-supporting-text-color: rgb(60, 134, 207);
+}
+
+::ng-deep .mat-mdc-radio-button.mat-accent {
+    --mdc-radio-disabled-selected-icon-color: #ccc !important;
+    --mdc-radio-disabled-unselected-icon-color: #fff !important;
+    --mdc-radio-unselected-hover-icon-color: rgb(60, 134, 207) !important;
+    --mdc-radio-unselected-icon-color: #fff !important;
+    --mdc-radio-unselected-pressed-icon-color: rgb(60, 134, 207) !important;
+    --mdc-radio-selected-focus-icon-color: #fff !important;
+    --mdc-radio-selected-hover-icon-color: #fff !important;
+    --mdc-radio-selected-icon-color: rgb(60, 134, 207) !important;
+    --mdc-radio-selected-pressed-icon-color: #fff !important;
+    --mat-radio-ripple-color: #ccc !important;
+    --mat-radio-checked-ripple-color: #fff !important;
+    --mat-radio-disabled-label-color: #ccc !important;
+}
+
+::ng-deep .mat-mdc-radio-button .mdc-form-field {
+    color: white !important;
+}
+
+
+::ng-deep mat-step-header {
+    border-radius: 50px !important;
+}
+
+::ng-deep mat-step-header:hover {
+    border-radius: 50px !important;
+}
+
+::ng-deep .mat-stepper-vertical-line::before {
+    border-left-color: white !important;
+}
+
+::ng-deep .mat-step-text-label {
+    color: white !important;
+}
+
+::ng-deep mat-stepper {
+    background-color: transparent !important;
+    width: 80% !important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-number {
+    background-color: white !important;
+    color: #030B12 !important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-done,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+    background-color: #3c86cf !important;
+    color: #fff !important;
+}
+
+
+
+
+.buttons-section {
+
+    justify-content: flex-start;
+    display: flex;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-top: 50px;
+
+    .custom-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        font-weight: 700;
+        color: #030B12;
+        border-radius: 25px;
+        padding: 8px 70px;
+        font-family: 'Comfortaa', sans-serif;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        overflow: hidden;
+        font-size: 16px;
+        border: none;
+        position: relative;
+        outline: none;
+        width: 100px;
+        margin-right: 20px;
+
+        .icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+
+
+
+    }
+
+    .custom-button:disabled {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+    }
+
+    .custom-button:active {
+        transform: scale(0.8);
+    }
+
+    .custom-button mat-icon {
+        height: 24px;
+        width: 24px;
+    }
+
+    .custom-button span {
+        white-space: nowrap;
+        transform: translateX(150%);
+        transition: all 0.4s ease;
+        opacity: 0;
+        position: absolute;
+        left: calc(100%);
+        z-index: 1;
+    }
+
+    .custom-button:hover .icon-wrapper {
+        transform: translateX(-180%);
+    }
+
+    .custom-button:hover span {
+        transform: translateX(0);
+        opacity: 1;
+        left: calc(35%);
+    }
+}
+
+.error-message {
+    color: #770b05;
+    font-size: 0.8em;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+&.error input,
+&.error textarea {
+    border-color: #770b05;
+    box-shadow: 0 0 8px rgba(255, 0, 0, .6);
+}
+
+
+
+
+
+.control-wrapper {
+    height: 90px;
+    margin: 10px 0;
+    width: 100%;
+
+    .inputBox {
+        width: 100%;
+        position: relative;
+        box-shadow: 0 0 10px -3px #3c86cf;
+        border-radius: 5px;
+        transition: border 0.5s;
+    }
+
+    .inputBox input,
+    .inputBox textarea {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid transparent;
+        background: transparent;
+        border-radius: 5px;
+        outline: none;
+        color: white;
+        font-size: 1em;
+        transition: 0.5s;
+    }
+
+    .inputBox textarea {
+        height: 100px;
+        resize: none;
+    }
+
+    .inputBox span {
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+        padding: 10px;
+        pointer-events: none;
+        font-size: 0.8em;
+        color: white;
+        border-radius: 5px;
+        text-transform: uppercase;
+        transition: transform 0.5s, font-size 0.5s, background-color 0.5s, color 0.5s;
+    }
+
+    .inputBox input:valid,
+    .inputBox input:focus,
+    .inputBox textarea:valid,
+    .inputBox textarea:focus {
+        box-shadow: none;
+        border: 1px solid #3c86cf;
+    }
+
+
+    .inputBox input:valid~span,
+    .inputBox input:focus~span,
+    .inputBox textarea:valid~span,
+    .inputBox textarea:focus~span,
+    .inputBox input:invalid:focus~span,
+    .inputBox textarea:invalid:focus~span {
+        transform: translateX(10px) translateY(-7px);
+        font-size: 0.65em;
+        padding: 2px 10px;
+        background: #3c86cf;
+        border-radius: 2px;
+        color: white;
+        letter-spacing: 0.2em;
+    }
+
+    .inputBox.error input:invalid:not(:focus)~span,
+    .inputBox.error textarea:invalid:not(:focus)~span {
+        transform: translateX(10px) translateY(-7px);
+        font-size: 0.65em;
+        padding: 2px 10px;
+        background: #770b05;
+        color: white;
+        border-radius: 2px;
+        letter-spacing: 0.2em;
+    }
+
+    .inputBox.error input:invalid:focus~span,
+    .inputBox.error textarea:invalid:focus~span,
+    .inputBox.error input:invalid~span,
+    .inputBox.error textarea:invalid~span,
+    .inputBox.error input:invalid:not(:focus)~span,
+    .inputBox.error textarea:invalid:not(:focus)~span {
+        background: #770b05;
+        color: white;
+    }
+
+    .inputBox input:valid~span,
+    .inputBox textarea:valid~span {
+        background: #fff;
+        color: #030B12;
+    }
+
+
+    .inputBox input.ng-invalid.ng-touched,
+    .inputBox textarea.ng-invalid.ng-touched {
+        border: 1px solid #770b05;
+        box-shadow: 0 0 10px -3px #770b05;
+
+        border-radius: 5px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .buttons-section {
+        flex-direction: column;
+
+        .custom-button {
+            margin-bottom: 20px;
+        }
+
+    }
+
+    ::ng-deep mat-stepper {
+        background-color: transparent !important;
+        width: 100% !important;
+    }
+
+}

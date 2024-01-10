@@ -1,0 +1,31 @@
+.button-menu {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.flag-icon {
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    /* Dodanie cienia */
+}
+
+
+::ng-deep .cdk-overlay-pane .lang-menu {
+    min-width: 40px;
+}
+
+.mat-menu-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

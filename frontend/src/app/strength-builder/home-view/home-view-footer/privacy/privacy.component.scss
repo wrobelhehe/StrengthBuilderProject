@@ -1,0 +1,47 @@
+.dialog-wrapper {
+    width: 100%;
+    height: 100%;
+
+
+    .dialog-header {
+        height: 5vh;
+        width: 100%;
+        background-color: #030B12;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+
+        .dialog-buttons {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            margin-right: 5%;
+
+        }
+
+        .dialog-buttons>span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-left: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+    }
+
+    .dialog-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 5vh 2vw;
+    }
+
+    // background-image: linear-gradient(to bottom, rgba(3, 11, 18, 0.90), rgba(3, 11, 18, 0.90)), url('../../../../assets/img/data3 .png');
+    // background-size: cover, cover;
+    // background-repeat: no-repeat, no-repeat;
+    // background-position: center, 80%;
+}

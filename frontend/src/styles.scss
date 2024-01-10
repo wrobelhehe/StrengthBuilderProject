@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+@import "/node_modules/flag-icons/css/flag-icons.min.css";
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #3c86cf transparent;
+    box-sizing: border-box;
+
+}
+
+.mdc-tooltip.custom-tooltip {
+    .mdc-tooltip__surface {
+        margin-left: 30px;
+        background-color: white;
+        color: #030B12;
+    }
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Comfortaa', sans-serif;
+    color: #030B12;
+    scroll-behavior: smooth;
+    background: #E9EDF5
+}
+
+ul {
+    list-style-type: none;
+
+}
+
+li {
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: #030B12
+}
+
+.invisible {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.in-viewport-left {
+    animation: fadeInLeft 1s forwards;
+}
+
+.in-viewport-right {
+    animation: fadeInRight 1s forwards;
+}
+
+.in-viewport-up {
+    animation: fadeInUp 1s forwards;
+}
+
+.in-viewport-down {
+    animation: fadeInDown 1s forwards;
+}
+
+@keyframes pulse {
+    0% {
+        height: 100%;
+
+        box-shadow: none;
+    }
+
+    50% {
+        height: 150%;
+        width: 101%;
+        box-shadow: 0 0 15px white;
+        background-color: #3c86cf;
+
+    }
+
+    100% {
+        height: 100%;
+
+        box-shadow: none;
+    }
+}
+
+.progress-pulse-animation {
+    animation: pulse 1s ease-in-out forwards;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+app-root {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+@import '../src/app/app.component.scss';
+@import '../src/app/strength-builder/strength-builder.component.scss';
+@import '../src/app/strength-builder/home-view/home-view.component.scss';
+@import '../src/app/strength-builder/main-view/main-view.component.scss';
+@import '../src/app/strength-builder/home-view/home-view-footer/home-view-footer.component.scss';
+@import '../src/app/strength-builder/home-view/home-view-main/home-view-main.component.scss';
+@import '../src//app/strength-builder/home-view/home-view-nav/home-view-nav.component.scss';
+
+html,
+body {
+    height: 100%;
+}

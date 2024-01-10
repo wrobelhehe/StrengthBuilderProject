@@ -1,0 +1,40 @@
+<div class="about-wrapper" id="about">
+    <div class="upper-about">
+        <div class="about-title">
+            <div class="header-section">
+                <h1 [appFadeInOnScroll]="'left'" [once]="true">{{ 'about_title' | translate }}</h1>
+            </div>
+            <div class="text-section" [ngStyle]="{'white-space': 'pre-wrap'}">
+                <p [appFadeInOnScroll]="'right'" [once]="true">{{ 'about_content' | translate }}</p>
+            </div>
+        </div>
+    </div>
+    <h2 [appFadeInOnScroll]="'left'" [once]="true">{{ 'features_title' | translate }}</h2>
+    <div class="lower-about">
+        <div class="about-row" [appFadeInOnScroll]="'left'" [once]="true">
+            <h3>{{ 'feature_individuality' | translate }}</h3>
+            <div class="skill-progress">
+                <div class="skill-progress-fill" [ngStyle]="{'width': 90 + '%'}" [appScrollProgress]="90"></div>
+            </div>
+        </div>
+
+        <div class="about-row" [appFadeInOnScroll]="'left'" [once]="true">
+            <h3>{{ 'feature_effectiveness' | translate }}</h3>
+            <div class="skill-progress">
+                <div class="skill-progress-fill" [ngStyle]="{'width': 90 + '%'}" [appScrollProgress]="90"></div>
+            </div>
+        </div>
+        <div class="about-row" [appFadeInOnScroll]="'right'" [once]="true">
+            <h3>{{ 'feature_monotony' | translate }}</h3>
+            <div class="skill-progress">
+                <div class="skill-progress-fill" [ngStyle]="{'width': 15 + '%'}" [appScrollProgress]="15"></div>
+            </div>
+        </div>
+        <div class="about-row" [appFadeInOnScroll]="'right'" [once]="true">
+            <h3>{{ 'feature_cost' | translate }}</h3>
+            <div class="skill-progress">
+                <div class="skill-progress-fill" [ngStyle]="{'width': 20 + '%'}" [appScrollProgress]="20"></div>
+            </div>
+        </div>
+    </div>
+</div>

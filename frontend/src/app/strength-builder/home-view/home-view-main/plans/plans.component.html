@@ -1,0 +1,35 @@
+<div class="main-view-wrapper" id="plans">
+    <div class="bottom-view">
+        <div class="plan-section" *ngFor="let section of planSections">
+            <div class="plan-section-top">
+                <div class="img-wrapper">
+                    <img [src]="section.image.src" [alt]="section.image.alt | translate" [appFadeInOnScroll]="'left'"
+                        [once]="true">
+                </div>
+                <div class="plan-wrapper">
+                    <h3 [appFadeInOnScroll]="'right'" [once]="true"> {{ section.text.title | translate}}</h3>
+                    <p [appFadeInOnScroll]="'right'" [once]="true">{{ section.text.content | translate}}</p>
+                </div>
+            </div>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                [appFadeInOnScroll]="'left'" [once]="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{'readmore' | translate}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{section.description | translate}}</p>
+                <div class="button-section">
+                    <button class="custom-button">
+                        <div class="icon-wrapper">
+                            <mat-icon>{{section.button.icon}}</mat-icon>
+                        </div>
+                        <span>{{section.button.text | translate}}</span>
+                    </button>
+                </div>
+            </mat-expansion-panel>
+
+        </div>
+    </div>
+</div>

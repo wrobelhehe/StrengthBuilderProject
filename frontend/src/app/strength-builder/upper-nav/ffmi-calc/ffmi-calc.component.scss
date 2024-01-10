@@ -1,0 +1,223 @@
+@import url("../common-styles/common-styles.scss");
+
+.dialog-wrapper {
+    width: 100%;
+    height: 100%;
+
+
+    .dialog-header {
+        height: 5vh;
+        width: 100%;
+        background-color: #030B12;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .dialog-buttons {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            margin-right: 5%;
+        }
+
+        .dialog-buttons>span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-left: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+    }
+
+    .dialog-content {
+        overflow: hidden;
+        width: 100%;
+        min-height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        padding: 5vh 2vw;
+        background-image: linear-gradient(to bottom, rgba(3, 11, 18, 0.90), rgba(3, 11, 18, 0.90)), url('../../../../assets/img/ffmi-bgc.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+
+        h1 {
+            text-align: center;
+            width: 100%;
+            margin: 0;
+            font-size: 6rem;
+            color: white;
+            text-shadow: 3px 3px 0px #3c86cf;
+        }
+
+        p {
+            color: white;
+        }
+
+        .radios {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .right-content {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            padding: 24px;
+            color: white;
+
+            .blue {
+                color: #3c86cf;
+                font-size: 1.2em;
+            }
+
+            .chart-desc {
+                width: 50%;
+
+                .buttons-section {
+                    justify-content: center;
+                }
+
+                .custom-table {
+                    background-color: transparent;
+                    color: white;
+
+                    th,
+                    td {
+                        border: 1px solid white;
+                        color: white;
+                    }
+
+                    .blue {
+                        color: #3c86cf;
+                    }
+
+                    th {
+                        background-color: transparent;
+                        color: white;
+                    }
+                }
+
+            }
+
+            .chart {
+                width: 50%;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                canvas {
+                    width: 500px !important;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1600px) {
+    .dialog-wrapper {
+
+        .dialog-content {
+
+            .right-content {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                padding: 24px;
+                color: white;
+
+                .blue {
+                    color: #3c86cf;
+                    font-size: 1.2em;
+                }
+
+                .chart-desc {
+                    width: 100%;
+                    font-size: 80%;
+                }
+
+                .chart {
+                    width: 100%;
+                    padding-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+    .dialog-wrapper {
+
+        .dialog-content {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .right-content {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                padding: 24px;
+                color: white;
+
+                .blue {
+                    color: #3c86cf;
+                    font-size: 1.2em;
+                }
+
+                .chart-desc {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .chart {
+                    width: 100%;
+
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .dialog-wrapper {
+        .dialog-content {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .right-content {
+                .chart {
+                    width: 100%;
+
+                    canvas {
+                        width: 250px !important;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<div class="upper-header">
+    <div class="mac-buttons">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="info">
+        <div class="panel" *ngFor="let component of components" (click)="openDialog(component.component)">
+            {{ component.name | translate}}
+        </div>
+    </div>
+    <app-language-select class="language-select"></app-language-select>
+</div>

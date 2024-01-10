@@ -1,0 +1,45 @@
+<div class="dialog-wrapper">
+    <div class="dialog-header">
+        <div class="dialog-buttons">
+            <span (click)="closeDialog()"></span>
+            <span (click)="closeDialog()"></span>
+            <span (click)="closeDialog()"></span>
+        </div>
+    </div>
+    <div class="dialog-content">
+        <div class="faq-section">
+            <div class="left-faq">
+                <h1> {{ 'faq' | translate }}
+                </h1>
+            </div>
+            <div class="right-faq">
+                <form [formGroup]="faqForm" class="form-group">
+                    <div class="inputBox" [class.error]="faqForm.get('query')?.invalid">
+                        <input formControlName="query" id="query" type="text">
+                        <span
+                            [ngClass]="{'active': faqForm.get('query')?.value, 'invalid': faqForm.get('query')?.invalid}">
+                            {{ 'search' | translate }}
+                        </span>
+                    </div>
+
+                    <div *ngIf="faqForm.get('query')?.errors?.['noResults']" class="search-results">
+                        <span> {{ 'noRecords' | translate }}
+                        </span>
+                    </div>
+
+                </form>
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor="let faq of filteredFaqs">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{ faq.question | translate}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>{{ faq.answer | translate}}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,119 @@
+<div class="dialog-wrapper">
+    <div class="dialog-header">
+        <div class="dialog-buttons">
+            <span (click)="closeDialog()"></span>
+            <span (click)="closeDialog()"></span>
+            <span (click)="closeDialog()"></span>
+        </div>
+    </div>
+    <div class="dialog-content">
+
+        <h1>{{ 'ffmiCalculator' | translate }}</h1>
+        <mat-stepper orientation="vertical" [linear]="true" #stepper *ngIf="!isCalculated">
+            <mat-step [stepControl]="personalFormGroup">
+                <form [formGroup]="personalFormGroup">
+                    <ng-template class="label-title" matStepLabel>{{ 'personal_info' | translate }}</ng-template>
+                    <div class="control-wrapper">
+                        <div class="inputBox"
+                            [class.error]="personalFormGroup.get('weight')?.invalid && personalFormGroup.get('weight')?.touched">
+                            <input formControlName="weight" id="weight" type="number" required>
+                            <span>{{ 'form_weight_label' | translate }}</span>
+                        </div>
+                        <div *ngIf="personalFormGroup.get('weight')?.hasError('min')" class="error-message">
+                            {{ 'form_weight_min_error' | translate }}
+                        </div>
+                        <div *ngIf="personalFormGroup.get('weight')?.hasError('max')" class="error-message">
+                            {{ 'form_weight_max_error' | translate }}
+                        </div>
+                    </div>
+                    <div class="control-wrapper">
+                        <div class="inputBox"
+                            [class.error]="personalFormGroup.get('height')?.invalid && personalFormGroup.get('height')?.touched">
+                            <input formControlName="height" id="height" type="number" required>
+                            <span>{{ 'form_height_label' | translate }}</span>
+                        </div>
+                        <div *ngIf="personalFormGroup.get('height')?.hasError('min')" class="error-message">
+                            {{ 'form_height_min_error' | translate }}
+                        </div>
+                        <div *ngIf="personalFormGroup.get('height')?.hasError('max')" class="error-message">
+                            {{ 'form_height_max_error' | translate }}
+                        </div>
+                    </div>
+                    <div class="control-wrapper">
+                        <div class="inputBox"
+                            [class.error]="personalFormGroup.get('bf')?.invalid && personalFormGroup.get('bf')?.touched">
+                            <input formControlName="bf" id="bf" type="number" required>
+                            <span>{{ 'body_fat_label' | translate }}</span>
+                        </div>
+                        <div *ngIf="personalFormGroup.get('bf')?.hasError('min')" class="error-message">
+                            {{ 'form_bf_min_error' | translate }}
+                        </div>
+                        <div *ngIf="personalFormGroup.get('bf')?.hasError('max')" class="error-message">
+                            {{ 'form_bf_max_error' | translate }}
+                        </div>
+                    </div>
+                    <div class="buttons-section">
+                        <button class="custom-button" matStepperNext [disabled]="personalFormGroup.invalid">
+                            <div class="icon-wrapper">
+                                <mat-icon>arrow_right_alt</mat-icon>
+                            </div>
+                            <span>{{ 'form_next_button' | translate }}</span>
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>{{ 'summary' | translate }}</ng-template>
+                <p>{{"form_ffmi_info" | translate}}</p>
+                <div class="buttons-section">
+                    <button class="custom-button" matStepperPrevious>
+                        <div class="icon-wrapper">
+                            <mat-icon>keyboard_backspace</mat-icon>
+                        </div>
+                        <span>{{ 'form_back_button' | translate }}</span>
+                    </button>
+                    <button class="custom-button" (click)="calculateFFMI()">
+                        <div class="icon-wrapper">
+                            <mat-icon>check</mat-icon>
+                        </div>
+                        <span>{{ 'form_calculate_button' | translate }}</span>
+                    </button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+        <div class="right-content" *ngIf="isCalculated">
+            <div class="chart">
+                <canvas [appFadeInOnScroll]="'right'" [once]="true" baseChart [data]="barChartData"
+                    [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [type]="'bar'">
+                </canvas>
+                <h2 [appFadeInOnScroll]="'left'" [once]="true">{{"ffmiScore" | translate}} <span
+                        class="blue">{{ffmiScore}}</span></h2>
+
+            </div>
+            <div class="chart-desc">
+                <table [appFadeInOnScroll]="'up'" [once]="true" mat-table [dataSource]="dataSource"
+                    class="mat-elevation-z8 custom-table">
+                    <ng-container matColumnDef="ffmi">
+                        <th mat-header-cell *matHeaderCellDef> FFMI </th>
+                        <td class="blue" mat-cell *matCellDef="let element"> {{element.value}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef> {{"description" | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.description | translate}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <div class="buttons-section">
+                    <button class="custom-button" (click)="resetCalculator()">
+                        <div class="icon-wrapper">
+                            <mat-icon>refresh</mat-icon>
+                        </div>
+                        <span>{{ 'form_reset_button' | translate }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

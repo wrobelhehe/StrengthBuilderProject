@@ -1,0 +1,96 @@
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+
+    .upper-view {
+        box-shadow: inset 0px -7px 36px -16px #030B12, inset 0px 7px 36px -16px #030B12;
+
+        height: 85vh;
+        background-image: url('../../../../../assets/img/3.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 10vh;
+
+        .view-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .custom-button {
+                width: 400px;
+                height: 60px;
+                padding: 10px 30px;
+                border-radius: 35px;
+                font-weight: 900;
+                outline: none;
+                color: #030B12;
+
+                box-shadow: 8px 8px 24px -5px #030B12;
+                background-color: white;
+                border: none;
+                font-size: 1.5rem;
+                position: relative;
+                font-family: 'Comfortaa', sans-serif;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                margin-bottom: 10px;
+
+            }
+
+            .custom-button2 {
+                width: 300px;
+                height: 60px;
+                padding: 10px 30px;
+                border-radius: 35px;
+                font-weight: 900;
+                outline: none;
+                color: white;
+                background-color: #3c86cf;
+                box-shadow: 8px 8px 24px -5px #030B12;
+                border: none;
+                font-size: 1.5rem;
+                position: relative;
+                font-family: 'Comfortaa', sans-serif;
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+            }
+
+            .custom-button:active {
+                transform: scale(0.8)
+            }
+
+            .custom-button2:active {
+                transform: scale(0.8)
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .home-wrapper .upper-view {
+
+        .view-buttons {
+            .custom-button {
+                width: 300px;
+                font-size: 1rem;
+            }
+
+            .custom-button2 {
+                width: 200px;
+                font-size: 1rem;
+
+            }
+        }
+
+    }
+
+}

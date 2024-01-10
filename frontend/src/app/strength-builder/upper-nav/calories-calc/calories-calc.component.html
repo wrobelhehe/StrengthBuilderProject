@@ -1,0 +1,171 @@
+<div class="dialog-wrapper">
+    <div class="dialog-header">
+        <div class="dialog-buttons">
+            <span (click)="closeDialog()"></span>
+            <span (click)="closeDialog()"></span>
+            <span (click)="closeDialog()"></span>
+        </div>
+    </div>
+    <div class="dialog-content">
+        <h1>Calories Calculator</h1>
+        <mat-stepper orientation="vertical" [linear]="true" #stepper *ngIf="!isCalculated">
+            <mat-step [stepControl]="personalFormGroup">
+                <form [formGroup]="personalFormGroup">
+                    <ng-template class="label-title" matStepLabel>{{ 'personal_info' | translate }}</ng-template>
+                    <div class="control-wrapper">
+                        <div class="inputBox"
+                            [class.error]="personalFormGroup.get('weight')?.invalid && personalFormGroup.get('weight')?.touched">
+                            <input formControlName="weight" id="weight" type="number" required>
+                            <span>{{ 'form_weight_label' | translate }}</span>
+                        </div>
+                        <div *ngIf="personalFormGroup.get('weight')?.hasError('min')" class="error-message">
+                            {{ 'form_weight_min_error' | translate }}
+                        </div>
+                        <div *ngIf="personalFormGroup.get('weight')?.hasError('max')" class="error-message">
+                            {{ 'form_weight_max_error' | translate }}
+                        </div>
+                    </div>
+                    <div class="control-wrapper">
+                        <div class="inputBox"
+                            [class.error]="personalFormGroup.get('height')?.invalid && personalFormGroup.get('height')?.touched">
+                            <input formControlName="height" id="height" type="number" required>
+                            <span>{{ 'form_height_label' | translate }}</span>
+                        </div>
+                        <div *ngIf="personalFormGroup.get('height')?.hasError('min')" class="error-message">
+                            {{ 'form_height_min_error' | translate }}
+                        </div>
+                        <div *ngIf="personalFormGroup.get('height')?.hasError('max')" class="error-message">
+                            {{ 'form_height_max_error' | translate }}
+                        </div>
+                    </div>
+                    <div class="control-wrapper">
+                        <div class="inputBox"
+                            [class.error]="personalFormGroup.get('age')?.invalid && personalFormGroup.get('age')?.touched">
+                            <input formControlName="age" id="age" type="number" required>
+                            <span>{{ 'form_age_label' | translate }}</span>
+                        </div>
+                        <div *ngIf="personalFormGroup.get('age')?.hasError('min')" class="error-message">
+                            {{ 'form_age_min_error' | translate }}
+                        </div>
+                        <div *ngIf="personalFormGroup.get('age')?.hasError('max')" class="error-message">
+                            {{ 'form_age_max_error' | translate }}
+                        </div>
+                    </div>
+                    <mat-radio-group formControlName="gender" aria-label="Select an option">
+                        <mat-radio-button value="m"> {{ 'male' | translate }}</mat-radio-button>
+                        <mat-radio-button value="f"> {{ 'female' | translate }}</mat-radio-button>
+                    </mat-radio-group>
+                    <div class="buttons-section">
+                        <button class="custom-button" matStepperNext [disabled]="personalFormGroup.invalid">
+                            <div class="icon-wrapper">
+                                <mat-icon>arrow_right_alt</mat-icon>
+                            </div>
+                            <span>{{ 'form_next_button' | translate }}</span>
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="activityFormGroup">
+                <form [formGroup]="activityFormGroup">
+                    <ng-template matStepLabel>{{ 'activity_info' | translate }}</ng-template>
+                    <mat-radio-group class="radios" formControlName="activity" aria-label="Select an option">
+                        <mat-radio-button *ngFor="let activity of activities" [matTooltipPosition]="'right'"
+                            [matTooltip]="activity.description | translate" matTooltipClass="custom-tooltip"
+                            [value]="activity.value">
+                            {{ activity.translation | translate
+                            }}</mat-radio-button>
+                    </mat-radio-group>
+                    <div class="buttons-section">
+                        <button class="custom-button" matStepperPrevious>
+                            <div class="icon-wrapper">
+                                <mat-icon>keyboard_backspace</mat-icon>
+                            </div>
+                            <span>{{ 'form_back_button' | translate }}</span>
+                        </button>
+                        <button class="custom-button" matStepperNext [disabled]="activityFormGroup.invalid">
+                            <div class="icon-wrapper">
+                                <mat-icon>arrow_right_alt</mat-icon>
+                            </div>
+                            <span>{{ 'form_next_button' | translate }}</span>
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="goalFormGroup">
+                <form [formGroup]="goalFormGroup">
+                    <ng-template matStepLabel>{{ 'goal_info' | translate }}</ng-template>
+                    <mat-radio-group class="radios" formControlName="goal" aria-label="Select an option">
+                        <mat-radio-button *ngFor="let goal of goals" [value]="goal.value">
+                            {{ goal.translation | translate
+                            }}</mat-radio-button>
+                    </mat-radio-group>
+                    <div class="buttons-section">
+                        <button class="custom-button" matStepperPrevious>
+                            <div class="icon-wrapper">
+                                <mat-icon>keyboard_backspace</mat-icon>
+                            </div>
+                            <span>{{ 'form_back_button' | translate }}</span>
+                        </button>
+                        <button class="custom-button" matStepperNext [disabled]="goalFormGroup.invalid">
+                            <div class="icon-wrapper">
+                                <mat-icon>arrow_right_alt</mat-icon>
+                            </div>
+                            <span>{{ 'form_next_button' | translate }}</span>
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>{{ 'summary' | translate }}</ng-template>
+                <p>{{"form_calculate_info" | translate}}</p>
+                <div class="buttons-section">
+                    <button class="custom-button" matStepperPrevious>
+                        <div class="icon-wrapper">
+                            <mat-icon>keyboard_backspace</mat-icon>
+                        </div>
+                        <span>{{ 'form_back_button' | translate }}</span>
+                    </button>
+                    <button class="custom-button" (click)="calculateCaloricRequirement()">
+                        <div class="icon-wrapper">
+                            <mat-icon>check</mat-icon>
+                        </div>
+                        <span>{{ 'form_calculate_button' | translate }}</span>
+                    </button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+        <div class="right-content" *ngIf="isCalculated">
+            <div class="chart">
+                <canvas [appFadeInOnScroll]="'left'" [once]="true" baseChart [type]="'pie'"
+                    [datasets]="pieChartDatasets" [labels]="pieChartLabels" [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+                </canvas>
+            </div>
+            <div class="chart-desc">
+                <h2 [appFadeInOnScroll]="'right'" [once]="true">{{goalText | translate}} <span
+                        class="blue">{{caloricRequirement}} kcal</span></h2>
+                <h3 [appFadeInOnScroll]="'up'" [once]="true">{{ 'protein' | translate }}<span
+                        class="blue">{{pieChartDatasets[0].data[0]}} g</span>
+                    ({{pieChartDatasets[0].data[0]*4}}
+                    kcal)</h3>
+                <h3 [appFadeInOnScroll]="'left'" [once]="true">{{ 'fat' | translate }} <span
+                        class="blue">{{pieChartDatasets[0].data[1]}} g</span>
+                    ({{pieChartDatasets[0].data[1]*9}} kcal)
+                </h3>
+                <h3 [appFadeInOnScroll]="'right'" [once]="true">{{ 'carbs' | translate }} <span
+                        class="blue">{{pieChartDatasets[0].data[2]}} g</span>
+                    ({{pieChartDatasets[0].data[2]*4}} kcal)
+                </h3>
+                <div class="buttons-section">
+                    <button class="custom-button" (click)="resetCalculator()" [appFadeInOnScroll]="'left'"
+                        [once]="true">
+                        <div class="icon-wrapper">
+                            <mat-icon>refresh</mat-icon>
+                        </div>
+                        <span>{{ 'form_reset_button' | translate }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
