@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="isOpen" class="sidenav">
+        <div class="logo-nav">
+            <img src="../../../../assets/img/logo3.png" alt="logo">
+        </div>
+        <mat-nav-list>
+            <a *ngFor="let item of menuItems" [routerLink]="item.routeLink" class="nav-item" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}" (click)="closeNav()">
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <span class="nav-label" *ngIf="isOpen">{{ item.label }}</span>
+            </a>
+            <ng-container *ngIf="mobileRes">
+                <a *ngFor="let component of components" (click)="openDialog(component.component);closeNav()"
+                    class="nav-item">
+                    <mat-icon>{{ component.icon }}</mat-icon>
+
+                    <span class="nav-label">{{ component.name | translate}}</span></a>
+            </ng-container>
+        </mat-nav-list>
+        <div class="buttons-section">
+            <button class="custom-button" (click)="logOut()">
+                <mat-icon>exit_to_app</mat-icon>
+            </button>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+        <div class="content-buttons">
+            <button class="button-three" [attr.aria-expanded]="isOpen ? 'true' : 'false'" (click)="toggleSidebar()">
+                <svg stroke="var(--button-color)" fill="none" class="hamburger" viewBox="-10 -10 120 120" width="250">
+                    <path class="line" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
+                        d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

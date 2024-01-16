@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogOpen } from '../abstracts/dialog-open.abstract';
+import { AuthService } from 'src/app/data/services/auth.service';
 
 @Component({
   selector: 'app-upper-nav',
@@ -9,7 +10,13 @@ import { DialogOpen } from '../abstracts/dialog-open.abstract';
 })
 export class UpperNavComponent extends DialogOpen {
 
-  constructor(dialog: MatDialog) {
+  @Input() logged = false
+
+  constructor(dialog: MatDialog, private auth: AuthService) {
     super(dialog)
+  }
+
+  logOut() {
+    this.auth.signOut()
   }
 }

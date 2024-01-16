@@ -1,6 +1,6 @@
 .bottom-footer {
 
-    min-height: 6vh;
+    height: 5vh;
     background-color: #030B12;
     width: 100%;
     color: white;
@@ -40,6 +40,8 @@
 
 @media (max-width: 1024px) {
     .bottom-footer {
+        height: 11vh;
+
         font-size: 70%;
 
         .bottom-left {

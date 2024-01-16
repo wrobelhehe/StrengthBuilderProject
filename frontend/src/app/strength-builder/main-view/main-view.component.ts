@@ -1,17 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/data/services/auth.service';
+import { StrengthBuilderService, UserData } from 'src/app/data/services/strength-builder.service';
 
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.scss']
 })
-export class MainViewComponent {
-  constructor(private auth: AuthService) {
+export class MainViewComponent implements OnDestroy {
+
+  data: any[] = []
+
+
+  isAdmin: boolean = false;
+
+  private authSubscription: Subscription;
+
+  constructor(private authService: AuthService, private dataService: StrengthBuilderService) {
+    this.authSubscription = this.authService.isAdmin().subscribe(isAdmin => {
+      console.log(isAdmin)
+      this.isAdmin = isAdmin;
+    });
+
+
+
 
 
   }
-  logOut() {
-    this.auth.signOut()
+
+
+  getResult() {
+    const userData: UserData = {
+      // Przykładowe dane użytkownika
+      age: 18,
+      bodyweightKg: 100,
+      best3SquatKg: 250,
+      best3BenchKg: 150,
+      best3DeadliftKg: 220,
+      sex: 'M',
+      equipment: 'Raw',
+      tested: 'Yes'
+    };
+    this.dataService.getUserWeakness(userData).subscribe(res => {
+      console.log(res)
+    })
+  }
+
+
+  ngOnDestroy() {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 }

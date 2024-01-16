@@ -13,11 +13,11 @@ export abstract class DialogOpen {
 
 
     components: any = [
-        { name: 'faq', component: FaqComponent },
-        { name: 'data', component: DataComponent },
-        { name: 'caloriesCalculator', component: CaloriesCalcComponent },
-        { name: 'ffmiCalculator', component: FfmiCalcComponent },
-        { name: 'bmiCalculator', component: BmiCalcComponent }
+        { icon: 'question_answer', name: 'faq', component: FaqComponent },
+        { icon: 'sd_storage', name: 'data', component: DataComponent },
+        { icon: 'fitness_center', name: 'caloriesCalculator', component: CaloriesCalcComponent },
+        { icon: 'fitness_center', name: 'ffmiCalculator', component: FfmiCalcComponent },
+        { icon: 'fitness_center', name: 'bmiCalculator', component: BmiCalcComponent }
     ];
 
     secondComponents: any = [

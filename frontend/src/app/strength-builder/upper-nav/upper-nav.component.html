@@ -9,5 +9,12 @@
             {{ component.name | translate}}
         </div>
     </div>
-    <app-language-select class="language-select"></app-language-select>
+    <div class="upper-buttons">
+        <app-language-select class="language-select"></app-language-select>
+
+        <button class="round-button" *ngIf="logged" (click)="logOut()">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+    </div>
+
 </div>

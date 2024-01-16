@@ -6,6 +6,8 @@ export const environment = {
 
         authDomain: "strength-builder-c90b1.firebaseapp.com",
 
+        databaseURL: "https://strength-builder-c90b1-default-rtdb.europe-west1.firebasedatabase.app",
+
         projectId: "strength-builder-c90b1",
 
         storageBucket: "strength-builder-c90b1.appspot.com",
@@ -15,9 +17,6 @@ export const environment = {
         appId: "1:876533605732:web:4b037c8abf4c64d1854671",
 
         measurementId: "G-EFPHNV48HR"
-
-
-
     }
 
 }

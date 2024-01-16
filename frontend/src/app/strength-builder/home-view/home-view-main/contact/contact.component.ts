@@ -28,6 +28,7 @@ export class ContactComponent {
   submitEmail(value: any) {
     if (this.contactForm.valid) {
       this.firestore.collection('emails').add(value).then(() => {
+        console.log(value)
         this.submitMessage = 'Email sent successfully!';
         this.spinning = false
         this.isSubmit = true

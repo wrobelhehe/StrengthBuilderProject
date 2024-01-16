@@ -3,7 +3,8 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
 import { GoogleAuthProvider } from "@angular/fire/auth"
 import { NgxSpinnerService } from "ngx-spinner";
-import { map } from "rxjs";
+import { Observable, from, map, of, switchMap } from "rxjs";
+import { AngularFireFunctions } from '@angular/fire/compat/functions';
 
 @Injectable({
     providedIn: 'root'
@@ -27,4 +28,24 @@ export class AuthService {
             console.log(err)
         })
     }
+
+    isAdmin(): Observable<boolean> {
+        return this.fireAuth.authState.pipe(
+            switchMap(user => {
+                if (user) {
+                    return from(user.getIdTokenResult());
+                } else {
+                    return of(null);
+                }
+            }),
+            map(idTokenResult => {
+                if (idTokenResult && idTokenResult.claims && typeof idTokenResult.claims['role'] !== 'undefined') {
+                    return idTokenResult.claims['role'] === 'admin';
+                } else {
+                    return false;
+                }
+            })
+        );
+    }
+
 }
