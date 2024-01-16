@@ -11,6 +11,12 @@ import { MainViewComponent } from './main-view.component';
 import { MaterialModule } from '../material/material.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { AnalysisComponent } from './analysis/analysis.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { UsersComponent } from './users/users.component';
+import { ErrorComponent } from './error/error.component';
+import { ExercisesComponent } from './exercises/exercises.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -23,7 +29,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     PlansComponent,
     SideNavComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    AnalysisComponent,
+    CategoriesComponent,
+    UsersComponent,
+    ErrorComponent,
+    ExercisesComponent
   ],
   imports: [
     CommonModule,

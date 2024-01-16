@@ -29,7 +29,7 @@ export class AuthService {
         })
     }
 
-    isAdmin(): Observable<boolean> {
+    checkRole(): Observable<string> {
         return this.fireAuth.authState.pipe(
             switchMap(user => {
                 if (user) {
@@ -40,9 +40,9 @@ export class AuthService {
             }),
             map(idTokenResult => {
                 if (idTokenResult && idTokenResult.claims && typeof idTokenResult.claims['role'] !== 'undefined') {
-                    return idTokenResult.claims['role'] === 'admin';
+                    return idTokenResult.claims['role'];
                 } else {
-                    return false;
+                    return null;
                 }
             })
         );

@@ -24,6 +24,7 @@ export class SideNavComponent extends DialogOpen {
     this.checkWindowSizeAndToggleNav();
   }
 
+  currentUserRole!: string;
 
   isOpen = true;
 
@@ -44,6 +45,9 @@ export class SideNavComponent extends DialogOpen {
 
   ngOnInit() {
     this.checkWindowSizeAndToggleNav();
+    this.auth.checkRole().subscribe(role => {
+      this.currentUserRole = role;
+    });
   }
 
   checkWindowSizeAndToggleNav() {
@@ -55,6 +59,10 @@ export class SideNavComponent extends DialogOpen {
       this.mobileRes = true
       this.isOpen = false;
     }
+  }
+
+  hasRole(requiredRoles: string[]): boolean {
+    return requiredRoles.includes(this.currentUserRole);
   }
 
   closeNav() {

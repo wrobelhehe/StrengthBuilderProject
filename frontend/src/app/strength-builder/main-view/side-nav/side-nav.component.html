@@ -4,14 +4,15 @@
             <img src="../../../../assets/img/logo3.png" alt="logo">
         </div>
         <mat-nav-list>
-            <a *ngFor="let item of menuItems" [routerLink]="item.routeLink" class="nav-item" routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}" (click)="closeNav()">
-                <mat-icon>{{ item.icon }}</mat-icon>
-                <span class="nav-label" *ngIf="isOpen">{{ item.label }}</span>
-            </a>
-            <ng-container *ngIf="mobileRes">
-                <a *ngFor="let component of components" (click)="openDialog(component.component);closeNav()"
-                    class="nav-item">
+            <ng-container *ngFor="let item of menuItems">
+                <a *ngIf="hasRole(item.role)" [routerLink]="item.routeLink" class="nav-item" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}" (click)="closeNav()">
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                    <span class="nav-label" *ngIf="isOpen">{{ item.label }}</span>
+                </a>
+            </ng-container>
+            <ng-container *ngFor="let component of components">
+                <a *ngIf="mobileRes" (click)="openDialog(component.component);closeNav()" class="nav-item">
                     <mat-icon>{{ component.icon }}</mat-icon>
 
                     <span class="nav-label">{{ component.name | translate}}</span></a>

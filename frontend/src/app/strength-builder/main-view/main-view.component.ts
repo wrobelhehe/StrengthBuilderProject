@@ -13,14 +13,12 @@ export class MainViewComponent implements OnDestroy {
   data: any[] = []
 
 
-  isAdmin: boolean = false;
 
   private authSubscription: Subscription;
 
   constructor(private authService: AuthService, private dataService: StrengthBuilderService) {
-    this.authSubscription = this.authService.isAdmin().subscribe(isAdmin => {
-      console.log(isAdmin)
-      this.isAdmin = isAdmin;
+    this.authSubscription = this.authService.checkRole().subscribe(role => {
+      console.log(role)
     });
 
 

@@ -9,7 +9,7 @@
 
         .mat-drawer-inner-container {
             display: flex;
-            height: 90vh;
+            height: 100%;
             align-items: center;
             flex-direction: column;
 
@@ -106,26 +106,6 @@
             width: 100%;
             height: 5vh;
 
-            .round-button {
-                background-color: rgba(3, 11, 18, 1);
-                border-radius: 50%;
-                border: none;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-            }
-
-            .round-button mat-icon {
-                color: white;
-                width: 100%;
-                height: 100%;
-                display: block;
-                font-size: 48px;
-            }
-
-
 
             .button-three {
                 animation-name: fadeInRight;
@@ -139,6 +119,7 @@
                 background-color: transparent;
                 border: none;
                 display: none;
+
             }
 
             .button-three .hamburger {
