@@ -8,6 +8,28 @@
 
 }
 
+/* WebKit scrollbar styles (for Chrome, Safari, Opera) */
+*::-webkit-scrollbar {
+    width: 8px;
+    /* or any desired width */
+    height: 8px;
+    /* for horizontal scrollbars */
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+    /* background of the scrollbar track */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #3c86cf;
+    /* color of the scrollbar itself */
+    border-radius: 4px;
+    /* roundness of the scrollbar */
+    border: 2px solid transparent;
+    /* creates padding around the scrollbar */
+}
+
 .mdc-tooltip.custom-tooltip {
     .mdc-tooltip__surface {
         margin-left: 30px;
@@ -34,7 +56,8 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Comfortaa', sans-serif;
+    font-family: 'Roboto', sans-serif;
+
     color: #030B12;
     scroll-behavior: smooth;
     background: #E9EDF5

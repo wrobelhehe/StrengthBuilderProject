@@ -40,7 +40,7 @@
                 color: #770b05;
                 font-size: 0.8em;
                 margin-top: 10px;
-                font-weight: bold;
+                font-weight: 500;
             }
 
             &.error input,
@@ -82,7 +82,7 @@
                 }
 
                 .inputBox span {
-                    font-weight: bold;
+                    font-weight: 500;
                     position: absolute;
                     left: 0;
                     padding: 10px;
@@ -172,13 +172,12 @@
                 align-items: center;
                 justify-content: center;
                 background: white;
-                font-weight: 700;
+                font-weight: 500;
                 color: #030B12;
                 border-radius: 25px;
                 padding: 8px 70px;
-                font-family: 'Comfortaa', sans-serif;
                 cursor: pointer;
-                transition: all 0.2s ease;
+                transition: all 0.1s ease;
                 overflow: hidden;
                 font-size: 16px;
                 border: none;

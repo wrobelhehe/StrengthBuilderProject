@@ -22,10 +22,8 @@ export class LanguageSelectComponent {
       this.spinner.show();
 
       this.translate.use(lang).subscribe(() => {
-        console.log(lang)
         setTimeout(() => {
           this.spinner.hide();
-
         }, 500);
       });
 

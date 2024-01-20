@@ -1,20 +1,36 @@
 <div class="upper-header">
-    <div class="mac-buttons">
+    <button *ngIf="logged && mobileRes" class="button-three" [attr.aria-expanded]="isOpen ? 'true' : 'false'"
+        (click)="toggleSidebar()">
+        <svg stroke="var(--button-color)" fill="none" class="hamburger" viewBox="-10 -10 120 120" width="250">
+            <path class="line" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
+                d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70">
+            </path>
+        </svg>
+    </button>
+    <div class="mac-buttons" *ngIf="!mobileRes">
         <span></span>
         <span></span>
         <span></span>
     </div>
+    <div class="logo" *ngIf="logged && mobileRes">
+        <span class="icon-sb">
+            <span class="strength">Strength</span>
+            <span class="builder">Builder</span>
+        </span>
+    </div>
+
     <div class="info">
         <div class="panel" *ngFor="let component of components" (click)="openDialog(component.component)">
             {{ component.name | translate}}
         </div>
+
+
     </div>
     <div class="upper-buttons">
+
         <app-language-select class="language-select"></app-language-select>
 
-        <button class="round-button" *ngIf="logged" (click)="logOut()">
-            <mat-icon>account_circle</mat-icon>
-        </button>
+        <mat-icon *ngIf="logged">account_circle</mat-icon>
     </div>
 
 </div>

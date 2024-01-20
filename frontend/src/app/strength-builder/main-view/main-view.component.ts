@@ -18,7 +18,7 @@ export class MainViewComponent implements OnDestroy {
 
   constructor(private authService: AuthService, private dataService: StrengthBuilderService) {
     this.authSubscription = this.authService.checkRole().subscribe(role => {
-      console.log(role)
+      // console.log('main view' + role)
     });
 
 

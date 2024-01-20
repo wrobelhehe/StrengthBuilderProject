@@ -1,9 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { navbarData } from './nav-data';
 import { DialogOpen } from '../../abstracts/dialog-open.abstract';
 import { MatDialog } from '@angular/material/dialog';
+import { SideNavToggleService } from 'src/app/data/services/side-nav-toggle.service';
+import { Subscription } from 'rxjs';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -17,18 +19,19 @@ interface SideNavToggle {
   styleUrls: ['./side-nav.component.scss'],
 })
 
-export class SideNavComponent extends DialogOpen {
+export class SideNavComponent extends DialogOpen implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.checkWindowSizeAndToggleNav();
   }
 
+  private subscription!: Subscription;
+
+
   currentUserRole!: string;
 
   isOpen = true;
-
-  isExpanded = false;
 
   menuItems = navbarData;
 
@@ -37,28 +40,27 @@ export class SideNavComponent extends DialogOpen {
   activeItem: any;
 
 
-
-  constructor(dialog: MatDialog, private auth: AuthService) {
+  constructor(dialog: MatDialog, private auth: AuthService, private sideNavService: SideNavToggleService) {
     super(dialog)
-
+    this.subscription = this.sideNavService.buttonState$.subscribe((val) => {
+      this.isOpen = val
+    });
   }
 
   ngOnInit() {
-    this.checkWindowSizeAndToggleNav();
     this.auth.checkRole().subscribe(role => {
       this.currentUserRole = role;
     });
+    this.checkWindowSizeAndToggleNav();
+
   }
 
   checkWindowSizeAndToggleNav() {
     const width = window.innerWidth;
-    if (width > 1024 && !this.isOpen) {
-      this.mobileRes = false
-      this.isOpen = true;
-    } else if (width <= 1024 && this.isOpen) {
-      this.mobileRes = true
-      this.isOpen = false;
-    }
+    this.mobileRes = width <= 1024;
+    this.isOpen = !this.mobileRes;
+    this.sideNavService.changeButtonState(this.isOpen);
+
   }
 
   hasRole(requiredRoles: string[]): boolean {
@@ -66,18 +68,19 @@ export class SideNavComponent extends DialogOpen {
   }
 
   closeNav() {
-    this.mobileRes ? this.isOpen = false : this.isOpen = true
+    this.mobileRes ? this.isOpen = false : this.isOpen = true;
+    this.sideNavService.changeButtonState(this.isOpen)
+
   }
 
   logOut() {
     this.auth.signOut()
   }
-  toggleSidebar() {
-    this.isOpen = !this.isOpen;
+
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
-  toggleButton(): void {
-    this.isExpanded = !this.isExpanded;
-  }
 
 }

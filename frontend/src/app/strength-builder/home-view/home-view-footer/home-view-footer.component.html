@@ -38,6 +38,15 @@
                 </div>
             </div>
         </div>
+        <div class="footer-section">
+            <div class="inside-wrapper">
+                <h3 [appFadeInOnScroll]="'down'" [once]="true"> {{ 'regulations' | translate }}</h3>
+                <div class="panel" *ngFor="let component of secondComponents" (click)="openDialog(component.component)"
+                    [appFadeInOnScroll]="'right'" [once]="true">
+                    {{ component.name | translate}}
+                </div>
+            </div>
+        </div>
 
     </div>
 

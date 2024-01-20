@@ -8,11 +8,18 @@ import { CookiesComponent } from '../home-view/home-view-footer/cookies/cookies.
 import { TermsComponent } from '../home-view/home-view-footer/terms/terms.component';
 import { PrivacyComponent } from '../home-view/home-view-footer/privacy/privacy.component';
 
+
+interface ComponentItem {
+    icon: string;
+    name: string;
+    component: any; // Ideally, use a more specific type or generic if possible
+}
+
 export abstract class DialogOpen {
     constructor(private dialog: MatDialog) { }
 
 
-    components: any = [
+    components: ComponentItem[] = [
         { icon: 'question_answer', name: 'faq', component: FaqComponent },
         { icon: 'sd_storage', name: 'data', component: DataComponent },
         { icon: 'fitness_center', name: 'caloriesCalculator', component: CaloriesCalcComponent },
@@ -20,12 +27,12 @@ export abstract class DialogOpen {
         { icon: 'fitness_center', name: 'bmiCalculator', component: BmiCalcComponent }
     ];
 
-    secondComponents: any = [
-        { name: 'cookies', component: CookiesComponent },
-        { name: 'terms', component: TermsComponent },
-        { name: 'privacyPolicy', component: PrivacyComponent },
-
+    secondComponents: ComponentItem[] = [
+        { icon: 'cookie_icon', name: 'cookies', component: CookiesComponent },
+        { icon: 'gavel_icon', name: 'terms', component: TermsComponent },
+        { icon: 'lock', name: 'privacyPolicy', component: PrivacyComponent },
     ];
+
 
     openDialog(component: any) {
         this.dialog.open(component, {

@@ -1,21 +1,15 @@
 .sidenav-container {
-    height: 90vh;
-
-
+    height: 95vh;
 
     .sidenav {
-        width: 200px;
-
+        width: 250px;
 
         .mat-drawer-inner-container {
             display: flex;
-            height: 100%;
             align-items: center;
+            justify-content: space-evenly;
             flex-direction: column;
-
-
         }
-
 
         .logo-nav {
             width: 100%;
@@ -23,13 +17,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 20px 0px;
+            // margin: 20px 0px;
         }
 
         .buttons-section {
-            position: absolute;
-            bottom: 0;
-            margin: 20px 0px;
+            // position: absolute;
+            // bottom: 0;
+            // margin: 20px 0px;
 
             justify-content: center;
             display: flex;
@@ -40,52 +34,78 @@
             .custom-button {
                 width: 100%;
                 padding: 10px 20px;
-                cursor: pointer;
-                border: none;
-                background-color: #3c86cf;
-                border-radius: 20px;
+                border-radius: 35px;
+                font-weight: 500;
+                outline: none;
                 color: white;
+                background-color: #3c86cf;
+                box-shadow: 8px 8px 24px -5px #030B12;
+                border: none;
+                font-size: 1.5rem;
+                position: relative;
+                cursor: pointer;
+                transition: all 0.1s ease;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
+
+            .custom-button:active {
+                transform: scale(0.9)
+            }
+
 
         }
 
         mat-nav-list {
             display: flex;
-            justify-content: center;
+            // justify-content: center;
             align-items: center;
             flex-direction: column;
             width: 100%;
+            height: 75%;
+            overflow-y: auto;
+
+
 
             .nav-item.active {
                 background-color: #030B12;
-                border-radius: 20px;
+                border-radius: 35px;
+                color: white;
+            }
+
+            .nav-item:active {
+                background-color: #030B12;
+                border-radius: 35px;
                 color: white;
             }
 
             .nav-item:hover {
                 background-color: #030B12;
-                border-radius: 20px;
+                border-radius: 35px;
                 color: white;
             }
 
             .nav-item {
+                font-size: 1rem;
+
                 width: 90%;
                 padding: 10px 20px;
-                margin: 10px 0;
-                border-radius: 25px;
+                margin-bottom: 20px;
+                border-radius: 35px;
                 cursor: pointer;
                 display: flex;
                 justify-content: flex-start;
                 align-items: flex-end;
-                transition: background-color 0.5s ease, border-radius 0.5s ease, color 0.5s ease;
+                transition: all 0.1s ease;
 
                 mat-icon {
+
                     padding-right: 10px;
 
                 }
 
                 .nav-label {
-                    font-size: 1rem;
                     margin-left: 10px;
 
                 }
@@ -99,67 +119,60 @@
     }
 
     .sidenav-content {
-        .content-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        max-width: calc(100vw - 250px);
+        background-color: #030B12;
+
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 10000;
             width: 100%;
-            height: 5vh;
+        }
 
-
-            .button-three {
-                animation-name: fadeInRight;
-                animation-duration: 1s;
-                animation-fill-mode: forwards;
-                opacity: 0;
-                --button-color: black;
-                overflow: hidden;
-                width: 50px;
-                height: 50px;
-                background-color: transparent;
-                border: none;
-                display: none;
-
-            }
-
-            .button-three .hamburger {
-
-                transition: translate 1s, rotate 1s;
-                width: 30px;
-                height: 30px;
-                cursor: pointer;
-            }
-
-            .button-three[aria-expanded="true"] .hamburger {
-                rotate: 0.125turn;
-            }
-
-            .button-three .line {
-                transition: 1s;
-                stroke-dasharray: 60 31 60 300;
-            }
-
-            .button-three[aria-expanded="true"] .line {
-                stroke-dasharray: 60 105 60 300;
-                stroke-dashoffset: -90;
-            }
+        .router-content {
+            min-height: 90vh;
+            width: 100%;
+            padding: 3vh 3vh 0 3vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
-
 
 }
 
 @media (max-width: 1024px) {
     .sidenav-container {
-        height: 84vh;
+        height: 95vh;
 
-        .sidenav .buttons-section {
-            position: relative;
-            bottom: auto;
+
+        .sidenav .logo-nav {
+            margin: 20px 0px;
+
+
         }
 
-        .sidenav-content .content-buttons .button-three {
-            display: block;
+        .sidenav .buttons-section {
+            margin: 20px 0px;
+
+
+        }
+
+
+        .sidenav mat-nav-list .nav-item {
+            margin: 10px 0px;
+            font-size: 1rem;
+
+        }
+
+        .sidenav-content {
+            max-width: 100%
+        }
+
+        .sidenav-content .router-content {
+            min-height: 84vh;
+
         }
     }
 

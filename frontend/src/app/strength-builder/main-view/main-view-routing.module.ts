@@ -10,6 +10,7 @@ import { ExercisesComponent } from './exercises/exercises.component';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { HomeComponent } from './home/home.component';
 import { roleGuard } from 'src/app/data/guards/role.guard';
+import { authMainGuard } from 'src/app/data/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -24,44 +25,47 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
-        canActivate: [roleGuard]
+        canActivate: [roleGuard, authMainGuard]
       },
       {
         path: 'plans',
         component: PlansComponent,
-        canActivate: [roleGuard]
+        canActivate: [roleGuard, authMainGuard]
       },
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [roleGuard]
+        canActivate: [roleGuard, authMainGuard]
       },
       {
         path: 'analysis',
         component: AnalysisComponent,
-        canActivate: [roleGuard]
+        canActivate: [roleGuard, authMainGuard]
       },
       {
         path: 'exercises',
         component: ExercisesComponent,
-        canActivate: [roleGuard]
+        canActivate: [roleGuard, authMainGuard]
       },
       {
         path: 'categories',
         component: CategoriesComponent,
-        canActivate: [roleGuard]
+        canActivate: [roleGuard, authMainGuard]
       },
       {
         path: 'users',
         component: UsersComponent,
-        canActivate: [roleGuard]
+        canActivate: [roleGuard, authMainGuard]
       },
       {
         path: 'error',
         component: ErrorComponent,
-        canActivate: [roleGuard]
+        canActivate: [roleGuard, authMainGuard]
       },
-      { path: '**', component: ErrorComponent }
+      {
+        path: '**', component: ErrorComponent,
+        canActivate: [roleGuard, authMainGuard]
+      }
 
     ]
   },

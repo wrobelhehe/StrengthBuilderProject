@@ -1,7 +1,6 @@
 <div class="header-wrapper">
 
     <div class="bottom-header">
-        <div class="navigation-wrapper"></div>
         <div class="logo"><a href="/"><img src="../../../../assets/img/logo3.png" alt="logo"></a></div>
         <div class="nav-elements">
             <ul>
@@ -31,10 +30,7 @@
 
         <div class="buttons-section">
             <button class="custom-button" (click)="signIn()">
-                <div class="icon-wrapper">
-                    <mat-icon>supervised_user_circle</mat-icon>
-                </div>
-                <span>{{'signin' | translate}}</span>
+                <mat-icon>supervised_user_circle</mat-icon>
             </button>
         </div>
     </div>
@@ -60,11 +56,8 @@
 
     </ul>
     <div class="mobile-buttons-section">
-        <button class="custom-button">
-            <div class="icon-wrapper">
-                <mat-icon>supervised_user_circle</mat-icon>
-            </div>
-            <span>{{'signin' | translate}}</span>
+        <button class="custom-button" (click)="signIn()">
+            <mat-icon>supervised_user_circle</mat-icon>
         </button>
     </div>
 </div>

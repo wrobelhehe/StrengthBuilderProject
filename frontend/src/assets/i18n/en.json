@@ -82,6 +82,7 @@
     "footerDesc": "Build strength with us!",
     "mainNav": "MAIN NAVIGATION",
     "more": "MORE",
+    "regulations": "REGULATIONS",
     "copyright": "© 2023 Strength Builder - All Rights Reserved",
     "privacyPolicyHeader": "Privacy Policy",
     "introductionSection": "1. Introduction",
@@ -204,5 +205,11 @@
     "bmiDesc_6": "Obesity class I",
     "bmiDesc_7": "Obesity class II",
     "bmiDesc_8": "Extreme obesity",
-    "dataInfo": "Data will be available soon"
+    "dataInfo": "Data will be available soon",
+    "dashboard": "Dashboard",
+    "analysis": "Analysis",
+    "exercises": "Exercises",
+    "categories": "Categories",
+    "users": "Users",
+    "error": "Error"
 }

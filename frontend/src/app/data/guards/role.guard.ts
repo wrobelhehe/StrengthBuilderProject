@@ -19,22 +19,21 @@ export const roleGuard: CanActivateFn = (
             }
         }),
         map(idTokenResult => {
-            console.log(idTokenResult)
             if (idTokenResult && idTokenResult.claims && typeof idTokenResult.claims['role'] !== 'undefined') {
 
                 const role = idTokenResult.claims['role'];
                 if (role === 'admin') {
-                    return true; // Admin ma dostęp do wszystkich ścieżek
+                    return true;
                 }
                 if (role === 'user') {
                     const restrictedPaths = ['/exercises', '/categories', '/users'];
                     const isRestricted = restrictedPaths.some(path => state.url.includes(path));
                     if (!isRestricted) {
-                        return true; // Użytkownik ma dostęp, jeśli ścieżka nie jest zabroniona
+                        return true;
                     }
                 }
             }
-            return router.createUrlTree(['/strength-builder/main/error']); // Przekierowanie na stronę błędu dla innych przypadków
+            return router.createUrlTree(['/strength-builder/main/error']);
         })
     );
 };

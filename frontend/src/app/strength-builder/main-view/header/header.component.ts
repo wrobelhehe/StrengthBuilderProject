@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { AuthService } from 'src/app/data/services/auth.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +7,7 @@ import { AuthService } from 'src/app/data/services/auth.service';
 })
 export class HeaderComponent {
 
-  constructor(private auth: AuthService) {
-
-  }
+  @Input() mobileRes!: boolean
 
 
-  logOut() {
-    this.auth.signOut()
-  }
 }

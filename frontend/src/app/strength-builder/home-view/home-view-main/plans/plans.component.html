@@ -21,7 +21,7 @@
                 </mat-expansion-panel-header>
                 <p>{{section.description | translate}}</p>
                 <div class="button-section">
-                    <button class="custom-button">
+                    <button class="custom-button" (click)="signIn()">
                         <div class="icon-wrapper">
                             <mat-icon>{{section.button.icon}}</mat-icon>
                         </div>
