@@ -4,23 +4,23 @@
 
     h1 {
         height: 4vh;
-        color: white;
+        color: var(--primary-color);
         margin: 0;
         margin-bottom: 3vh;
     }
 
     mat-card {
+        width: 100%;
 
         mat-card-content {
             color: black;
             height: 80vh;
+            width: 100%;
             overflow-y: auto;
         }
     }
 }
 
-
 @media (max-width: 1024px) {
     .card-wrapper {}
-
 }

@@ -6,7 +6,7 @@
     .dialog-header {
         height: 5vh;
         width: 100%;
-        background-color: #030B12;
+        background-color: var(--secondary-color);
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -26,7 +26,7 @@
             height: 10px;
             border-radius: 50%;
             margin-left: 5px;
-            background-color: #fff;
+            background-color: var(--primary-color);
             cursor: pointer;
         }
     }
@@ -39,9 +39,4 @@
         flex-direction: column;
         padding: 5vh 2vw;
     }
-
-    // background-image: linear-gradient(to bottom, rgba(3, 11, 18, 0.90), rgba(3, 11, 18, 0.90)), url('../../../../assets/img/data3 .png');
-    // background-size: cover, cover;
-    // background-repeat: no-repeat, no-repeat;
-    // background-position: center, 80%;
 }

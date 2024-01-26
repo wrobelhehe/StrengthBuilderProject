@@ -37,9 +37,9 @@
                 border-radius: 35px;
                 font-weight: 500;
                 outline: none;
-                color: white;
+                color: var(--primary-color);
                 background-color: #3c86cf;
-                box-shadow: 8px 8px 24px -5px #030B12;
+                box-shadow: 8px 8px 24px -5px var(--secondary-color);
                 border: none;
                 font-size: 1.5rem;
                 position: relative;
@@ -69,21 +69,21 @@
 
 
             .nav-item.active {
-                background-color: #030B12;
+                background-color: var(--secondary-color);
                 border-radius: 35px;
-                color: white;
+                color: var(--primary-color);
             }
 
             .nav-item:active {
-                background-color: #030B12;
+                background-color: var(--secondary-color);
                 border-radius: 35px;
-                color: white;
+                color: var(--primary-color);
             }
 
             .nav-item:hover {
-                background-color: #030B12;
+                background-color: var(--secondary-color);
                 border-radius: 35px;
-                color: white;
+                color: var(--primary-color);
             }
 
             .nav-item {
@@ -120,15 +120,7 @@
 
     .sidenav-content {
         max-width: calc(100vw - 250px);
-        background-color: #030B12;
-
-
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 10000;
-            width: 100%;
-        }
+        background-color: var(--secondary-color);
 
         .router-content {
             min-height: 90vh;

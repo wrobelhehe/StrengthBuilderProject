@@ -15,6 +15,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from './shared/shared.module';
 import { NgChartsModule } from 'ng2-charts';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+
+
+
+
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -34,6 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     AngularFireAuthModule,
     MaterialModule,
     NgxSpinnerModule,
@@ -49,7 +57,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgChartsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

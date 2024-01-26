@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    color: white;
+    color: var(--primary-color);
     flex-direction: column;
     padding: 5vh 5vw;
     background-image: linear-gradient(to bottom, rgba(3, 11, 18, 0.90), rgba(3, 11, 18, 0.90)), url('../../../../../assets/img/bgc.png');
@@ -12,7 +12,7 @@
     background-repeat: no-repeat, no-repeat;
     background-position: center, 80%;
     overflow: hidden;
-    box-shadow: inset 0px -7px 36px -16px #030B12, inset 0px 7px 36px -16px #030B12;
+    box-shadow: inset 0px -7px 36px -16px var(--secondary-color), inset 0px 7px 36px -16px var(--secondary-color);
 
 
 
@@ -21,7 +21,7 @@
         height: 100%;
         justify-content: center;
         align-items: center;
-        color: white;
+        color: var(--primary-color);
         flex-direction: row;
 
         .about-title {
@@ -36,7 +36,7 @@
                     width: 100%;
                     height: 100%;
                     font-size: 10rem;
-                    color: white;
+                    color: var(--primary-color);
                     text-shadow: 5px 5px 0px #3c86cf;
                 }
             }
@@ -66,7 +66,7 @@
         height: 100%;
 
         .skill-progress {
-            background-color: white;
+            background-color: var(--primary-color);
             border-radius: 5px;
             height: 20px;
             width: 90%;
@@ -110,7 +110,7 @@
                         width: 100%;
                         height: 100%;
                         font-size: 6rem;
-                        color: white;
+                        color: var(--primary-color);
                         text-shadow: 5px 5px 0px #3c86cf;
                         margin: 0;
 
@@ -181,7 +181,7 @@
                         width: 100%;
                         height: 100%;
                         font-size: 3rem;
-                        color: white;
+                        color: var(--primary-color);
                         text-shadow: 2px 2px 0px #3c86cf;
                         margin: 0;
 

@@ -6,7 +6,7 @@
     min-height: 30vh;
     width: 100%;
     background-color: #fff;
-    box-shadow: inset 0px -7px 36px -16px #030B12, inset 0px 7px 36px -16px #030B12;
+    box-shadow: inset 0px -7px 36px -16px var(--secondary-color), inset 0px 7px 36px -16px var(--secondary-color);
     overflow: hidden;
 
     .upper-footer {
@@ -74,7 +74,7 @@
             transform: translateY(-50%);
             height: 120px;
             width: 1px;
-            background-color: #030B12;
+            background-color: var(--secondary-color)
         }
 
         .footer-logo {
@@ -176,7 +176,7 @@
             transform: translateY(-50%);
             height: 120px;
             width: 1px;
-            background-color: #030B12;
+            background-color: var(--secondary-color)
         }
 
         .footer-logo {

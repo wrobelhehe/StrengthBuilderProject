@@ -17,6 +17,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { UsersComponent } from './users/users.component';
 import { ErrorComponent } from './error/error.component';
 import { ExercisesComponent } from './exercises/exercises.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { Firestore } from '@angular/fire/firestore';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommonModule,
     MaterialModule,
     MainViewRoutingModule,
+    AngularFirestoreModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -51,6 +54,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     SharedModule
 
-  ]
+  ],
 })
 export class MainViewModule { }

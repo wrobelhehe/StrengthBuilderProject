@@ -7,7 +7,7 @@
     .dialog-header {
         height: 5vh;
         width: 100%;
-        background-color: #030B12;
+        background-color: var(--secondary-color);
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -25,7 +25,7 @@
             height: 10px;
             border-radius: 50%;
             margin-left: 5px;
-            background-color: #fff;
+            background-color: var(--primary-color);
             cursor: pointer;
         }
     }
@@ -50,12 +50,12 @@
             width: 100%;
             margin: 0;
             font-size: 6rem;
-            color: white;
+            color: var(--primary-color);
             text-shadow: 3px 3px 0px #3c86cf;
         }
 
         p {
-            color: white;
+            color: var(--primary-color);
         }
 
         .radios {
@@ -73,7 +73,7 @@
             align-items: center;
             flex-direction: row;
             padding: 24px;
-            color: white;
+            color: var(--primary-color);
 
             .blue {
                 color: #3c86cf;
@@ -89,12 +89,12 @@
 
                 .custom-table {
                     background-color: transparent;
-                    color: white;
+                    color: var(--primary-color);
 
                     th,
                     td {
-                        border: 1px solid white;
-                        color: white;
+                        border: 1px solid var(--primary-color);
+                        color: var(--primary-color);
                     }
 
                     .blue {
@@ -103,7 +103,7 @@
 
                     th {
                         background-color: transparent;
-                        color: white;
+                        color: var(--primary-color);
                     }
                 }
             }
@@ -134,7 +134,7 @@
                 align-items: center;
                 flex-direction: column;
                 padding: 24px;
-                color: white;
+                color: var(--primary-color);
 
                 .blue {
                     color: #3c86cf;
@@ -172,7 +172,7 @@
                 align-items: center;
                 flex-direction: column;
                 padding: 24px;
-                color: white;
+                color: var(--primary-color);
 
                 .blue {
                     color: #3c86cf;

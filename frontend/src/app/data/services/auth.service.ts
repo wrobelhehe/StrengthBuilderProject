@@ -35,7 +35,6 @@ export class AuthService {
             checkRole$.subscribe({
                 next: (idTokenResult) => {
                     console.log(`Role found: ${idTokenResult?.claims['role']}`);
-                    // Przekieruj na odpowiedni route
                     this.router.navigate(['/strength-builder/main']);
                 },
                 complete: () => console.log('Completed checking role'),

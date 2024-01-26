@@ -18,19 +18,13 @@
             <span class="builder">Builder</span>
         </span>
     </div>
-
     <div class="info">
         <div class="panel" *ngFor="let component of components" (click)="openDialog(component.component)">
             {{ component.name | translate}}
         </div>
-
-
     </div>
     <div class="upper-buttons">
-
         <app-language-select class="language-select"></app-language-select>
-
         <mat-icon *ngIf="logged">account_circle</mat-icon>
     </div>
-
 </div>

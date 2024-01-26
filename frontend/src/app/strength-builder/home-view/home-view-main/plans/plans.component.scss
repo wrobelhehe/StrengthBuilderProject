@@ -4,8 +4,8 @@
     width: 100%;
     overflow: hidden;
     padding: 0vh 5vw 10vh 5vw;
-    background-color: #fff;
-    box-shadow: inset 0px -7px 36px -16px #030B12, inset 0px 7px 36px -16px #030B12;
+    background-color: var(--primary-color);
+    box-shadow: inset 0px -7px 36px -16px var(--secondary-color), inset 0px 7px 36px -16px var(--secondary-color);
 
     .bottom-view {
         flex-grow: 0;
@@ -47,7 +47,7 @@
                     justify-content: center;
                     background: #3c86cf;
                     font-weight: 500;
-                    color: white;
+                    color: var(--primary-color);
                     border-radius: 25px;
                     padding: 8px 70px;
                     cursor: pointer;

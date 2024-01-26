@@ -12,6 +12,15 @@ exports.assignUserRole = functions.auth.user().onCreate((user) => {
     }
 });
 
+exports.addUserToFirestore = functions.auth.user().onCreate((user) => {
+    const usersRef = admin.firestore().collection('users');
+    return usersRef.doc(user.uid).set({
+        email: user.email,
+        uid: user.uid,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+});
+
 exports.calculateWeakestLift = functions.https.onCall((userData, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'The function must be called while authenticated.');

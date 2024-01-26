@@ -1,9 +1,9 @@
 .bottom-footer {
 
     height: 5vh;
-    background-color: #030B12;
+    background-color: var(--secondary-color);
     width: 100%;
-    color: white;
+    color: var(--primary-color);
 
     display: flex;
     justify-content: center;

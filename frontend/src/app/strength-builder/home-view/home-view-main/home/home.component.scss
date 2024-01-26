@@ -5,7 +5,7 @@
     overflow: hidden;
 
     .upper-view {
-        box-shadow: inset 0px -7px 36px -16px #030B12, inset 0px 7px 36px -16px #030B12;
+        box-shadow: inset 0px -7px 36px -16px var(--secondary-color), inset 0px 7px 36px -16px var(--secondary-color);
 
         height: 85vh;
         background-image: url('../../../../../assets/img/3.png');
@@ -31,10 +31,10 @@
                 border-radius: 35px;
                 font-weight: 500;
                 outline: none;
-                color: #030B12;
+                color: var(--secondary-color);
 
-                box-shadow: 8px 8px 24px -5px #030B12;
-                background-color: white;
+                box-shadow: 8px 8px 24px -5px var(--secondary-color);
+                background-color: var(--primary-color);
                 border: none;
                 font-size: 1.5rem;
                 position: relative;
@@ -51,9 +51,9 @@
                 border-radius: 35px;
                 font-weight: 500;
                 outline: none;
-                color: white;
+                color: var(--primary-color);
                 background-color: #3c86cf;
-                box-shadow: 8px 8px 24px -5px #030B12;
+                box-shadow: 8px 8px 24px -5px var(--secondary-color);
                 border: none;
                 font-size: 1.5rem;
                 position: relative;
