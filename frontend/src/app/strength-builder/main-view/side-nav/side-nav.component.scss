@@ -122,6 +122,14 @@
         max-width: calc(100vw - 250px);
         background-color: var(--secondary-color);
 
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            width: 100%;
+        }
+
         .router-content {
             min-height: 90vh;
             width: 100%;

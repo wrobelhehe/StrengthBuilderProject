@@ -2,10 +2,20 @@
     <h1>{{"exercises" | translate}}</h1>
     <mat-card>
         <mat-card-content>
-            <p *ngFor="let exercise of exercises">{{exercise.name | translate}}</p>
-            <button (click)="addExercise()">add</button>
-
+            <div class="add-section">
+                <span class="button-text">{{"add-exercise" | translate}}</span>
+                <button mat-fab color="primary" (click)="openFullscreen()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            <div class="no-results" *ngIf="exercises.length===0">
+                <app-svg [svg]="'NO_DATA'"></app-svg>
+                <div class="no-results-info">
+                    <h1>{{"no-results" | translate}}</h1>
+                    <h3>{{"no-results-info1" | translate}} {{"no-results-info2" | translate}}</h3>
+                    <!-- <span>{{"no-results-info2" | translate}}</span> -->
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
-    <button (click)="addExercise()">add</button>
 </div>

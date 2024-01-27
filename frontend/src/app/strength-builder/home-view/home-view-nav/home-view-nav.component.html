@@ -4,23 +4,15 @@
         <div class="logo"><a href="/"><img src="../../../../assets/img/logo3.png" alt="logo"></a></div>
         <div class="nav-elements">
             <ul>
-                <li>
-                    <a href="/">{{'home' | translate}}</a>
+                <li *ngFor="let item of thirdComponents">
+                    <a href="" [appScrollTo]="item.component">
+                        <mat-icon>{{ item.icon }}</mat-icon>
+                        <span>{{item.name | translate}}</span></a>
                 </li>
-                <li>
-                    <a href="" appScrollTo="#about">{{'about' | translate}}</a>
-                </li>
-                <li>
-                    <a href="" appScrollTo="#plans">{{'plans' | translate}}</a>
-                </li>
-                <li>
-                    <a href="" appScrollTo="#contact">{{'contact' | translate}}</a>
-                </li>
-
             </ul>
         </div>
 
-        <button class="button-three" [attr.aria-expanded]="isExpanded ? 'true' : 'false'" (click)="toggleButton()">
+        <button class="button-three" [attr.aria-expanded]="isExpanded ? 'true' : 'false'" (click)="openScroll(content)">
             <svg stroke="var(--button-color)" fill="none" class="hamburger" viewBox="-10 -10 120 120" width="250">
                 <path class="line" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
                     d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70">
@@ -35,29 +27,27 @@
         </div>
     </div>
 </div>
-<div class="mobile-nav-elements" [ngClass]="{'expanded': isExpanded}">
-    <ul>
-        <li>
-            <a href="/">{{'home' | translate}}</a>
-        </li>
-        <li>
-            <a href="" appScrollTo="#about">{{'about' | translate}}</a>
-        </li>
-        <li>
-            <a href="" appScrollTo="#plans">{{'plans' | translate}}</a>
-        </li>
-        <li>
-            <a href="" appScrollTo="#contact">{{'contact' | translate}}</a>
-        </li>
+<ng-template #content let-offcanvas>
 
-        <li class="other" *ngFor="let component of components" (click)="openDialog(component.component)">
-            <a>{{ component.name | translate}}</a>
-        </li>
-
-    </ul>
-    <div class="mobile-buttons-section">
-        <button class="custom-button" (click)="signIn()">
-            <mat-icon>supervised_user_circle</mat-icon>
-        </button>
+    <div class="mobile-nav">
+        <ul>
+            <li *ngFor="let item of thirdComponents">
+                <a (click)="closeModal()" href="" [appScrollTo]="item.component">
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                    <span>{{item.name | translate}}</span></a>
+            </li>
+            <li *ngFor="let component of components" (click)="openDialog(component.component); closeModal()">
+                <a>
+                    <mat-icon>{{ component.icon }}</mat-icon>
+                    <span> {{ component.name | translate}}</span>
+                </a>
+            </li>
+        </ul>
+        <div class="buttons-section">
+            <button class="custom-button" (click)="signIn()">
+                <mat-icon>supervised_user_circle</mat-icon>
+            </button>
+        </div>
     </div>
-</div>
+
+</ng-template>

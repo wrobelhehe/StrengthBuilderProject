@@ -1,1 +1,18 @@
 @import '../nav-components.scss';
+
+app-error {
+    width: 100%;
+
+    .svg-wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        app-svg {
+            width: 700px;
+        }
+    }
+}

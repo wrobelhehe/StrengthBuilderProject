@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DialogClose } from '../../abstracts/dialog-close.abstract';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-data',
@@ -9,8 +10,8 @@ import { DialogClose } from '../../abstracts/dialog-close.abstract';
 })
 export class DataComponent extends DialogClose {
 
-  constructor(dialogRef: MatDialogRef<any>) {
-    super(dialogRef)
+  constructor(modalService: NgbModal) {
+    super(modalService)
   }
 
 

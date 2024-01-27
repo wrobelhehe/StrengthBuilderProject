@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { DialogClose } from '../../abstracts/dialog-close.abstract';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-faq',
@@ -41,8 +42,8 @@ export class FaqComponent extends DialogClose implements OnInit {
   ];
 
 
-  constructor(dialogRef: MatDialogRef<any>, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) {
-    super(dialogRef)
+  constructor(modalService: NgbModal, private formBuilder: FormBuilder, private cdr: ChangeDetectorRef, private translateService: TranslateService) {
+    super(modalService)
 
     this.faqForm = this.formBuilder.group({
       query: [''],
@@ -57,16 +58,25 @@ export class FaqComponent extends DialogClose implements OnInit {
     this.filteredFaqs = this.faqs
   }
 
-
   filterFaqs(searchQuery: string) {
-    this.filteredFaqs = this.faqs.filter(faq =>
-      faq.question.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const translatedFaqs: any[] = [];
 
-    if (searchQuery && this.filteredFaqs.length === 0) {
-      this.faqForm.controls['query'].setErrors({ 'noResults': true });
-    } else {
-      this.faqForm.controls['query'].setErrors(null);
-    }
+    this.faqs.forEach(faq => {
+      this.translateService.get(faq.question).subscribe(translatedQuestion => {
+        translatedFaqs.push({ question: translatedQuestion, answer: faq.answer });
+
+        this.filteredFaqs = translatedFaqs.filter(translatedFaq =>
+          translatedFaq.question.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        if (searchQuery && this.filteredFaqs.length === 0) {
+          this.faqForm.controls['query'].setErrors({ 'noResults': true });
+        } else {
+          this.faqForm.controls['query'].setErrors(null);
+        }
+        this.cdr.detectChanges();
+      });
+    });
   }
+
 }

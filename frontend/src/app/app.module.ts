@@ -15,9 +15,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from './shared/shared.module';
 import { NgChartsModule } from 'ng2-charts';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -30,9 +30,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
+    ModalModule.forRoot(),
     HttpClientModule,
     BrowserModule,
     SharedModule,
@@ -54,7 +55,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       isolate: false
     }),
-    NgChartsModule
+    NgChartsModule,
+    NgbModule,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

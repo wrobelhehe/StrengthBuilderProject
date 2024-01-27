@@ -18,6 +18,7 @@ import { FaqComponent } from '../strength-builder/upper-nav/faq/faq.component';
 import { FfmiCalcComponent } from '../strength-builder/upper-nav/ffmi-calc/ffmi-calc.component';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SvgComponent } from '../common/svgs/svg.component';
 
 
 
@@ -37,6 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CaloriesCalcComponent,
     FfmiCalcComponent,
     BmiCalcComponent,
+    SvgComponent
+
 
 
   ],
@@ -47,6 +50,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgChartsModule,
     ReactiveFormsModule,
     FormsModule,
+
 
 
   ],
@@ -60,7 +64,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CaloriesCalcComponent,
     FfmiCalcComponent,
     BmiCalcComponent,
-    TranslateModule
+    TranslateModule,
+    SvgComponent
+
   ]
 
 })

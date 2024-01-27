@@ -1,1 +1,22 @@
 @import '../nav-components.scss';
+
+app-exercises {
+    width: 100%;
+
+    .add-section {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .button-text {
+            margin-right: 10px;
+        }
+
+    }
+
+
+}
+
+
+@media (max-width: 1024px) {}

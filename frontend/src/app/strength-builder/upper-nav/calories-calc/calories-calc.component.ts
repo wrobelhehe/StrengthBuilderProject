@@ -4,6 +4,7 @@ import { DialogClose } from '../../abstracts/dialog-close.abstract';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChartOptions } from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-calories-calc',
@@ -74,8 +75,8 @@ export class CaloriesCalcComponent extends DialogClose {
   ];
 
 
-  constructor(dialogRef: MatDialogRef<any>, private formBuilder: FormBuilder, private translate: TranslateService,) {
-    super(dialogRef)
+  constructor(modalService: NgbModal, private formBuilder: FormBuilder, private translate: TranslateService,) {
+    super(modalService)
   }
 
   resetCalculator() {

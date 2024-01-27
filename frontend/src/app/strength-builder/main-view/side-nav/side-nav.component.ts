@@ -6,6 +6,7 @@ import { DialogOpen } from '../../abstracts/dialog-open.abstract';
 import { MatDialog } from '@angular/material/dialog';
 import { SideNavToggleService } from 'src/app/data/services/side-nav-toggle.service';
 import { Subscription } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -40,8 +41,8 @@ export class SideNavComponent extends DialogOpen implements OnInit, OnDestroy {
   activeItem: any;
 
 
-  constructor(dialog: MatDialog, private auth: AuthService, private sideNavService: SideNavToggleService) {
-    super(dialog)
+  constructor(modalService: NgbModal, private auth: AuthService, private sideNavService: SideNavToggleService) {
+    super(modalService)
     this.subscription = this.sideNavService.buttonState$.subscribe((val) => {
       this.isOpen = val
     });

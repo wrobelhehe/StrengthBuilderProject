@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Exercise } from 'src/app/data/interfaces/exercises.model';
 
 
 import { StrengthBuilderService } from 'src/app/data/services/strength-builder.service';
+import { AddExerciseComponent } from '../dialogs/add-exercise/add-exercise.component';
 
 @Component({
   selector: 'app-exercises',
@@ -13,7 +15,7 @@ import { StrengthBuilderService } from 'src/app/data/services/strength-builder.s
 export class ExercisesComponent implements OnInit {
   exercises: Exercise[] = []
 
-  constructor(private strengthBuilderService: StrengthBuilderService, private afAuth: AngularFireAuth) {
+  constructor(private strengthBuilderService: StrengthBuilderService, private modalService: NgbModal) {
 
   }
   ngOnInit(): void {
@@ -21,8 +23,10 @@ export class ExercisesComponent implements OnInit {
       this.exercises = data;
       console.log(this.exercises)
     });
+  }
 
-
+  openFullscreen() {
+    this.modalService.open(AddExerciseComponent, { fullscreen: true });
   }
 
 

@@ -2,7 +2,6 @@
     width: 100%;
     height: 100%;
 
-
     .dialog-header {
         height: 5vh;
         width: 100%;
@@ -17,6 +16,8 @@
             justify-content: center;
             align-self: center;
             margin-right: 5%;
+            cursor: pointer;
+
         }
 
         .dialog-buttons>span {
@@ -35,21 +36,19 @@
 
     .dialog-content {
 
-        background-image: linear-gradient(to bottom, rgba(3, 11, 18, 0.90), rgba(3, 11, 18, 0.90)), url('../../../../assets/img/faq-bgc.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        min-height: 65vh;
+        min-height: 95vh;
         padding: 3vw 3vw;
+        background-color: var(--secondary-color);
+
 
 
         .faq-section {
             width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,6 +56,8 @@
 
             .right-faq {
                 width: 100%;
+                height: 100%;
+
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -77,10 +78,13 @@
                     align-items: center;
                     flex-direction: column;
                     width: 100%;
+                    height: 100%;
                     margin: 5vh 0;
                 }
 
                 .search-results {
+                    width: 100%;
+                    height: 100%;
                     margin-top: 5vh;
                     color: #770b05;
 
@@ -88,12 +92,13 @@
                     justify-content: center;
                     align-items: center;
 
-                    span {
-                        text-align: center;
-                    }
+
 
                 }
 
+                .no-data-wrapper {
+                    width: 500px;
+                }
 
                 .inputBox {
                     width: 50%;

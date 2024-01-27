@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ChartConfiguration } from 'chart.js';
 import { FFMI_DATA } from '../../../../app/data/mocks/calculators-data.mock';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ffmi-calc',
@@ -75,8 +76,8 @@ export class FfmiCalcComponent extends DialogClose {
     bf: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
   })
 
-  constructor(dialogRef: MatDialogRef<any>, private formBuilder: FormBuilder, private translate: TranslateService,) {
-    super(dialogRef)
+  constructor(modalService: NgbModal, private formBuilder: FormBuilder, private translate: TranslateService,) {
+    super(modalService)
   }
 
   resetCalculator() {

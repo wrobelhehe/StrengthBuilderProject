@@ -5,6 +5,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ChartConfiguration } from 'chart.js';
 import { BMI_DATA } from '../../../../app/data/mocks/calculators-data.mock';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-bmi-calc',
@@ -73,8 +74,8 @@ export class BmiCalcComponent extends DialogClose {
     height: ['', [Validators.required, Validators.min(1), Validators.max(280)]],
   })
 
-  constructor(dialogRef: MatDialogRef<any>, private formBuilder: FormBuilder, private translate: TranslateService,) {
-    super(dialogRef)
+  constructor(modalService: NgbModal, private formBuilder: FormBuilder, private translate: TranslateService,) {
+    super(modalService)
   }
 
   resetCalculator() {

@@ -9,7 +9,7 @@
     color: var(--primary-color);
 
     .button-three {
-        animation-name: fadeInRight;
+        animation-name: fadeInLeft;
         animation-duration: 1s;
         animation-fill-mode: forwards;
         opacity: 0;
@@ -47,39 +47,8 @@
         stroke-dashoffset: -90;
     }
 
-    .logo {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute; // dodajemy pozycjonowanie absolutne
-        left: 50%; // ustawiamy na środku poziomo
-        transform: translateX(-50%); // przesuwamy o połowę szerokości elementu w lewo, aby wyśrodkować
-
-        .icon-sb {
-            display: flex;
-            flex-direction: row; // Ustawia elementy w pionie
-            align-items: center; // Wyśrodkowanie elementów poziomo
-            justify-content: center;
-            height: 100%;
-            font-weight: 500; // Pogrubienie tekstu
-            font-size: calc(5vh / 3); // Przykładowa kalkulacja
-
-        }
-
-        .strength,
-        .builder {
-            line-height: 1; // Redukcja przestrzeni pionowej między liniami
-        }
-
-        .strength {
-            color: #ffffff; // Biały kolor dla "Strength"
-        }
-
-        .builder {
-            color: #3c86cf; // Niebieski kolor dla "Builder"
-        }
-
+    .logo-sb {
+        display: none
     }
 
     .mac-buttons {
@@ -123,41 +92,10 @@
         align-items: center;
         justify-content: center;
         margin-right: 3vh;
-
-
-
-        .language-select {
-            animation-name: fadeInRight;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
-            opacity: 0;
-        }
-
-
-
-        .round-button {
-            animation-name: fadeInRight;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
-            opacity: 0;
-            height: 4vh;
-            border: none;
-            display: flex;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-
-        }
-
-        .round-button mat-icon {
-            color: var(--secondary-color);
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-        }
+        animation-name: fadeInRight;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        opacity: 0;
     }
 
 
@@ -187,6 +125,42 @@
             display: none;
 
             font-size: 0.6rem;
+        }
+
+        .logo-sb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateX(25%);
+
+
+            .icon-sb {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                font-weight: 500;
+                font-size: calc(5vh / 3);
+                animation-name: fadeInDown;
+                animation-duration: 1s;
+                animation-fill-mode: forwards;
+                opacity: 0;
+
+            }
+
+            .strength,
+            .builder {
+                line-height: 1;
+            }
+
+            .strength {
+                color: #ffffff;
+            }
+
+            .builder {
+                color: #3c86cf;
+            }
+
         }
     }
 }

@@ -19,6 +19,7 @@ import { ErrorComponent } from './error/error.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { Firestore } from '@angular/fire/firestore';
+import { AddExerciseComponent } from './dialogs/add-exercise/add-exercise.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CategoriesComponent,
     UsersComponent,
     ErrorComponent,
-    ExercisesComponent
+    ExercisesComponent,
+    AddExerciseComponent
   ],
   imports: [
     CommonModule,
