@@ -1,24 +1,14 @@
-import { CookiesComponent } from "../../home-view/home-view-footer/cookies/cookies.component";
-import { PrivacyComponent } from "../../home-view/home-view-footer/privacy/privacy.component";
-import { TermsComponent } from "../../home-view/home-view-footer/terms/terms.component";
-import { BmiCalcComponent } from "../../upper-nav/bmi-calc/bmi-calc.component";
-import { CaloriesCalcComponent } from "../../upper-nav/calories-calc/calories-calc.component";
-import { DataComponent } from "../../upper-nav/data/data.component";
-import { FaqComponent } from "../../upper-nav/faq/faq.component";
-import { FfmiCalcComponent } from "../../upper-nav/ffmi-calc/ffmi-calc.component";
+import { CookiesComponent } from "../../strength-builder/home-view/home-view-footer/cookies/cookies.component";
+import { PrivacyComponent } from "../../strength-builder/home-view/home-view-footer/privacy/privacy.component";
+import { TermsComponent } from "../../strength-builder/home-view/home-view-footer/terms/terms.component";
+import { BmiCalcComponent } from "../../strength-builder/upper-nav/bmi-calc/bmi-calc.component";
+import { CaloriesCalcComponent } from "../../strength-builder/upper-nav/calories-calc/calories-calc.component";
+import { DataComponent } from "../../strength-builder/upper-nav/data/data.component";
+import { FaqComponent } from "../../strength-builder/upper-nav/faq/faq.component";
+import { FfmiCalcComponent } from "../../strength-builder/upper-nav/ffmi-calc/ffmi-calc.component";
+import { ComponentItem, navBar } from "../interfaces/nav.model";
 
-export interface navBar {
-    routeLink: string;
-    label: string;
-    icon: string;
-    role: string[];
-}
 
-export interface ComponentItem {
-    icon: string;
-    name: string;
-    component: any;
-}
 
 export const firstComponents: ComponentItem[] = [
     { icon: 'question_answer', name: 'faq', component: FaqComponent },

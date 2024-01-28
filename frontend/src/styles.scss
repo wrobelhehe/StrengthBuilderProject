@@ -75,7 +75,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Comfortaa', sans-serif;
 
     color: var(--secondary-color);
     ;
@@ -215,6 +215,8 @@ app-root {
 @import '../src/app/strength-builder/main-view/home/home.component.scss';
 @import '../src/app/strength-builder/main-view/users/users.component.scss';
 @import '../src/app/strength-builder/main-view/exercises/exercises.component.scss';
+@import '../src/app/strength-builder/main-view/dialogs/modal-view/modal-view.component.scss';
+
 
 
 

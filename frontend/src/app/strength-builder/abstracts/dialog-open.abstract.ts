@@ -1,5 +1,5 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { firstComponents, secondComponents, thirdComponents } from '../main-view/side-nav/nav-data';
+import { firstComponents, secondComponents, thirdComponents } from '../../data/mocks/nav-data';
 
 
 interface ComponentItem {

@@ -14,6 +14,7 @@ export class AuthService {
 
     }
     signInWithGoogle() {
+
         return this.fireAuth.signInWithPopup(new GoogleAuthProvider()).then((userCredential) => {
             const checkRole$ = timer(0, 1000).pipe(
                 tap(attempts => console.log(`Attempt ${attempts + 1}: Checking role...`)),
@@ -46,7 +47,24 @@ export class AuthService {
     }
 
 
-
+    getUserData(): Observable<any> {
+        return this.fireAuth.authState.pipe(
+            switchMap(user => {
+                if (user) {
+                    // Zwróć obserwowalny obiekt z danymi użytkownika
+                    return of(user);
+                } else {
+                    // Zwróć obserwowalny obiekt z wartością null, jeśli użytkownik nie jest zalogowany
+                    return of(null);
+                }
+            }),
+            catchError(error => {
+                // Obsłuż błędy, jeśli wystąpią
+                console.error('Błąd podczas pobierania danych użytkownika:', error);
+                return of(null);
+            })
+        );
+    }
 
     signOut() {
         this.spinner.show()

@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'strength-builder', pathMatch: 'full' },
   { path: 'strength-builder', loadChildren: () => import('../app/strength-builder/strength-builder.module').then(m => m.StrengthBuilderModule) },
+  { path: '**', redirectTo: 'strength-builder' },
+
 ];
 
 @NgModule({

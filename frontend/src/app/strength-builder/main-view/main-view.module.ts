@@ -18,8 +18,8 @@ import { UsersComponent } from './users/users.component';
 import { ErrorComponent } from './error/error.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { Firestore } from '@angular/fire/firestore';
 import { AddExerciseComponent } from './dialogs/add-exercise/add-exercise.component';
+import { ModalViewComponent } from './dialogs/modal-view/modal-view.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UsersComponent,
     ErrorComponent,
     ExercisesComponent,
-    AddExerciseComponent
+    AddExerciseComponent,
+    ModalViewComponent,
   ],
   imports: [
     CommonModule,

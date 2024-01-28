@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { PlanSection } from 'src/app/data/interfaces/plan-main-view.model';
 import { MOCK_PLAN_SECTIONS } from 'src/app/data/mocks/plans-main-view.mock';
 import { AuthService } from 'src/app/data/services/auth.service';
@@ -13,11 +14,15 @@ export class PlansComponent {
 
   panelOpenState = false;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private spinner: NgxSpinnerService) {
   }
 
 
   signIn() {
-    this.auth.signInWithGoogle()
+    this.spinner.show()
+
+    this.auth.signInWithGoogle().then(() => {
+      this.spinner.hide()
+    })
   }
 }

@@ -1,22 +1,83 @@
-@import '../nav-components.scss';
-
 app-exercises {
     width: 100%;
+    height: 100%;
 
-    .add-section {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
+    .card-wrapper {
+        height: 100%;
 
-        .button-text {
-            margin-right: 10px;
+        .card-content {
+            height: 100%;
+            display: grid !important;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "header-title-card"
+                "svg-card"
+                "table-card";
+            grid-gap: 3vh;
+            padding: 3vh 0;
+
+
+            .header-title-card {
+                grid-area: header-title-card;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+
+
+
+                h2 {
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    font-weight: 700;
+                }
+
+                .add-section {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: row;
+
+                    .button-text {
+                        margin-right: 10px;
+                    }
+                }
+
+            }
+
+            .table-card {
+                grid-area: table-card;
+                width: 100%;
+                height: 100%;
+
+                mat-card-content {
+                    width: 100% !important;
+                    height: 100% !important;
+                }
+            }
+
+            .svg-card {
+                grid-area: svg-card;
+                width: 100%;
+                height: 100%;
+
+                mat-card-content {
+                    width: 100% !important;
+                    height: 100% !important;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    app-svg {
+                        height: 100%;
+                        width: 40%;
+                    }
+                }
+
+                /* Dodatkowe style dla karty SVG */
+            }
         }
-
     }
 
-
 }
-
-
-@media (max-width: 1024px) {}

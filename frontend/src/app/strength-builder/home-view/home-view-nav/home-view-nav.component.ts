@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogOpen } from '../../abstracts/dialog-open.abstract';
 import { AuthService } from '../../../data/services/auth.service';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home-view-nav',
@@ -11,8 +13,9 @@ import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeViewNavComponent extends DialogOpen {
 
+
   isExpanded = false;
-  constructor(modalService: NgbModal, private auth: AuthService, private offcanvasService: NgbOffcanvas) {
+  constructor(modalService: NgbModal, private auth: AuthService, private offcanvasService: NgbOffcanvas, private spinner: NgxSpinnerService) {
     super(modalService)
   }
 
@@ -26,7 +29,11 @@ export class HomeViewNavComponent extends DialogOpen {
   }
 
   signIn() {
-    this.auth.signInWithGoogle()
+    this.spinner.show()
+    this.auth.signInWithGoogle().then(() => {
+      this.closeModal()
+      this.spinner.hide()
+    })
   }
 
   openScroll(content: TemplateRef<any>) {

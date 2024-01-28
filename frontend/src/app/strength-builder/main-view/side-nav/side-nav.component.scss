@@ -69,35 +69,28 @@
 
 
             .nav-item.active {
-                background-color: var(--secondary-color);
-                border-radius: 35px;
-                color: var(--primary-color);
+                background-color: #F2F7FF;
+                color: #3c86cf;
             }
 
-            .nav-item:active {
-                background-color: var(--secondary-color);
-                border-radius: 35px;
-                color: var(--primary-color);
-            }
+
 
             .nav-item:hover {
-                background-color: var(--secondary-color);
-                border-radius: 35px;
-                color: var(--primary-color);
+                background-color: #F2F7FF;
+                color: #3c86cf;
             }
 
             .nav-item {
-                font-size: 1rem;
+                font-size: 0.8rem;
 
-                width: 90%;
-                padding: 10px 20px;
-                margin-bottom: 20px;
-                border-radius: 35px;
+                width: 100%;
+                padding: 20px 40px;
                 cursor: pointer;
                 display: flex;
                 justify-content: flex-start;
                 align-items: flex-end;
                 transition: all 0.1s ease;
+                font-weight: bold;
 
                 mat-icon {
 
@@ -111,29 +104,30 @@
                 }
             }
 
-            .other-item {
-                font-size: 0.7rem;
-            }
-
         }
     }
 
     .sidenav-content {
         max-width: calc(100vw - 250px);
-        background-color: var(--secondary-color);
+        background-color: #F2F7FF;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: column;
 
 
         .sticky-header {
-            position: sticky;
+            position: fixed;
             top: 0;
+            // right: 0;
             z-index: 10000;
             width: 100%;
         }
 
         .router-content {
-            min-height: 90vh;
+
+            height: calc(100% - 5vh);
             width: 100%;
-            padding: 3vh 3vh 0 3vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -156,13 +150,6 @@
         .sidenav .buttons-section {
             margin: 20px 0px;
 
-
-        }
-
-
-        .sidenav mat-nav-list .nav-item {
-            margin: 10px 0px;
-            font-size: 1rem;
 
         }
 

@@ -1,21 +1,23 @@
 <div class="card-wrapper">
-    <h1>{{"exercises" | translate}}</h1>
-    <mat-card>
-        <mat-card-content>
+    <div class="card-content">
+        <div class="header-title-card">
+            <h2>{{"exercises" | translate}}</h2>
             <div class="add-section">
                 <span class="button-text">{{"add-exercise" | translate}}</span>
                 <button mat-fab color="primary" (click)="openFullscreen()">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
-            <div class="no-results" *ngIf="exercises.length===0">
+        </div>
+        <mat-card class="svg-card" *ngIf="exercises.length===0">
+            <mat-card-content>
                 <app-svg [svg]="'NO_DATA'"></app-svg>
-                <div class="no-results-info">
-                    <h1>{{"no-results" | translate}}</h1>
-                    <h3>{{"no-results-info1" | translate}} {{"no-results-info2" | translate}}</h3>
-                    <!-- <span>{{"no-results-info2" | translate}}</span> -->
-                </div>
-            </div>
-        </mat-card-content>
-    </mat-card>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="table-card" *ngIf="exercises.length!==0">
+            <mat-card-content>
+                table </mat-card-content>
+        </mat-card>
+    </div>
+
 </div>

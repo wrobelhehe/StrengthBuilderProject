@@ -1,5 +1,264 @@
-@import '../nav-components.scss';
-
 app-home {
     width: 100%;
+    height: 100%;
+
+    .card-wrapper {
+        height: 100%;
+
+        .card-content {
+            height: 100%;
+            display: grid !important;
+
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-areas:
+                "header-title-card header-title-card header-title-card header-title-card"
+                "info-card info-card svg-card svg-card"
+                "tutorial-card tutorial-card2 svg-card svg-card";
+            grid-gap: 3vh;
+            /* Ustawia zarówno grid-row-gap, jak i grid-column-gap na 10px */
+            padding: 3vh 0;
+
+
+            .header-title-card {
+                grid-area: header-title-card;
+
+
+                h2 {
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    font-weight: 700;
+                }
+
+            }
+
+            .info-card {
+                text-align: center;
+                grid-area: info-card;
+                height: 100%;
+
+                mat-card-content {
+                    width: 100% !important;
+                    height: 100% !important;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    flex-direction: column;
+
+                    h6 {
+                        width: 70%;
+                    }
+
+                    .highlight {
+                        color: #3c86cf;
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            .tutorial-card {
+                h4 {
+                    text-align: center;
+                }
+
+                background-color: #3c86cf;
+
+                grid-area: tutorial-card;
+                height: 100%;
+
+                mat-card-content {
+                    color: var(--primary-color);
+
+                    width: 100% !important;
+                    height: 100% !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .mat-mdc-list-base {
+                        --mdc-list-list-item-label-text-color: var(--primary-color);
+                        --mdc-list-list-item-supporting-text-color: var(--primary-color);
+                        --mdc-list-list-item-leading-icon-color: var(--primary-color);
+                        --mdc-list-list-item-trailing-supporting-text-color: var(--primary-color);
+                        --mdc-list-list-item-trailing-icon-color: var(--primary-color);
+                        --mdc-list-list-item-selected-trailing-icon-color: var(--primary-color);
+                        --mdc-list-list-item-disabled-label-text-color: var(--primary-color);
+                        --mdc-list-list-item-disabled-leading-icon-color: var(--primary-color);
+                        --mdc-list-list-item-disabled-trailing-icon-color: var(--primary-color);
+                        --mdc-list-list-item-hover-label-text-color: var(--primary-color);
+                        --mdc-list-list-item-hover-leading-icon-color: var(--primary-color);
+                        --mdc-list-list-item-hover-trailing-icon-color: var(--primary-color);
+                        --mdc-list-list-item-focus-label-text-color: var(--primary-color);
+                        --mdc-list-list-item-hover-state-layer-color: var(--primary-color);
+                        --mdc-list-list-item-hover-state-layer-opacity: 0.04;
+                        --mdc-list-list-item-focus-state-layer-color: var(--primary-color);
+                        --mdc-list-list-item-focus-state-layer-opacity: 0.12;
+                    }
+                }
+
+            }
+
+            .tutorial-card2 {
+                h4 {
+                    text-align: center;
+                }
+
+                grid-area: tutorial-card2;
+                height: 100%;
+
+                mat-card-content {
+                    width: 100% !important;
+                    height: 100% !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+            }
+
+
+
+            .svg-card {
+                grid-area: svg-card;
+                width: 100%;
+                height: 100%;
+
+                mat-card-content {
+                    width: 100% !important;
+                    height: 100% !important;
+                }
+
+                /* Dodatkowe style dla karty SVG */
+            }
+        }
+    }
+
+}
+
+
+
+@media (max-width: 1440px) {
+    app-home {
+        width: 100%;
+        height: 100%;
+
+        .card-wrapper {
+            height: 100%;
+
+            .card-content {
+                height: 100%;
+                display: grid !important;
+
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas:
+                    "header-title-card header-title-card"
+                    "info-card svg-card"
+                    "tutorial-card tutorial-card2";
+                grid-gap: 3vh;
+                /* Ustawia zarówno grid-row-gap, jak i grid-column-gap na 10px */
+                padding: 3vh 0;
+
+                .header-title-card {
+                    grid-area: header-title-card;
+                }
+
+                .info-card {
+                    grid-area: info-card;
+                    height: 100%;
+                }
+
+                .tutorial-card {
+                    grid-area: tutorial-card;
+                    height: 100%;
+
+
+                }
+
+                .tutorial-card2 {
+                    grid-area: tutorial-card2;
+                    height: 100%;
+
+
+                }
+
+
+
+                .svg-card {
+                    grid-area: svg-card;
+                    width: 100%;
+                    height: 100%;
+
+                    mat-card-content {
+                        width: 100%;
+
+                    }
+
+                    /* Dodatkowe style dla karty SVG */
+                }
+            }
+        }
+
+    }
+}
+
+@media (max-width: 768px) {
+    app-home {
+        width: 100%;
+        height: 100%;
+
+        .card-wrapper {
+            height: 100%;
+
+            .card-content {
+                height: 100%;
+                display: grid !important;
+
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header-title-card"
+                    "info-card"
+                    "tutorial-card"
+                    "tutorial-card2";
+                grid-gap: 3vh;
+                /* Ustawia zarówno grid-row-gap, jak i grid-column-gap na 10px */
+                padding: 3vh 0;
+
+
+
+                .header-title-card {
+                    grid-area: header-title-card;
+                }
+
+                .info-card {
+                    grid-area: info-card;
+                    height: 100%;
+                }
+
+                .tutorial-card {
+                    grid-area: tutorial-card;
+                    height: 100%;
+
+
+                }
+
+                .tutorial-card2 {
+                    grid-area: tutorial-card2;
+                    height: 100%;
+
+
+                }
+
+
+
+                .svg-card {
+                    display: none;
+                    grid-area: svg-card;
+                    width: 100%;
+                    height: auto;
+
+
+                }
+            }
+        }
+
+    }
 }

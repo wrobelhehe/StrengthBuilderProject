@@ -1,12 +1,13 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/data/services/auth.service';
-import { navbarData } from './nav-data';
+import { navbarData } from '../../../data/mocks/nav-data';
 import { DialogOpen } from '../../abstracts/dialog-open.abstract';
 import { MatDialog } from '@angular/material/dialog';
 import { SideNavToggleService } from 'src/app/data/services/side-nav-toggle.service';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -41,7 +42,7 @@ export class SideNavComponent extends DialogOpen implements OnInit, OnDestroy {
   activeItem: any;
 
 
-  constructor(modalService: NgbModal, private auth: AuthService, private sideNavService: SideNavToggleService) {
+  constructor(modalService: NgbModal, private auth: AuthService, private sideNavService: SideNavToggleService, private spinner: NgxSpinnerService) {
     super(modalService)
     this.subscription = this.sideNavService.buttonState$.subscribe((val) => {
       this.isOpen = val
@@ -75,7 +76,10 @@ export class SideNavComponent extends DialogOpen implements OnInit, OnDestroy {
   }
 
   logOut() {
-    this.auth.signOut()
+    this.spinner.show()
+    this.auth.signOut().then(() => {
+      this.spinner.hide()
+    })
   }
 
 

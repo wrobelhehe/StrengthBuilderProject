@@ -1,5 +1,6 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, HostListener } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home-view',
@@ -46,6 +47,15 @@ export class HomeViewComponent {
       this.scrolled = false;
 
     }
+  }
+
+  constructor(private spinner: NgxSpinnerService) {
+    this.spinner.show();
+
+    // Ukryj spinner po 1 sekundzie (1000 ms)
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
   }
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });

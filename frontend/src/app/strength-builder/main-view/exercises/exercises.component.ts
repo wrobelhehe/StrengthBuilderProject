@@ -5,7 +5,7 @@ import { Exercise } from 'src/app/data/interfaces/exercises.model';
 
 
 import { StrengthBuilderService } from 'src/app/data/services/strength-builder.service';
-import { AddExerciseComponent } from '../dialogs/add-exercise/add-exercise.component';
+import { ModalViewComponent } from '../dialogs/modal-view/modal-view.component';
 
 @Component({
   selector: 'app-exercises',
@@ -26,7 +26,7 @@ export class ExercisesComponent implements OnInit {
   }
 
   openFullscreen() {
-    this.modalService.open(AddExerciseComponent, { fullscreen: true });
+    this.modalService.open(ModalViewComponent, { fullscreen: true });
   }
 
 

@@ -252,6 +252,11 @@
     "advanced": "Advanced",
     "no-results": "No results found",
     "add-exercise": "Add exercise",
-    "no-results-info1": "If you want see some exercises,",
-    "no-results-info2": "click button and add some"
+    "no-results-info": "If you want to see the exercises, click the Add exercise button and complete the form. After completing the form and saving it, the new exercise will appear in the table",
+    "welcome-message-1": "Welcome to Strength Builder",
+    "welcome-message-2": "Below you will find a list of short guides that will walk you through the functionalities of our application step by step. Let's start building strength!",
+    "main-functionalities": "Functionalities",
+    "steps": "Steps: ",
+    "calculators": "Calculators",
+    "tutorials": "Tutorials"
 }
