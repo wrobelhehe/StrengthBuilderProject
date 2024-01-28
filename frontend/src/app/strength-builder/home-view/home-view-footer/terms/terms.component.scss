@@ -1,48 +1,10 @@
-.dialog-wrapper {
+.dialog-content {
     width: 100%;
     height: 100%;
-    background-color: var(--secondary-color);
+    color: var(--primary-color);
 
-
-    .dialog-header {
-        height: 5vh;
-        width: 100%;
-        background-color: var(--secondary-color);
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
-
-        .dialog-buttons {
-            display: flex;
-            justify-content: center;
-            align-self: center;
-            margin-right: 5%;
-            cursor: pointer;
-
-        }
-
-        .dialog-buttons>span {
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-left: 5px;
-            background-color: var(--primary-color);
-            cursor: pointer;
-
-        }
-    }
-
-    .dialog-content {
-        width: 100%;
-        min-height: 95vh;
-        color: var(--primary-color);
-
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 5vh 2vw;
-    }
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
 }

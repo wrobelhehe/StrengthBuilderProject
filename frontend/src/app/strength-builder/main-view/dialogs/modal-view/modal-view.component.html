@@ -1,9 +1,36 @@
 <div class="modal-view-container">
     <div class="modal-view-header">
-        <!-- <h1>{{ "headerTitle" | translate }}</h1> -->
+        <h2>{{ headerTitle | translate }}</h2>
         <button mat-mini-fab color="primary">
             <mat-icon>close</mat-icon>
         </button>
     </div>
-    <div class="modal-view-content"></div>
+    <div class="modal-view-content">
+        <ng-container *ngIf="headerTitle==='faq'">
+            <app-faq class="content-item"></app-faq>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='data'">
+            <app-data class="content-item"></app-data>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='caloriesCalculator'">
+            <app-calories-calc class="content-item"></app-calories-calc>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='ffmiCalculator'">
+            <app-ffmi-calc class="content-item"></app-ffmi-calc>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='bmiCalculator'">
+            <app-bmi-calc class="content-item"></app-bmi-calc>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='cookies'">
+            <app-cookies class="content-item"></app-cookies>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='terms'">
+            <app-terms class="content-item"></app-terms>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='privacyPolicy'">
+            <app-privacy class="content-item"></app-privacy>
+        </ng-container>
+
+
+    </div>
 </div>

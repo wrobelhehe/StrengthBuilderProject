@@ -1,5 +1,6 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { firstComponents, secondComponents, thirdComponents } from '../../data/mocks/nav-data';
+import { ModalViewComponent } from '../main-view/dialogs/modal-view/modal-view.component';
 
 
 interface ComponentItem {
@@ -20,10 +21,12 @@ export abstract class DialogOpen {
     thirdComponents = thirdComponents
 
 
-    openDialog(component: any) {
-        this.modalService.open(component, {
+    openDialog(name: string) {
+        const modalRef = this.modalService.open(ModalViewComponent, {
             fullscreen: true
         })
+        modalRef.componentInstance.headerTitle = name
+
     }
 
 }

@@ -19,7 +19,7 @@
         </span>
     </div>
     <div class="info">
-        <div class="panel" *ngFor="let component of components" (click)="openDialog(component.component)">
+        <div class="panel" *ngFor="let component of components" (click)="openDialog( component.name)">
             {{ component.name | translate}}
         </div>
     </div>

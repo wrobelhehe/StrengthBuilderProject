@@ -12,13 +12,13 @@
                 </a>
             </ng-container>
             <ng-container *ngFor="let component of components">
-                <a *ngIf="mobileRes" (click)="openDialog(component.component);closeNav()" class="nav-item">
+                <a *ngIf="mobileRes" (click)="openDialog( component.name);closeNav()" class="nav-item">
                     <mat-icon>{{ component.icon }}</mat-icon>
 
                     <span class="nav-label">{{ component.name | translate}}</span></a>
             </ng-container>
             <ng-container *ngFor="let component of secondComponents">
-                <a (click)="openDialog(component.component);closeNav()" class="nav-item">
+                <a (click)="openDialog( component.name);closeNav()" class="nav-item">
                     <mat-icon>{{ component.icon }}</mat-icon>
 
                     <span class="nav-label">{{ component.name | translate}}</span></a>

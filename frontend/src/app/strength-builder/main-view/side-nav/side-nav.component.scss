@@ -17,14 +17,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            // margin: 20px 0px;
         }
 
         .buttons-section {
-            // position: absolute;
-            // bottom: 0;
-            // margin: 20px 0px;
-
             justify-content: center;
             display: flex;
             width: 90%;
@@ -59,7 +54,6 @@
 
         mat-nav-list {
             display: flex;
-            // justify-content: center;
             align-items: center;
             flex-direction: column;
             width: 100%;
@@ -119,9 +113,8 @@
         .sticky-header {
             position: fixed;
             top: 0;
-            // right: 0;
             z-index: 10000;
-            width: 100%;
+            width: calc(100vw - 250px);
         }
 
         .router-content {
@@ -154,7 +147,13 @@
         }
 
         .sidenav-content {
-            max-width: 100%
+            max-width: 100%;
+
+            .sticky-header {
+
+                width: 100%;
+            }
+
         }
 
         .sidenav-content .router-content {

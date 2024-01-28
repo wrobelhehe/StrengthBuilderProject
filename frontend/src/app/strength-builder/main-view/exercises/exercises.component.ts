@@ -26,7 +26,8 @@ export class ExercisesComponent implements OnInit {
   }
 
   openFullscreen() {
-    this.modalService.open(ModalViewComponent, { fullscreen: true });
+    const modalRef = this.modalService.open(ModalViewComponent, { fullscreen: true });
+    modalRef.componentInstance.headerTitle = 'exercises'
   }
 
 

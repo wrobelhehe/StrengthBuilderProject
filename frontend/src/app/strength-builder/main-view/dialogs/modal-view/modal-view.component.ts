@@ -6,8 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./modal-view.component.scss']
 })
 export class ModalViewComponent {
-  @Input() type!: string
   @Input() headerTitle!: string
-
-
 }

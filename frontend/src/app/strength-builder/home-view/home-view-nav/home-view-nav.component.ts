@@ -1,9 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { DialogOpen } from '../../abstracts/dialog-open.abstract';
 import { AuthService } from '../../../data/services/auth.service';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { Subscription } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({

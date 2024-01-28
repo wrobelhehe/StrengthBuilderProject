@@ -1,57 +1,51 @@
-<!-- <div class="dialog-wrapper">
-    <div class="dialog-header">
-        <div class="dialog-buttons" (click)="closeDialog()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-    <div class="dialog-content"> -->
-
-<h1>{{ 'ffmiCalculator' | translate }}</h1>
 <mat-stepper orientation="vertical" [linear]="true" #stepper *ngIf="!isCalculated">
     <mat-step [stepControl]="personalFormGroup">
         <form [formGroup]="personalFormGroup">
-            <ng-template class="label-title" matStepLabel>{{ 'personal_info' | translate }}</ng-template>
-            <div class="control-wrapper">
-                <div class="inputBox"
-                    [class.error]="personalFormGroup.get('weight')?.invalid && personalFormGroup.get('weight')?.touched">
-                    <input formControlName="weight" id="weight" type="number" required>
-                    <span>{{ 'form_weight_label' | translate }}</span>
-                </div>
-                <div *ngIf="personalFormGroup.get('weight')?.hasError('min')" class="error-message">
+            <ng-template matStepLabel>{{ 'personal_info' | translate }}</ng-template>
+
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{ 'form_weight_label' | translate }}</mat-label>
+                <input matInput formControlName="weight" id="weight" type="number" required>
+                <mat-error *ngIf="personalFormGroup.get('weight')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="personalFormGroup.get('weight')?.hasError('min')">
                     {{ 'form_weight_min_error' | translate }}
-                </div>
-                <div *ngIf="personalFormGroup.get('weight')?.hasError('max')" class="error-message">
+                </mat-error>
+                <mat-error *ngIf="personalFormGroup.get('weight')?.hasError('max')">
                     {{ 'form_weight_max_error' | translate }}
-                </div>
-            </div>
-            <div class="control-wrapper">
-                <div class="inputBox"
-                    [class.error]="personalFormGroup.get('height')?.invalid && personalFormGroup.get('height')?.touched">
-                    <input formControlName="height" id="height" type="number" required>
-                    <span>{{ 'form_height_label' | translate }}</span>
-                </div>
-                <div *ngIf="personalFormGroup.get('height')?.hasError('min')" class="error-message">
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{ 'form_height_label' | translate }}</mat-label>
+                <input matInput formControlName="height" id="height" type="number" required>
+                <mat-error *ngIf="personalFormGroup.get('height')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="personalFormGroup.get('height')?.hasError('min')">
                     {{ 'form_height_min_error' | translate }}
-                </div>
-                <div *ngIf="personalFormGroup.get('height')?.hasError('max')" class="error-message">
+                </mat-error>
+                <mat-error *ngIf="personalFormGroup.get('height')?.hasError('max')">
                     {{ 'form_height_max_error' | translate }}
-                </div>
-            </div>
-            <div class="control-wrapper">
-                <div class="inputBox"
-                    [class.error]="personalFormGroup.get('bf')?.invalid && personalFormGroup.get('bf')?.touched">
-                    <input formControlName="bf" id="bf" type="number" required>
-                    <span>{{ 'body_fat_label' | translate }}</span>
-                </div>
-                <div *ngIf="personalFormGroup.get('bf')?.hasError('min')" class="error-message">
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{ 'body_fat_label' | translate }}</mat-label>
+                <input matInput formControlName="bf" id="bf" type="number" required>
+                <mat-error *ngIf="personalFormGroup.get('bf')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="personalFormGroup.get('bf')?.hasError('min')">
                     {{ 'form_bf_min_error' | translate }}
-                </div>
-                <div *ngIf="personalFormGroup.get('bf')?.hasError('max')" class="error-message">
+                </mat-error>
+                <mat-error *ngIf="personalFormGroup.get('bf')?.hasError('max')">
                     {{ 'form_bf_max_error' | translate }}
-                </div>
-            </div>
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Przyciski -->
             <div class="buttons-section">
                 <button class="custom-button" matStepperNext [disabled]="personalFormGroup.invalid">
                     <div class="icon-wrapper">
@@ -62,9 +56,11 @@
             </div>
         </form>
     </mat-step>
+
     <mat-step>
         <ng-template matStepLabel>{{ 'summary' | translate }}</ng-template>
         <p>{{"form_ffmi_info" | translate}}</p>
+
         <div class="buttons-section">
             <button class="custom-button" matStepperPrevious>
                 <div class="icon-wrapper">
@@ -81,6 +77,7 @@
         </div>
     </mat-step>
 </mat-stepper>
+
 <div class="right-content" *ngIf="isCalculated">
     <div class="chart">
         <canvas [appFadeInOnScroll]="'right'" [once]="true" baseChart [data]="barChartData" [options]="barChartOptions"
@@ -105,7 +102,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <div class="buttons-section">
+        <div class="buttons-section" [appFadeInOnScroll]="'up'">
             <button class="custom-button" (click)="resetCalculator()">
                 <div class="icon-wrapper">
                     <mat-icon>refresh</mat-icon>
@@ -115,5 +112,3 @@
         </div>
     </div>
 </div>
-<!-- </div>
-</div> -->

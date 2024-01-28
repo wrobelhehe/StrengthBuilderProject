@@ -9,11 +9,10 @@
                 </button>
             </div>
         </div>
-        <mat-card class="svg-card" *ngIf="exercises.length===0">
-            <mat-card-content>
-                <app-svg [svg]="'NO_DATA'"></app-svg>
-            </mat-card-content>
-        </mat-card>
+        <div class="svg-card" *ngIf="exercises.length===0">
+            <app-svg [svg]="'NO_DATA'"></app-svg>
+
+        </div>
         <mat-card class="table-card" *ngIf="exercises.length!==0">
             <mat-card-content>
                 table </mat-card-content>

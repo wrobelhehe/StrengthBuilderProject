@@ -258,5 +258,6 @@
     "main-functionalities": "Functionalities",
     "steps": "Steps: ",
     "calculators": "Calculators",
-    "tutorials": "Tutorials"
+    "tutorials": "Tutorials",
+    "required": "Field is required"
 }

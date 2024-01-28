@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 
-export type SvgCode = 'NO_DATA' | '404' | 'GYM_1' | 'GYM_2';
+export type SvgCode = 'NO_DATA' | '404' | 'GYM_1' | 'GYM_2' | "NO_DATA2";
 
 
 @Component({
