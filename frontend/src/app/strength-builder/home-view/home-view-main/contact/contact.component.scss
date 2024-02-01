@@ -57,7 +57,7 @@
                 .inputBox {
                     width: 100%;
                     position: relative;
-                    box-shadow: 0 0 10px -3px #3c86cf;
+                    box-shadow: 0 0 10px -3px #3172C2;
                     border-radius: 5px;
                     transition: border 0.5s;
                 }
@@ -99,7 +99,7 @@
                 .inputBox textarea:valid,
                 .inputBox textarea:focus {
                     box-shadow: none;
-                    border: 1px solid #3c86cf;
+                    border: 1px solid #3172C2;
                 }
 
 
@@ -112,7 +112,7 @@
                     transform: translateX(10px) translateY(-7px);
                     font-size: 0.65em;
                     padding: 2px 10px;
-                    background: #3c86cf;
+                    background: #3172C2;
                     border-radius: 2px;
                     color: var(--primary-color);
                     letter-spacing: 0.2em;
@@ -245,7 +245,7 @@
             height: 100%;
             font-size: 10rem;
             color: var(--primary-color);
-            text-shadow: 5px 5px 0px #3c86cf;
+            text-shadow: 5px 5px 0px #3172C2;
             position: relative;
             margin: 0;
             text-align: center;
@@ -265,7 +265,7 @@
             height: 100%;
             font-size: 10rem;
             color: var(--primary-color);
-            text-shadow: 5px 5px 0px #3c86cf;
+            text-shadow: 5px 5px 0px #3172C2;
             position: relative;
             margin: 0;
         }
@@ -317,7 +317,7 @@
     .contact-form-wrapper .left-column h1,
     .contact-form-wrapper .after-submit-section h1 {
         font-size: 3rem;
-        text-shadow: 2px 2px 0px #3c86cf;
+        text-shadow: 2px 2px 0px #3172C2;
     }
 
     .contact-form-wrapper .left-column p,

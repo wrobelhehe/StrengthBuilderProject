@@ -11,7 +11,7 @@
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: #3c86cf transparent;
+    scrollbar-color: #3172C2 transparent;
     box-sizing: border-box;
 
 }
@@ -41,12 +41,17 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #3c86cf;
+    background-color: #3172C2;
     /* color of the scrollbar itself */
     border-radius: 4px;
     /* roundness of the scrollbar */
     border: 2px solid transparent;
     /* creates padding around the scrollbar */
+}
+
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+    z-index: 99999 !important;
 }
 
 .mdc-tooltip.custom-tooltip {
@@ -129,7 +134,7 @@ a {
         height: 150%;
         width: 101%;
         box-shadow: 0 0 15px var(--primary-color);
-        background-color: #3c86cf;
+        background-color: #3172C2;
 
     }
 
@@ -221,6 +226,7 @@ app-root {
 @import '../src/app/strength-builder/upper-nav/bmi-calc/bmi-calc.component.scss';
 @import '../src/app/strength-builder/upper-nav/ffmi-calc/ffmi-calc.component.scss';
 @import '../src/app/strength-builder/upper-nav/calories-calc/calories-calc.component.scss';
+@import '../src/app/strength-builder/main-view/dialogs/add-exercise/add-exercise.component.scss';
 
 
 

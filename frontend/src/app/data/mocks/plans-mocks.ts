@@ -33,7 +33,7 @@ export const TYPES: string[] = [
 
 
 export const CATEGORIES: string[] = [
-    'bench', 'squat', 'deadlift', 'universal', 'warmup'
+    'bench', 'squat', 'deadlift', 'universal', 'warmup', 'row', 'core'
 ]
 
 export const MOVEMENT_TYPES: string[] = [
@@ -44,3 +44,4 @@ export const MOVEMENT_TYPES: string[] = [
 export const EXPERIENCE: string[] = [
     'beginner', 'intermediate', 'advanced'
 ]
+

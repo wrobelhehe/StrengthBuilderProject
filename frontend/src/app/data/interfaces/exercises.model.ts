@@ -10,4 +10,12 @@ export interface Exercise {
     moevementType: string;
     videoUrl: string;
     exp: string,
+    sets: ExerciseSet[]
+}
+
+export interface ExerciseSet {
+    reps: number;
+    rpe: number;
+    weight: number;
+    tempo: string
 }

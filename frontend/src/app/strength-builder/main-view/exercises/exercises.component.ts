@@ -1,5 +1,4 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Exercise } from 'src/app/data/interfaces/exercises.model';
 
@@ -27,29 +26,29 @@ export class ExercisesComponent implements OnInit {
 
   openFullscreen() {
     const modalRef = this.modalService.open(ModalViewComponent, { fullscreen: true });
-    modalRef.componentInstance.headerTitle = 'exercises'
+    modalRef.componentInstance.headerTitle = 'add-exercise'
   }
 
 
-  addExercise() {
-    const newExercise: Exercise = {
-      description: "dip_description",
-      type: [''],
-      category: ["bench"],
-      name: "dip_bench_press_name",
-      movementPlane: "sagittal",
-      moevementType: "push",
-      videoUrl: "https://www.youtube.com/watch?v=TbMpGOtB95Q",
-      coeff: 0.5,
-      bodyPart: ["chest", "triceps"],
-      exp: 'intermediate'
-    };
+  // addExercise() {
+  //   const newExercise: Exercise = {
+  //     description: "dip_description",
+  //     type: [''],
+  //     category: ["bench"],
+  //     name: "dip_bench_press_name",
+  //     movementPlane: "sagittal",
+  //     moevementType: "push",
+  //     videoUrl: "https://www.youtube.com/watch?v=TbMpGOtB95Q",
+  //     coeff: 0.5,
+  //     bodyPart: ["chest", "triceps"],
+  //     exp: 'intermediate'
+  //   };
 
-    this.strengthBuilderService.addExercise(newExercise).then(() => {
-      console.log('Exercise added successfully!');
-    }).catch(error => {
-      console.error('Error adding exercise: ', error);
-    });
-  }
+  //   this.strengthBuilderService.addExercise(newExercise).then(() => {
+  //     console.log('Exercise added successfully!');
+  //   }).catch(error => {
+  //     console.error('Error adding exercise: ', error);
+  //   });
+  // }
 
 }

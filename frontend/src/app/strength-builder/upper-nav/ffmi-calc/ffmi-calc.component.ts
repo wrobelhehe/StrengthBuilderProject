@@ -60,7 +60,7 @@ export class FfmiCalcComponent extends DialogClose {
     labels: ['FFMI'],
     datasets: [
       {
-        data: [], label: 'FFMI', backgroundColor: "#3c86cf",
+        data: [], label: 'FFMI', backgroundColor: "#3172C2",
       },
 
     ],

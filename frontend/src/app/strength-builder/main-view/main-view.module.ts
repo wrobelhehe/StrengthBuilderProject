@@ -20,6 +20,7 @@ import { ExercisesComponent } from './exercises/exercises.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AddExerciseComponent } from './dialogs/add-exercise/add-exercise.component';
 import { ModalViewComponent } from './dialogs/modal-view/modal-view.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,6 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MaterialModule,
     MainViewRoutingModule,
     AngularFirestoreModule,
+    ReactiveFormsModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

@@ -59,7 +59,7 @@ export class BmiCalcComponent extends DialogClose {
     labels: ['BMI'],
     datasets: [
       {
-        data: [], label: 'BMI', backgroundColor: "#3c86cf",
+        data: [], label: 'BMI', backgroundColor: "#3172C2",
       },
 
     ],

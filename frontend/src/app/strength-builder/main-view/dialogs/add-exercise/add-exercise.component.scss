@@ -1,0 +1,101 @@
+@import '../../../upper-nav/common-styles/common-styles.scss';
+
+app-add-exercise {
+    .sets-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mat-accordion {
+        width: 50% !important;
+        margin-right: 10px;
+
+    }
+
+    .set-row {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: row;
+        margin-bottom: 3vh;
+    }
+
+    .set-buttons {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        color: var(--primary-color);
+        width: 96px;
+    }
+
+    .set-group {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+
+        .set-controll {
+            width: 150px !important;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .clickable-icon {
+        cursor: pointer;
+        transition: color 0.3s;
+        // font-size: 48px;
+        /* Ustawia wielkość ikony */
+        height: 48px;
+        /* Ustawia wysokość ikony */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .plus-icon {
+        color: var(--primary-color);
+    }
+
+    .close-icon {
+        color: #D72638;
+        /* Przykładowy kolor, dostosuj do swoich potrzeb */
+    }
+
+
+}
+
+@media (max-width: 768px) {
+
+    app-add-exercise {
+        .sets-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mat-accordion {
+            width: 100% !important;
+        }
+
+        .set-group {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+
+            .set-controll {
+                width: 100% !important;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+
+    }
+}
