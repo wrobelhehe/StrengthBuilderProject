@@ -1,6 +1,9 @@
 @import '../../../upper-nav/common-styles/common-styles.scss';
 
 app-add-exercise {
+
+
+
     .sets-container {
         display: flex;
         flex-direction: column;
@@ -10,6 +13,15 @@ app-add-exercise {
         width: 50% !important;
         margin-right: 10px;
 
+    }
+
+
+
+    .drag-handle {
+        cursor: move;
+        /* Ustawia kursor wskazujący możliwość przeciągania */
+        margin-right: 8px;
+        /* Dodaje odstęp od tekstu */
     }
 
     .set-row {
@@ -27,7 +39,7 @@ app-add-exercise {
         align-items: center;
         flex-direction: row;
         color: var(--primary-color);
-        width: 96px;
+        width: 72px;
     }
 
     .set-group {
@@ -70,8 +82,10 @@ app-add-exercise {
 }
 
 @media (max-width: 768px) {
-
     app-add-exercise {
+
+
+
         .sets-container {
             display: flex;
             flex-direction: column;
@@ -79,6 +93,35 @@ app-add-exercise {
 
         .mat-accordion {
             width: 100% !important;
+            margin-right: 10px;
+
+        }
+
+
+
+        .drag-handle {
+            cursor: move;
+            /* Ustawia kursor wskazujący możliwość przeciągania */
+            margin-right: 8px;
+            /* Dodaje odstęp od tekstu */
+        }
+
+        .set-row {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: row;
+            margin-bottom: 3vh;
+        }
+
+        .set-buttons {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            color: var(--primary-color);
+            width: 72px;
         }
 
         .set-group {
@@ -87,13 +130,34 @@ app-add-exercise {
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            flex-direction: column;
+            flex-direction: row;
 
             .set-controll {
-                width: 100% !important;
+                width: 150px !important;
                 display: flex;
                 flex-direction: column;
             }
+        }
+
+        .clickable-icon {
+            cursor: pointer;
+            transition: color 0.3s;
+            // font-size: 48px;
+            /* Ustawia wielkość ikony */
+            height: 48px;
+            /* Ustawia wysokość ikony */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .plus-icon {
+            color: var(--primary-color);
+        }
+
+        .close-icon {
+            color: #D72638;
+            /* Przykładowy kolor, dostosuj do swoich potrzeb */
         }
 
 

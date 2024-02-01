@@ -50,7 +50,9 @@
 }
 
 .cdk-global-overlay-wrapper,
-.cdk-overlay-container {
+.cdk-overlay-container,
+.cdk-drag-preview,
+.cdk-drag-placeholder {
     z-index: 99999 !important;
 }
 

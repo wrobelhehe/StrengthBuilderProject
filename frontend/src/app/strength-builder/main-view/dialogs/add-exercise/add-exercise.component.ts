@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ExerciseSet } from 'src/app/data/interfaces/exercises.model';
@@ -28,19 +29,19 @@ export class AddExerciseComponent implements OnInit {
 
 
   exerciseFormGroup = this.fb.group({
-    type: [[], Validators.required],
-    name: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-    description: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(200)]],
-    bodyPart: [[], Validators.required],
-    category: [[], Validators.required],
+    type: [['wa'], Validators.required],
+    name: ["f212121", [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    description: ["'wa'", [Validators.required, Validators.minLength(1), Validators.maxLength(200)]],
+    bodyPart: [['wa'], Validators.required],
+    category: [['wa'], Validators.required],
   });
 
   secondExerciseFormGroup = this.fb.group({
     coeff: [0.5, [Validators.required, Validators.min(0)]],
-    movementPlane: ['', Validators.required],
-    movementType: ['', Validators.required],
-    videoUrl: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
-    exp: ['', Validators.required]
+    movementPlane: ['wa', Validators.required],
+    movementType: ['wa', Validators.required],
+    videoUrl: ['wa21212121212121', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
+    exp: ['wa', Validators.required]
   });
   exerciseSetForm = this.fb.group({
     sets: this.fb.array([])
@@ -67,12 +68,23 @@ export class AddExerciseComponent implements OnInit {
       tempo: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
     });
     if (!index) {
-      // Dodaj nowy zestaw po określonym indeksie
       this.setsFormArray.insert(index + 1, newSet);
     } else {
-      // Jeśli indeks nie jest podany, dodaj na końcu
       this.setsFormArray.push(newSet);
     }
+  }
+
+  copySet(index: number) {
+    const currentSetValues = this.setsFormArray.at(index).value;
+
+    const copiedSet = this.fb.group({
+      reps: [currentSetValues.reps, [Validators.required, Validators.min(1), Validators.max(50)]],
+      rpe: [currentSetValues.rpe, [Validators.required, Validators.min(1), Validators.max(10)]],
+      weight: [currentSetValues.weight, [Validators.min(1), Validators.max(600)]],
+      tempo: [currentSetValues.tempo, [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
+    });
+
+    this.setsFormArray.insert(index + 1, copiedSet);
   }
 
   removeSet(index: number) {
@@ -87,6 +99,11 @@ export class AddExerciseComponent implements OnInit {
     };
 
     console.log('Form Data:', combinedFormData);
+  }
+
+
+  drop(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.setsFormArray.controls, event.previousIndex, event.currentIndex);
   }
 
 }

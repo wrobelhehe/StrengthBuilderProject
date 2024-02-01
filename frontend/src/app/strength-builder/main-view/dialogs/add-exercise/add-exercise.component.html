@@ -73,6 +73,7 @@
         </form>
     </mat-step>
     <mat-step [stepControl]="secondExerciseFormGroup">
+
         <form [formGroup]="secondExerciseFormGroup">
             <ng-template matStepLabel>{{ 'exercise_info_more' | translate }}</ng-template>
             <div class="slider-label-container">
@@ -144,12 +145,14 @@
     <mat-step [stepControl]="exerciseSetForm">
         <form [formGroup]="exerciseSetForm">
             <ng-template matStepLabel>{{ 'sets_info' | translate }}</ng-template>
-            <div formArrayName="sets" class="sets-container">
+            <div formArrayName="sets" cdkDropList class="sets-container" [cdkDropListData]="setsFormArray.controls"
+                (cdkDropListDropped)="drop($event)">
                 <div class="set-row" *ngFor="let set of setsFormArray.controls; let i = index">
                     <mat-accordion>
-                        <mat-expansion-panel>
+                        <mat-expansion-panel cdkDrag>
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
+                                    <mat-icon class="drag-handle" cdkDragHandle>drag_indicator</mat-icon>
                                     {{'set' | translate}} {{i + 1}}
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
@@ -216,6 +219,7 @@
                         <mat-icon class="clickable-icon plus-icon" (click)="addSet(i)">add_circle</mat-icon>
                         <mat-icon *ngIf="setsFormArray.controls.length > 1" class="clickable-icon close-icon"
                             (click)="removeSet(i)">remove_circle</mat-icon>
+                        <mat-icon class="clickable-icon" (click)="copySet(i)">content_copy</mat-icon>
                     </div>
                 </div>
             </div>
@@ -236,6 +240,7 @@
         </form>
     </mat-step>
     <mat-step>
+
         <ng-template matStepLabel>{{ 'summary' | translate }}</ng-template>
         <p>{{"form_ffmi_info" | translate}}</p>
 
