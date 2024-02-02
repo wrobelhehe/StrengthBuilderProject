@@ -7,7 +7,7 @@ export interface Exercise {
     coeff: number;
     description: string;
     movementPlane: string;
-    moevementType: string;
+    movementType: string;
     videoUrl: string;
     exp: string,
     sets: ExerciseSet[]

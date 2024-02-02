@@ -1,13 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 @import "/node_modules/flag-icons/css/flag-icons.min.css";
-/* Importing Bootstrap SCSS file. */
 @import "./node_modules/bootstrap/scss/bootstrap";
-
-/* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
-
-/* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+@import 'ngx-toastr/toastr';
 
 * {
     scrollbar-width: thin;
@@ -18,35 +14,25 @@
 
 :root {
     --primary-color: white;
-    /* Domyślny kolor pierwotny */
     --secondary-color: #030B12;
-    /* Domyślny kolor wtórny */
     --secondary-color-rgba: rgba(3, 11, 18, 0.90);
-
     --primary-color-rgba: rgba(255, 255, 255, 0.9);
 
 }
 
-/* WebKit scrollbar styles (for Chrome, Safari, Opera) */
 *::-webkit-scrollbar {
     width: 8px;
-    /* or any desired width */
     height: 8px;
-    /* for horizontal scrollbars */
 }
 
 *::-webkit-scrollbar-track {
     background: transparent;
-    /* background of the scrollbar track */
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: #3172C2;
-    /* color of the scrollbar itself */
     border-radius: 4px;
-    /* roundness of the scrollbar */
     border: 2px solid transparent;
-    /* creates padding around the scrollbar */
 }
 
 .cdk-global-overlay-wrapper,
@@ -229,12 +215,7 @@ app-root {
 @import '../src/app/strength-builder/upper-nav/ffmi-calc/ffmi-calc.component.scss';
 @import '../src/app/strength-builder/upper-nav/calories-calc/calories-calc.component.scss';
 @import '../src/app/strength-builder/main-view/dialogs/add-exercise/add-exercise.component.scss';
-
-
-
-
-
-
+@import '../src/app/strength-builder/main-view/dialogs/exercise-form/exercise-form.component.scss';
 
 
 html,

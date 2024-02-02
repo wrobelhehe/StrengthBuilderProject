@@ -1,0 +1,242 @@
+<mat-stepper orientation="vertical" [linear]="true" #stepper>
+    <mat-step [stepControl]="exerciseFormGroup">
+        <form [formGroup]="exerciseFormGroup">
+            <ng-template matStepLabel>{{ 'exercise_info' | translate }}</ng-template>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"exercise_name" | translate}}</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="exerciseFormGroup.get('name')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="exerciseFormGroup.get('name')?.hasError('minlength')">
+                    {{ 'minLength_error' | translate:{min:
+                    exerciseFormGroup.get('name')?.errors?.["minlength"].requiredLength} }}
+                </mat-error>
+                <mat-error *ngIf="exerciseFormGroup.get('name')?.hasError('maxlength')">
+                    {{ 'maxLength_error' | translate: {max:
+                    exerciseFormGroup.get('name')?.errors?.["maxlength"].requiredLength} }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"exercise_description" | translate}}</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+                <mat-error *ngIf="exerciseFormGroup.get('description')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="exerciseFormGroup.get('description')?.hasError('minlength')">
+                    {{ 'minLength_error' | translate:{min:
+                    exerciseFormGroup.get('description')?.errors?.["minlength"].requiredLength} }}
+                </mat-error>
+                <mat-error *ngIf="exerciseFormGroup.get('description')?.hasError('maxlength')">
+                    {{ 'maxLength_error' | translate: {max:
+                    exerciseFormGroup.get('description')?.errors?.["maxlength"].requiredLength} }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"type" | translate}}</mat-label>
+                <mat-select formControlName="type" multiple>
+                    <mat-option *ngFor="let type of types" [value]="type">{{type | translate}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="exerciseFormGroup.get('type')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"bodyPart" | translate}}</mat-label>
+                <mat-select formControlName="bodyPart" multiple>
+                    <mat-option *ngFor="let bodyPart of bodyParts"
+                        [value]="bodyPart">{{bodyPart|translate}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="exerciseFormGroup.get('bodyPart')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"category" | translate}}</mat-label>
+                <mat-select formControlName="category" multiple>
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{category | translate}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="exerciseFormGroup.get('category')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <div class="buttons-section">
+                <button class="custom-button" matStepperNext>
+                    <div class="icon-wrapper">
+                        <mat-icon>arrow_right_alt</mat-icon>
+                    </div>
+                    <span>{{ 'form_next_button' | translate }}</span>
+                </button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondExerciseFormGroup">
+
+        <form [formGroup]="secondExerciseFormGroup">
+            <ng-template matStepLabel>{{ 'exercise_info_more' | translate }}</ng-template>
+            <div class="slider-label-container">
+                <label>{{"coeff_value" | translate}}{{ secondExerciseFormGroup.get('coeff')?.value}}</label>
+            </div>
+            <mat-slider class="control-wrapper" min="0.25" max="1" step="0.25" discrete>
+                <input matSliderThumb formControlName="coeff">
+            </mat-slider>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"movementPlane" | translate}}</mat-label>
+                <mat-select formControlName="movementPlane">
+                    <mat-option *ngFor="let movementPlane of movementPlanes" [value]="movementPlane">
+                        {{movementPlane | translate}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondExerciseFormGroup.get('movementPlane')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"movementType" | translate}}</mat-label>
+                <mat-select formControlName="movementType">
+                    <mat-option *ngFor="let movementType of movementTypes" [value]="movementType">{{movementType |
+                        translate}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondExerciseFormGroup.get('movementType')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"exp" | translate}}</mat-label>
+                <mat-select formControlName="exp">
+                    <mat-option *ngFor="let exp of experience" [value]="exp">{{exp | translate}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondExerciseFormGroup.get('exp')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"video_url" | translate}}</mat-label>
+                <input matInput formControlName="videoUrl">
+                <mat-error *ngIf="secondExerciseFormGroup.get('videoUrl')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="secondExerciseFormGroup.get('videoUrl')?.hasError('minlength')">
+                    {{ 'minLength_error' | translate:{min:
+                    secondExerciseFormGroup.get('videoUrl')?.errors?.["minlength"].requiredLength} }}
+                </mat-error>
+                <mat-error *ngIf="secondExerciseFormGroup.get('videoUrl')?.hasError('maxlength')">
+                    {{ 'maxLength_error' | translate: {max:
+                    secondExerciseFormGroup.get('videoUrl')?.errors?.["maxlength"].requiredLength} }}
+                </mat-error>
+            </mat-form-field>
+            <div class="buttons-section">
+                <button class="custom-button" matStepperPrevious>
+                    <div class="icon-wrapper">
+                        <mat-icon>keyboard_backspace</mat-icon>
+                    </div>
+                    <span>{{ 'form_back_button' | translate }}</span>
+                </button>
+                <button class="custom-button" matStepperNext>
+                    <div class="icon-wrapper">
+                        <mat-icon>arrow_right_alt</mat-icon>
+                    </div>
+                    <span>{{ 'form_next_button' | translate }}</span>
+                </button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="exerciseSetForm">
+        <form [formGroup]="exerciseSetForm">
+            <ng-template matStepLabel>{{ 'sets_info' | translate }}</ng-template>
+            <div formArrayName="sets" cdkDropList class="sets-container" [cdkDropListData]="setsFormArray.controls"
+                (cdkDropListDropped)="drop($event)">
+                <div class="set-row" *ngFor="let set of setsFormArray.controls; let i = index">
+                    <mat-accordion>
+                        <mat-expansion-panel cdkDrag>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <mat-icon class="drag-handle" cdkDragHandle>drag_indicator</mat-icon>
+                                    {{'set' | translate}} {{i + 1}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div [formGroupName]="i" class="set-group">
+                                <mat-form-field class="control-wrapper set-controll" appearance="fill">
+                                    <mat-label>{{"reps" | translate}}</mat-label>
+                                    <input type="number" matInput formControlName="reps">
+                                    <mat-error *ngIf="set.get('reps')?.hasError('required')">
+                                        {{ 'required' | translate }}
+                                    </mat-error>
+                                    <mat-error *ngIf="set.get('reps')?.hasError('min')">
+                                        {{ 'min_error' | translate:{min: set.get('reps')?.errors?.['min']?.min} }}
+                                    </mat-error>
+
+                                    <mat-error *ngIf="set.get('reps')?.hasError('max')">
+                                        {{ 'max_error' | translate:{max: set.get('reps')?.errors?.['max']?.max} }}
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="control-wrapper set-controll" appearance="fill">
+                                    <mat-label>{{"rpe" | translate}}</mat-label>
+                                    <input type="number" matInput formControlName="rpe">
+                                    <mat-error *ngIf="set.get('rpe')?.hasError('required')">
+                                        {{ 'required' | translate }}
+                                    </mat-error>
+                                    <mat-error *ngIf="set.get('rpe')?.hasError('min')">
+                                        {{ 'min_error' | translate:{min: set.get('rpe')?.errors?.['min']?.min} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="set.get('rpe')?.hasError('max')">
+                                        {{ 'max_error' | translate:{max: set.get('rpe')?.errors?.['max']?.max} }}
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="control-wrapper set-controll" appearance="fill">
+                                    <mat-label>{{"weight" | translate}}</mat-label>
+                                    <input type="number" matInput formControlName="weight">
+                                    <mat-error *ngIf="set.get('weight')?.hasError('min')">
+                                        {{ 'min_error' | translate:{min: set.get('weight')?.errors?.['min']?.min} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="set.get('weight')?.hasError('max')">
+                                        {{ 'max_error' | translate:{max: set.get('weight')?.errors?.['max']?.max} }}
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="control-wrapper set-controll" appearance="fill">
+                                    <mat-label>{{"tempo" | translate}}</mat-label>
+                                    <input matInput formControlName="tempo">
+                                    <mat-error *ngIf="set.get('tempo')?.hasError('required')">
+                                        {{ 'required' | translate }}
+                                    </mat-error>
+                                    <mat-error *ngIf="set.get('tempo')?.hasError('maxlength')">
+                                        {{ 'maxLength_error' | translate: {max:
+                                        set.get('tempo')?.errors?.["maxlength"].requiredLength} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="set.get('tempo')?.hasError('minlength')">
+                                        {{ 'minLength_error' | translate: {min:
+                                        set.get('tempo')?.errors?.["minlength"].requiredLength} }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </mat-expansion-panel>
+                        <mat-error *ngIf="set.invalid">
+                            {{'invalid-form' | translate }}
+                        </mat-error>
+                    </mat-accordion>
+                    <div class="set-buttons">
+                        <mat-icon class="clickable-icon plus-icon" (click)="addSet(i)">add_circle</mat-icon>
+                        <mat-icon *ngIf="setsFormArray.controls.length > 1" class="clickable-icon close-icon"
+                            (click)="removeSet(i)">remove_circle</mat-icon>
+                        <mat-icon class="clickable-icon" (click)="copySet(i)">content_copy</mat-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons-section">
+                <button class="custom-button" matStepperPrevious>
+                    <div class="icon-wrapper">
+                        <mat-icon>keyboard_backspace</mat-icon>
+                    </div>
+                    <span>{{ 'form_back_button' | translate }}</span>
+                </button>
+                <button class="custom-button" (click)="saveExercise()">
+                    <div class="icon-wrapper">
+                        <mat-icon>check</mat-icon>
+                    </div>
+                    <span>{{ 'add' | translate }}</span>
+                </button>
+            </div>
+        </form>
+    </mat-step>
+</mat-stepper>

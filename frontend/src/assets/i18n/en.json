@@ -284,5 +284,7 @@
     "weight": "Weight",
     "tempo": "Tempo",
     "min_error": "The value must be at least {{min}}.",
-    "max_error": "The value must not exceed {{max}}."
+    "max_error": "The value must not exceed {{max}}.",
+    "add": "Add",
+    "toastTitle": "Successfully added"
 }

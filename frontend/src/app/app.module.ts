@@ -33,6 +33,7 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+import { ToastrModule } from 'ngx-toastr';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -50,12 +51,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     MaterialModule,
     NgxSpinnerModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

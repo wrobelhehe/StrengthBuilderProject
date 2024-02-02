@@ -21,6 +21,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AddExerciseComponent } from './dialogs/add-exercise/add-exercise.component';
 import { ModalViewComponent } from './dialogs/modal-view/modal-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExerciseFormComponent } from './dialogs/exercise-form/exercise-form.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -42,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ExercisesComponent,
     AddExerciseComponent,
     ModalViewComponent,
+    ExerciseFormComponent,
   ],
   imports: [
     CommonModule,
