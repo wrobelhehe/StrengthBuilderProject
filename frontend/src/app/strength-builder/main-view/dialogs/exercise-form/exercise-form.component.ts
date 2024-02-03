@@ -59,7 +59,6 @@ export class ExerciseFormComponent implements OnInit {
 
 
   addSet(index: number) {
-    console.log(index)
     const newSet = this.fb.group({
       reps: [null, [Validators.required, Validators.min(1), Validators.max(50)]],
       rpe: [null, [Validators.required, Validators.min(1), Validators.max(10)]],
@@ -89,8 +88,6 @@ export class ExerciseFormComponent implements OnInit {
   removeSet(index: number) {
     this.setsFormArray.removeAt(index);
   }
-
-
 
   saveExercise() {
     const combinedFormData = {

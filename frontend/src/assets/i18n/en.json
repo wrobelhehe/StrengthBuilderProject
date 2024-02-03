@@ -279,6 +279,7 @@
     "invalid-form": "Some fields are invalid or not filled in.",
     "sets_info": "Informations about sets ",
     "set": "Set: ",
+    "sets": "Sets",
     "reps": "Reps",
     "rpe": "Rpe",
     "weight": "Weight",
@@ -286,5 +287,7 @@
     "min_error": "The value must be at least {{min}}.",
     "max_error": "The value must not exceed {{max}}.",
     "add": "Add",
-    "toastTitle": "Successfully added"
+    "toastTitle": "Successfully added",
+    "filter": "Filter",
+    "actions": "Actions"
 }
