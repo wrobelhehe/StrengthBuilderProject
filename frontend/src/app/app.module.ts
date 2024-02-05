@@ -34,6 +34,7 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { ToastrModule } from 'ngx-toastr';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -58,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireAuthModule,
     MaterialModule,
     NgxSpinnerModule,
+
 
     TranslateModule.forRoot({
       loader: {

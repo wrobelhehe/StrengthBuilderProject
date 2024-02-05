@@ -22,6 +22,8 @@ import { AddExerciseComponent } from './dialogs/add-exercise/add-exercise.compon
 import { ModalViewComponent } from './dialogs/modal-view/modal-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExerciseFormComponent } from './dialogs/exercise-form/exercise-form.component';
+import { VideoPlayerComponent } from './exercises/video-player/video-player.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddExerciseComponent,
     ModalViewComponent,
     ExerciseFormComponent,
+    VideoPlayerComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainViewRoutingModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
+    YouTubePlayerModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

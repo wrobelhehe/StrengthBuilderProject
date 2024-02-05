@@ -12,6 +12,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { SelectionModel } from '@angular/cdk/collections';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-exercises',
@@ -27,8 +28,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class ExercisesComponent implements OnInit, AfterViewInit {
   exercises: Exercise[] = []
-  displayedColumns: string[] = ['select', 'name', 'category', 'type', 'exp', 'videoUrl', 'actions', 'expand'];
-  // columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
+  displayedColumns: string[] = ['select', 'name', 'category', 'type', 'exp', 'sets', 'expand'];
+
   selection = new SelectionModel<Exercise>(true, []);
 
   dataSource: MatTableDataSource<Exercise> = new MatTableDataSource<Exercise>([]);
@@ -44,8 +45,9 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private strengthBuilderService: StrengthBuilderService,
-    private modalService: NgbModal, private toast: ToastrService, private translate: TranslateService) {
+    private modalService: NgbModal, private toast: ToastrService, private translate: TranslateService, private breakpointObserver: BreakpointObserver) {
     this.dataSource = new MatTableDataSource(this.exercises);
+
 
   }
   ngOnInit(): void {
@@ -54,6 +56,40 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
       console.log(this.exercises)
       this.dataSource.data = this.exercises;
     });
+
+    const breakpoints = [
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ];
+
+    this.breakpointObserver
+      .observe(breakpoints)
+      .subscribe(result => {
+        const activeBreakpoint = breakpoints.find(breakpoint => result.breakpoints[breakpoint]);
+
+        switch (activeBreakpoint) {
+          case Breakpoints.XLarge:
+          case Breakpoints.Large:
+            this.displayedColumns = ['select', 'name', 'category', 'type', 'exp', 'sets', 'expand'];
+            break;
+          case Breakpoints.Medium:
+            this.displayedColumns = ['select', 'name', 'category', 'type', 'sets', 'expand'];
+            break;
+          case Breakpoints.Small:
+            this.displayedColumns = ['select', 'name', 'category', 'sets', 'expand'];
+            break;
+          case Breakpoints.XSmall:
+            this.displayedColumns = ['select', 'name', 'expand'];
+            break;
+          default:
+            this.displayedColumns = ['select', 'name', 'category', 'type', 'exp', 'videoUrl', 'actions', 'expand'];
+        }
+      });
+
+    console.log(this.displayedColumns)
   }
 
   ngAfterViewInit() {
@@ -85,7 +121,6 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
