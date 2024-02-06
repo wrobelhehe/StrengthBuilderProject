@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, forkJoin, from, map } from 'rxjs';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Exercise } from '../interfaces/exercises.model';
@@ -36,12 +36,31 @@ export class StrengthBuilderService {
         );
     }
 
-    addExercise(exercise: Exercise): Promise<void> {
+    addExercise(exercise: Exercise): Observable<void> {
         const exerciseId = this.firestore.createId();
-        return this.firestore.collection('exercises').doc(exerciseId).set({
+        return from(this.firestore.collection('exercises').doc(exerciseId).set({
             ...exercise,
             exerciseId: exerciseId
-        });
+        }));
     }
+
+    editExercise(exercise: Exercise): Observable<void> {
+
+        return from(this.firestore.collection('exercises').doc(exercise.exerciseId).update({
+            ...exercise
+        }));
+    }
+
+    deleteExercises(exercises: Exercise[]): Observable<any> {
+        const deleteObservables = exercises.map(exercise => {
+            if (!exercise.exerciseId) {
+                throw new Error('Exercise missing exerciseId');
+            }
+            return from(this.firestore.collection('exercises').doc(exercise.exerciseId).delete());
+        });
+
+        return forkJoin(deleteObservables);
+    }
+
 
 }

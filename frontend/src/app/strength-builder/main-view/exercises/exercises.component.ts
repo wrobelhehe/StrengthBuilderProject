@@ -13,6 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { SmallModalViewComponent } from '../dialogs/small-modal-view/small-modal-view.component';
 
 @Component({
   selector: 'app-exercises',
@@ -38,8 +39,6 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   isExpandedRow = (row: any) => row === this.expandedElement;
 
   selectedSet: ExerciseSet | null = null;
-
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -101,9 +100,13 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  openFullscreen() {
+  addExercise() {
     const modalRef = this.modalService.open(ModalViewComponent, { fullscreen: true });
     modalRef.componentInstance.headerTitle = 'add-exercise'
+    modalRef.result.then(
+      () => this.selection.clear(),
+      () => this.selection.clear()
+    );
   }
 
   applyFilter(event: Event) {
@@ -133,6 +136,33 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
     this.selectedSet = set;
   }
 
+  deleteExercise() {
+    if (this.selection.selected.length) {
+      console.log(this.selection.selected)
+      const selectedRows = this.selection.selected;
+      const modalRef = this.modalService.open(SmallModalViewComponent, { size: 'lg' });
+      modalRef.componentInstance.headerTitle = 'delete-exercise'
+      modalRef.componentInstance.data = selectedRows
+      modalRef.result.then(
+        () => this.selection.clear(),
+        () => this.selection.clear()
+      );
 
+    }
+  }
+
+
+  editExercise() {
+    if (this.selection.selected.length === 1) {
+      const selectedRow = this.selection.selected[0];
+      const modalRef = this.modalService.open(ModalViewComponent, { fullscreen: true });
+      modalRef.componentInstance.headerTitle = 'edit-exercise'
+      modalRef.componentInstance.data = selectedRow
+      modalRef.result.then(
+        () => this.selection.clear(),
+        () => this.selection.clear()
+      );
+    }
+  }
 }
 

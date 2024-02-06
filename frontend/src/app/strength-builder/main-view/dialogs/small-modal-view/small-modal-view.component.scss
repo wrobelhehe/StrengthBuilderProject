@@ -1,6 +1,6 @@
-.modal-view-container-full-screen {
-    width: 100vw;
-    height: 100vh;
+.modal-view-container-small {
+    width: 100%;
+    height: 100%;
     background-color: var(--secondary-color);
     color: var(--primary-color);
     display: flex;
@@ -24,7 +24,7 @@
 
     .modal-view-content {
         width: 90%;
-        height: 90vh;
+        height: auto;
         overflow-y: auto;
         display: flex;
         justify-content: center;

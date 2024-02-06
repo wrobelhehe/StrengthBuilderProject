@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-modal-view',
-  templateUrl: './modal-view.component.html',
-  styleUrls: ['./modal-view.component.scss']
+  selector: 'app-small-modal-view',
+  templateUrl: './small-modal-view.component.html',
+  styleUrls: ['./small-modal-view.component.scss']
 })
-export class ModalViewComponent {
+export class SmallModalViewComponent {
   @Input() headerTitle!: string
 
   @Input() data!: any

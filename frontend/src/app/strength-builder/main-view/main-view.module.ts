@@ -24,6 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ExerciseFormComponent } from './dialogs/exercise-form/exercise-form.component';
 import { VideoPlayerComponent } from './exercises/video-player/video-player.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { EditExerciseComponent } from './dialogs/edit-exercise/edit-exercise.component';
+import { DeleteExerciseComponent } from './dialogs/delete-exercise/delete-exercise.component';
+import { SmallModalViewComponent } from './dialogs/small-modal-view/small-modal-view.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,6 +50,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ModalViewComponent,
     ExerciseFormComponent,
     VideoPlayerComponent,
+    EditExerciseComponent,
+    DeleteExerciseComponent,
+    SmallModalViewComponent,
   ],
   imports: [
     CommonModule,

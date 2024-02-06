@@ -287,7 +287,14 @@
     "min_error": "The value must be at least {{min}}.",
     "max_error": "The value must not exceed {{max}}.",
     "add": "Add",
-    "toastTitle": "Successfully added",
+    "edit": "Edit",
+    "delete": "Delete",
+    "toastTitleAdd": "Successfully added",
+    "toastTitleEdit": "Successfully edited",
+    "toastTitleDelete": "Successfully deleted",
     "filter": "Filter",
-    "actions": "Actions"
+    "actions": "Actions",
+    "edit-exercise": "Edit exercise",
+    "delete-exercise": "Delete exercise",
+    "delete-info": "Are you sure you want to delete {{exercisesLength}} exercises?"
 }

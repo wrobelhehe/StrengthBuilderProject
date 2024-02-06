@@ -22,10 +22,29 @@ app-exercises {
             flex-direction: column;
             padding: 3vh 0;
 
-            .mat-mdc-form-field {
-                font-size: 14px;
+            .table-actions {
                 width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+
+
+                .mat-mdc-form-field {
+                    font-size: 14px;
+                    width: 20%;
+                }
+
+                .action-buttons {
+                    width: 10%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-direction: row;
+                }
             }
+
+
 
             .header-title-card {
                 display: flex;
@@ -113,25 +132,50 @@ app-exercises {
 
                 .example-element-detail {
                     display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-                    flex-direction: row;
-                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-direction: column;
                     width: 100%;
                     height: 100%;
 
                     .column-details {
+                        width: 100%;
                         height: 100%;
                         display: flex;
                         justify-content: flex-start;
                         align-items: flex-start;
                         flex-direction: column;
+
+
                     }
 
                     .video-con {
                         height: 100%;
+                        width: 100%;
+                        padding: 16px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+
+                        mat-card {
+                            mat-card-content {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                        }
+                    }
+
+                    .detail-element:active {
+                        background: #efefef;
 
                     }
+
+                    .detail-element:hover {
+                        background: whitesmoke;
+
+                    }
+
 
 
                     .detail-element {
@@ -141,12 +185,19 @@ app-exercises {
                         justify-content: flex-start;
                         align-items: center;
                         flex-direction: row;
+                        border-top: 1px solid #E0E0E0;
+                        font-size: 1.5rem;
+                        position: relative;
+                        font-weight: 300;
+
 
                         th {
                             font-weight: 500;
                             display: flex;
                             align-items: center;
-                            margin-right: 5px;
+                            padding-right: 5px;
+                            color: #3172C2;
+
                         }
 
 
@@ -318,7 +369,7 @@ app-exercises {
                         flex-wrap: wrap;
                         width: 100%;
                         height: 100%;
-                        padding-bottom: 16px;
+
 
 
                         .column-details {
@@ -355,6 +406,8 @@ app-exercises {
                             justify-content: center;
                             align-items: center;
                             flex-direction: row;
+                            font-size: 14px;
+
 
                             th {
                                 font-weight: 500;

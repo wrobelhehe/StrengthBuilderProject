@@ -33,14 +33,14 @@ export class VideoPlayerComponent implements OnChanges, OnInit {
           this.videoWidth = 160; // Dostosuj do mniejszego ekranu
           this.videoHeight = 90;
         } else if (result.breakpoints[Breakpoints.Small]) {
-          this.videoWidth = 320;
-          this.videoHeight = 180;
+          this.videoWidth = 480;
+          this.videoHeight = 270;
         } else if (result.breakpoints[Breakpoints.Medium]) {
           this.videoWidth = 480;
           this.videoHeight = 270;
         } else {
-          this.videoWidth = 480;
-          this.videoHeight = 270;
+          this.videoWidth = 863; // Dla Large i XLarge
+          this.videoHeight = 485;
         }
       }
       console.log(this.videoHeight)

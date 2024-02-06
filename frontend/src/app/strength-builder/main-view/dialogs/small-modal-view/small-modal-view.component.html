@@ -1,0 +1,13 @@
+<div class="modal-view-container-small">
+    <div class="modal-view-header">
+        <h2>{{ headerTitle | translate }}</h2>
+        <button mat-mini-fab color="primary" (click)="close()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="modal-view-content">
+        <ng-container *ngIf="headerTitle==='delete-exercise'">
+            <app-delete-exercise [exercises]="data" class="content-item"></app-delete-exercise>
+        </ng-container>
+    </div>
+</div>

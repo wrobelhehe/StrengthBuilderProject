@@ -1,4 +1,4 @@
-<div class="modal-view-container">
+<div class="modal-view-container-full-screen">
     <div class="modal-view-header">
         <h2>{{ headerTitle | translate }}</h2>
         <button mat-mini-fab color="primary" (click)="close()">
@@ -33,7 +33,11 @@
         <ng-container *ngIf="headerTitle==='add-exercise'">
             <app-add-exercise class="content-item"></app-add-exercise>
         </ng-container>
-
-
+        <ng-container *ngIf="headerTitle==='edit-exercise'">
+            <app-edit-exercise [exercise]="data" class="content-item"></app-edit-exercise>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='delete-exercise'">
+            <app-delete-exercise [exercises]="data" class="content-item"></app-delete-exercise>
+        </ng-container>
     </div>
 </div>

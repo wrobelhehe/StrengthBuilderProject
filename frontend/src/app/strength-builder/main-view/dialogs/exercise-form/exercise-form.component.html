@@ -234,7 +234,9 @@
                     <div class="icon-wrapper">
                         <mat-icon>check</mat-icon>
                     </div>
-                    <span>{{ 'add' | translate }}</span>
+                    <span *ngIf="!exerciseId">{{ 'add' | translate }}</span>
+                    <span *ngIf="exerciseId">{{ 'edit' | translate }}</span>
+
                 </button>
             </div>
         </form>

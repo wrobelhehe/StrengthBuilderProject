@@ -5,15 +5,28 @@
 
             <div class="add-section">
                 <span class="button-text">{{"add-exercise" | translate}}</span>
-                <button mat-fab color="primary" (click)="openFullscreen()">
+                <button mat-fab color="primary" (click)="addExercise()">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
         </div>
-        <mat-form-field>
-            <mat-label>{{"filter" | translate}}</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Bench" #input>
-        </mat-form-field>
+        <div class="table-actions">
+            <mat-form-field>
+                <mat-label>{{"filter" | translate}}</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Bench" #input>
+            </mat-form-field>
+            <div class="action-buttons">
+                <button [disabled]="selection.selected.length !== 1" mat-icon-button (click)="editExercise()"
+                    aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button (click)="deleteExercise()" [disabled]="!selection.selected.length" mat-icon-button
+                    aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+
 
         <div class="table-container">
             <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
@@ -68,7 +81,7 @@
                             [matMenuTriggerFor]="sets">touch_appa</mat-icon>
                         <mat-menu #sets="matMenu" class="sets-menu">
                             <ng-container *ngFor="let set of element.sets; let i = index">
-                                <button (mouseenter)="selectSet(set)" mat-menu-item
+                                <button (mouseenter)="selectSet(set)" (touchstart)="selectSet(set)" mat-menu-item
                                     [matMenuTriggerFor]="setsMenu">{{"set" |
                                     translate}}
                                     {{i +1}}</button>
@@ -146,7 +159,7 @@
         </div>
 
         <div class="detail-element">
-            <th>{{"coeff_value" | translate}}: </th>
+            <th>{{"coeff_value" | translate}} </th>
             <td>{{element.coeff}}</td>
         </div>
         <div class="detail-element" *ngIf="!displayedColumns.includes('sets')">
@@ -178,10 +191,8 @@
     </div>
 
     <div class="video-con">
-        <!-- <app-video-player class="video-player" [url]="element.videoUrl"></app-video-player> -->
         <mat-card>
-            <mat-card-content> <app-video-player class="embed-responsive embed-responsive-16by9"
-                    [url]="element.videoUrl"></app-video-player>
+            <mat-card-content> <app-video-player [url]="element.videoUrl"></app-video-player>
             </mat-card-content>
         </mat-card>
     </div>

@@ -1,0 +1,19 @@
+<div class="delete-exercise-container">
+    <span>{{"delete-info" | translate:{exercisesLength: exercises.length} }}</span>
+    <div class="buttons-section">
+        <button class="custom-button">
+            <div class="icon-wrapper">
+                <mat-icon>keyboard_backspace</mat-icon>
+            </div>
+            <span>{{ 'form_back_button' | translate }}</span>
+        </button>
+        <button class="custom-button" (click)="deleteExercise()">
+            <div class="icon-wrapper">
+                <mat-icon>delete</mat-icon>
+            </div>
+
+            <span>{{ 'delete' | translate }}</span>
+
+        </button>
+    </div>
+</div>
