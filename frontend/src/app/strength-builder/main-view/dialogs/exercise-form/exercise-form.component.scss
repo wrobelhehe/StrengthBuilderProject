@@ -2,6 +2,19 @@
 
 app-exercise-form {
 
+    .mdc-checkbox__background {
+        border-color: var(--primary-color) !important;
+    }
+
+    .mdc-label {
+        color: var(--primary-color) !important;
+    }
+
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
+        background-color: var(--mdc-checkbox-selected-icon-color) !important;
+        border-color: var(--mdc-checkbox-selected-icon-color) !important;
+    }
+
     .sets-container {
         display: flex;
         flex-direction: column;

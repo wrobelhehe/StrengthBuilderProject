@@ -36,9 +36,10 @@ export class ExerciseFormComponent implements OnInit {
   exerciseFormGroup = this.fb.group({
     type: [[''], [Validators.required, nonEmptyArrayValidator()]],
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-    description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200)]],
+    description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1000)]],
     bodyPart: [[''], [Validators.required, nonEmptyArrayValidator()]],
     category: [[''], [Validators.required, nonEmptyArrayValidator()]],
+    isCompetitionLift: [false]
   });
 
 
@@ -47,7 +48,7 @@ export class ExerciseFormComponent implements OnInit {
     movementPlane: ['', Validators.required],
     movementType: ['', Validators.required],
     videoUrl: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
-    exp: ['', Validators.required]
+    exp: [[''], [Validators.required, nonEmptyArrayValidator()]]
   });
   exerciseSetForm = this.fb.group({
     sets: this.fb.array([])
@@ -72,6 +73,7 @@ export class ExerciseFormComponent implements OnInit {
       description: this.exercise?.description,
       bodyPart: this.exercise?.bodyPart,
       category: this.exercise?.category,
+      isCompetitionLift: this.exercise?.isCompetitionLift
     });
 
     this.secondExerciseFormGroup.patchValue({
@@ -83,55 +85,55 @@ export class ExerciseFormComponent implements OnInit {
     });
 
 
-    while (this.setsFormArray.length !== 0) {
-      this.setsFormArray.removeAt(0);
-    }
+    // while (this.setsFormArray.length !== 0) {
+    //   this.setsFormArray.removeAt(0);
+    // }
 
-    if (this.exercise && this.exercise.sets && this.exercise.sets.length > 0) {
-      this.exercise.sets.forEach(set => {
-        const setGroup = this.fb.group({
-          reps: [set.reps, [Validators.required, Validators.min(1), Validators.max(50)]],
-          rpe: [set.rpe, [Validators.required, Validators.min(1), Validators.max(10)]],
-          weight: [set.weight, [Validators.min(0), Validators.max(600)]],
-          tempo: [set.tempo, [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
-        });
-        this.setsFormArray.push(setGroup);
-      });
-    }
+    // if (this.exercise && this.exercise.sets && this.exercise.sets.length > 0) {
+    //   this.exercise.sets.forEach(set => {
+    //     const setGroup = this.fb.group({
+    //       reps: [set.reps, [Validators.required, Validators.min(1), Validators.max(50)]],
+    //       rpe: [set.rpe, [Validators.required, Validators.min(1), Validators.max(10)]],
+    //       weight: [set.weight, [Validators.min(0), Validators.max(600)]],
+    //       tempo: [set.tempo, [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
+    //     });
+    //     this.setsFormArray.push(setGroup);
+    //   });
+    // }
   }
 
 
 
-  addSet(index: number) {
-    const newSet = this.fb.group({
-      reps: [null, [Validators.required, Validators.min(1), Validators.max(50)]],
-      rpe: [null, [Validators.required, Validators.min(1), Validators.max(10)]],
-      weight: [null, [Validators.min(0), Validators.max(600)]],
-      tempo: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
-    });
-    if (!index) {
-      this.setsFormArray.insert(index + 1, newSet);
-    } else {
-      this.setsFormArray.push(newSet);
-    }
-  }
+  // addSet(index: number) {
+  //   const newSet = this.fb.group({
+  //     reps: [null, [Validators.required, Validators.min(1), Validators.max(50)]],
+  //     rpe: [null, [Validators.required, Validators.min(1), Validators.max(10)]],
+  //     weight: [null, [Validators.min(0), Validators.max(600)]],
+  //     tempo: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
+  //   });
+  //   if (!index) {
+  //     this.setsFormArray.insert(index + 1, newSet);
+  //   } else {
+  //     this.setsFormArray.push(newSet);
+  //   }
+  // }
 
-  copySet(index: number) {
-    const currentSetValues = this.setsFormArray.at(index).value;
+  // copySet(index: number) {
+  //   const currentSetValues = this.setsFormArray.at(index).value;
 
-    const copiedSet = this.fb.group({
-      reps: [currentSetValues.reps, [Validators.required, Validators.min(1), Validators.max(50)]],
-      rpe: [currentSetValues.rpe, [Validators.required, Validators.min(1), Validators.max(10)]],
-      weight: [currentSetValues.weight, [Validators.min(0), Validators.max(600)]],
-      tempo: [currentSetValues.tempo, [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
-    });
+  //   const copiedSet = this.fb.group({
+  //     reps: [currentSetValues.reps, [Validators.required, Validators.min(1), Validators.max(50)]],
+  //     rpe: [currentSetValues.rpe, [Validators.required, Validators.min(1), Validators.max(10)]],
+  //     weight: [currentSetValues.weight, [Validators.min(0), Validators.max(600)]],
+  //     tempo: [currentSetValues.tempo, [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
+  //   });
 
-    this.setsFormArray.insert(index + 1, copiedSet);
-  }
+  //   this.setsFormArray.insert(index + 1, copiedSet);
+  // }
 
-  removeSet(index: number) {
-    this.setsFormArray.removeAt(index);
-  }
+  // removeSet(index: number) {
+  //   this.setsFormArray.removeAt(index);
+  // }
 
   saveExercise() {
 
@@ -140,7 +142,7 @@ export class ExerciseFormComponent implements OnInit {
       const combinedFormData = {
         ...this.exerciseFormGroup.value,
         ...this.secondExerciseFormGroup.value,
-        sets: this.setsFormArray.value,
+        // sets: this.setsFormArray.value,
         type: this.exerciseFormGroup.value.type || [],
         bodyPart: this.exerciseFormGroup.value.bodyPart || [],
         category: this.exerciseFormGroup.value.category || [],

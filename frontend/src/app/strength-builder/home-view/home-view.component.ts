@@ -50,12 +50,12 @@ export class HomeViewComponent {
   }
 
   constructor(private spinner: NgxSpinnerService) {
-    this.spinner.show();
+    // this.spinner.show();
 
-    // Ukryj spinner po 1 sekundzie (1000 ms)
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1000);
+    // // Ukryj spinner po 1 sekundzie (1000 ms)
+    // setTimeout(() => {
+    //   this.spinner.hide();
+    // }, 1000);
   }
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });

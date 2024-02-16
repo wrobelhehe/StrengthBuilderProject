@@ -1,0 +1,115 @@
+app-filters {
+    .filters-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .filters-buttons {
+            width: 10%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .mat-accordion {
+            width: 100%;
+        }
+
+        .mat-mdc-form-field {
+            width: 100%;
+            // padding-top: 20px;
+        }
+
+        .custom-expansion-panel .mat-expansion-panel {
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .custom-expansion-panel .mat-expansion-panel:hover,
+        .custom-expansion-panel .mat-expansion-panel:hover .mat-expansion-panel-header {
+            background: transparent !important;
+        }
+
+        .mat-expansion-panel-header {
+            padding: 0;
+        }
+
+        .mat-expansion-panel-body {
+            padding: 0 23px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            /* Umożliwia zawijanie elementów */
+            justify-content: space-between;
+            /* Dodaje odstępy wewnątrz panelu */
+
+            /* Rozdziela elementy równomiernie */
+            .mat-mdc-form-field {
+                width: calc(50% - 8px);
+
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    app-filters {
+        .filters-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .filters-buttons {
+                width: 10%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: row;
+            }
+
+            .mat-accordion {
+                width: 100%;
+            }
+
+            .mat-mdc-form-field {
+                width: 100%;
+                // padding-top: 20px;
+            }
+
+            .custom-expansion-panel .mat-expansion-panel {
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+
+            .custom-expansion-panel .mat-expansion-panel:hover,
+            .custom-expansion-panel .mat-expansion-panel:hover .mat-expansion-panel-header {
+                background: transparent !important;
+            }
+
+            .mat-expansion-panel-header {
+                padding: 0;
+            }
+
+            .mat-expansion-panel-body {
+                padding: 0 23px 0 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                flex-direction: column;
+                align-items: flex-start;
+
+                .mat-mdc-form-field {
+                    width: 100%;
+
+                }
+            }
+        }
+
+
+    }
+
+}

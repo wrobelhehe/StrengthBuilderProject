@@ -8,11 +8,12 @@ export function createExercise(): Exercise {
         category: [''],
         coeff: 0.5,
         description: '',
+        isCompetitionLift: false,
         movementPlane: '',
         movementType: '',
         videoUrl: '',
-        exp: '',
-        sets: [createSet()]
+        exp: [''],
+        //sets: [createSet()]
     };
 }
 

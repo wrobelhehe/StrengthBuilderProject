@@ -14,6 +14,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { SmallModalViewComponent } from '../dialogs/small-modal-view/small-modal-view.component';
+import { BODY_PARTS, CATEGORIES, EXPERIENCE, MOVEMENT_PLANES, MOVEMENT_TYPES, TYPES } from 'src/app/data/mocks/plans-mocks';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-exercises',
@@ -29,12 +31,37 @@ import { SmallModalViewComponent } from '../dialogs/small-modal-view/small-modal
 })
 export class ExercisesComponent implements OnInit, AfterViewInit {
   exercises: Exercise[] = []
-  displayedColumns: string[] = ['select', 'name', 'category', 'type', 'exp', 'sets', 'expand'];
+  displayedColumns: string[] = ['select', 'exercise_name', 'movementType', 'category', 'type', 'exp', 'expand'];
 
   selection = new SelectionModel<Exercise>(true, []);
-
   dataSource: MatTableDataSource<Exercise> = new MatTableDataSource<Exercise>([]);
+  dataSource2: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   expandedElement!: Exercise | null;
+
+  bodyParts = BODY_PARTS
+
+  movementPlanes = MOVEMENT_PLANES
+
+  movementTypes = MOVEMENT_TYPES
+
+  types = TYPES
+
+  categories = CATEGORIES
+
+  experience = EXPERIENCE
+
+
+  filters = [
+    { key: 'movementType', options: this.movementTypes },
+    { key: 'bodyPart', options: this.bodyParts },
+    { key: 'movementPlane', options: this.movementPlanes },
+    { key: 'type', options: this.types },
+    { key: 'category', options: this.categories },
+    { key: 'exp', options: this.experience }
+  ];
+
+  activeFilters: { [key: string]: string | null } = {};
+
 
   isExpandedRow = (row: any) => row === this.expandedElement;
 
@@ -46,16 +73,26 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   constructor(private strengthBuilderService: StrengthBuilderService,
     private modalService: NgbModal, private toast: ToastrService, private translate: TranslateService, private breakpointObserver: BreakpointObserver) {
     this.dataSource = new MatTableDataSource(this.exercises);
-
-
+    this.dataSource2 = new MatTableDataSource([{}, {}, {}, {}, {}]);
   }
   ngOnInit(): void {
-    this.strengthBuilderService.getExercises().subscribe(data => {
-      this.exercises = data;
-      console.log(this.exercises)
-      this.dataSource.data = this.exercises;
-    });
+    this.loadExercises();
+    this.setupResponsiveColumns();
+  }
 
+  onDataSourceUpdated(updatedDataSource: MatTableDataSource<any>): void {
+    this.dataSource = updatedDataSource;
+  }
+  loadExercises(): void {
+    this.strengthBuilderService.getExercises()
+      .pipe(delay(1500))
+      .subscribe(data => {
+        this.exercises = data;
+        this.dataSource.data = this.exercises;
+      });
+  }
+
+  setupResponsiveColumns(): void {
     const breakpoints = [
       Breakpoints.XSmall,
       Breakpoints.Small,
@@ -64,31 +101,24 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
       Breakpoints.XLarge,
     ];
 
-    this.breakpointObserver
-      .observe(breakpoints)
-      .subscribe(result => {
-        const activeBreakpoint = breakpoints.find(breakpoint => result.breakpoints[breakpoint]);
-
-        switch (activeBreakpoint) {
-          case Breakpoints.XLarge:
-          case Breakpoints.Large:
-            this.displayedColumns = ['select', 'name', 'category', 'type', 'exp', 'sets', 'expand'];
-            break;
-          case Breakpoints.Medium:
-            this.displayedColumns = ['select', 'name', 'category', 'type', 'sets', 'expand'];
-            break;
-          case Breakpoints.Small:
-            this.displayedColumns = ['select', 'name', 'category', 'sets', 'expand'];
-            break;
-          case Breakpoints.XSmall:
-            this.displayedColumns = ['select', 'name', 'expand'];
-            break;
-          default:
-            this.displayedColumns = ['select', 'name', 'category', 'type', 'exp', 'videoUrl', 'actions', 'expand'];
-        }
-      });
-
-    console.log(this.displayedColumns)
+    this.breakpointObserver.observe(breakpoints).subscribe(result => {
+      const activeBreakpoint = breakpoints.find(breakpoint => result.breakpoints[breakpoint]);
+      switch (activeBreakpoint) {
+        case Breakpoints.XLarge:
+        case Breakpoints.Large:
+          this.displayedColumns = ['select', 'exercise_name', 'movementType', 'category', 'type', 'exp', 'expand'];
+          break;
+        case Breakpoints.Medium:
+          this.displayedColumns = ['select', 'exercise_name', 'movementType', 'category', 'type', 'expand'];
+          break;
+        case Breakpoints.Small:
+        case Breakpoints.XSmall:
+          this.displayedColumns = ['select', 'exercise_name', 'expand'];
+          break;
+        default:
+          this.displayedColumns = ['select', 'exercise_name', 'category', 'type', 'exp', 'expand'];
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -149,6 +179,24 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
       );
 
     }
+  }
+
+
+  onChange(value: string, criterion: string) {
+    this.activeFilters[criterion] = value;
+    this.applyFilters()
+  }
+
+
+
+
+
+  applyFilters(): void {
+    this.dataSource.data = this.exercises.filter(exercise =>
+      Object.keys(this.activeFilters).every(key =>
+        !this.activeFilters[key] || (exercise as any)[key].includes(this.activeFilters[key])
+      )
+    );
   }
 
 

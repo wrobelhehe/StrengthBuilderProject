@@ -18,7 +18,6 @@ export class VideoPlayerComponent implements OnChanges, OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.videoId = getVideoId(this.url)
-    console.log(this.videoId)
   }
   ngOnInit() {
     this.breakpointObserver.observe([
@@ -43,8 +42,7 @@ export class VideoPlayerComponent implements OnChanges, OnInit {
           this.videoHeight = 485;
         }
       }
-      console.log(this.videoHeight)
-      console.log(this.videoWidth)
+
     });
   }
 }

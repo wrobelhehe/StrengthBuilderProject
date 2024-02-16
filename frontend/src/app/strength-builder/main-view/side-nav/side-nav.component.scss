@@ -1,8 +1,10 @@
 .sidenav-container {
     height: 95vh;
 
+
     .sidenav {
         width: 250px;
+
 
         .mat-drawer-inner-container {
             display: flex;
@@ -113,7 +115,7 @@
         .sticky-header {
             position: fixed;
             top: 0;
-            right: 0;
+            // right: 0;
             z-index: 10000;
             width: calc(100vw - 250px);
         }
@@ -133,6 +135,7 @@
 @media (max-width: 1024px) {
     .sidenav-container {
         height: 95vh;
+
 
 
         .sidenav .logo-nav {

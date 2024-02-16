@@ -12,6 +12,7 @@ export const BODY_PARTS: string[] = [
     'lats',       // mięśnie najszersze grzbietu
     'obliques',   // mięśnie skośne brzucha
     'abductors',
+    'adductors',
     'hip_flexors',
     'it_band',
     'lower_back',
@@ -37,7 +38,7 @@ export const CATEGORIES: string[] = [
 ]
 
 export const MOVEMENT_TYPES: string[] = [
-    'squat', 'hinge', 'lunge', 'push', 'pull', 'carry', 'twist', 'none'
+    'squat', 'hinge', 'push', 'pull', 'carry', 'twist', 'none'
 ]
 
 

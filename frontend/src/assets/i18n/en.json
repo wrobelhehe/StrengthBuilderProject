@@ -296,5 +296,12 @@
     "actions": "Actions",
     "edit-exercise": "Edit exercise",
     "delete-exercise": "Delete exercise",
-    "delete-info": "Are you sure you want to delete {{exercisesLength}} exercises?"
+    "delete-info": "Are you sure you want to delete {{exercisesLength}} exercises?",
+    "isCompetition": "Is this exercise competition lift?",
+    "yes": "Yes",
+    "no": "No",
+    "adductors": "Adductors",
+    "resetFilters": "Reset filters",
+    "showMoreFilters": "Show more filters",
+    "hideFilters": "Hide filters"
 }

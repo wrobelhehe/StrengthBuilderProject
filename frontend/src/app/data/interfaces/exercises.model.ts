@@ -5,12 +5,13 @@ export interface Exercise {
     bodyPart: string[];
     category: string[];
     coeff: number;
+    isCompetitionLift: boolean
     description: string;
     movementPlane: string;
     movementType: string;
     videoUrl: string;
-    exp: string,
-    sets: ExerciseSet[]
+    exp: string[],
+    //sets: ExerciseSet[]
 }
 
 export interface ExerciseSet {

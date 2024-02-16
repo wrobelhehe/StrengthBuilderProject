@@ -3,6 +3,10 @@
     flex-direction: column;
     width: 100%;
     overflow: hidden;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
 
     .upper-view {
         box-shadow: inset 0px -7px 36px -16px var(--secondary-color), inset 0px 7px 36px -16px var(--secondary-color);

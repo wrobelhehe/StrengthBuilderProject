@@ -11,25 +11,25 @@
             </div>
         </div>
         <div class="table-actions">
-            <mat-form-field>
-                <mat-label>{{"filter" | translate}}</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Bench" #input>
-            </mat-form-field>
+            <div class="filters">
+                <app-filters [dataSource]="dataSource" [data]="exercises" [filters]="filters"
+                    (dataSourceUpdated)="onDataSourceUpdated($event)"></app-filters>
+            </div>
             <div class="action-buttons">
-                <button [disabled]="selection.selected.length !== 1" mat-icon-button (click)="editExercise()"
-                    aria-label="Example icon button with a vertical three dot icon">
+                <button [matTooltip]="'edit' | translate" [disabled]="selection.selected.length !== 1" mat-icon-button
+                    (click)="editExercise()" aria-label="Example icon button with a vertical three dot icon">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button (click)="deleteExercise()" [disabled]="!selection.selected.length" mat-icon-button
+                <button [matTooltip]="'delete' | translate" (click)="deleteExercise()"
+                    [disabled]="!selection.selected.length" mat-icon-button
                     aria-label="Example icon button with a vertical three dot icon">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
         </div>
-
-
         <div class="table-container">
-            <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8"
+                *ngIf="dataSource.data.length">
                 <ng-container matColumnDef="select">
                     <th class="col-checkbox" mat-header-cell *matHeaderCellDef>
                         <mat-checkbox (change)="$event ? toggleAllRows() : null"
@@ -43,16 +43,28 @@
                         </mat-checkbox>
                     </td>
                 </ng-container>
-                <ng-container matColumnDef="name">
-                    <th class="col-name" mat-header-cell *matHeaderCellDef mat-sort-header> {{ "exercise_name" |
+                <ng-container matColumnDef="exercise_name">
+                    <th class="col-column" mat-header-cell *matHeaderCellDef mat-sort-header> {{ "exercise_name" |
                         translate }}
                     </th>
-                    <td class="col-name" mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    <td class="col-column" mat-cell *matCellDef="let element">
+                        {{element.name}}
+                    </td>
+
+                </ng-container>
+                <ng-container matColumnDef="movementType">
+                    <th class="col-column" mat-header-cell *matHeaderCellDef mat-sort-header> {{ "movementType" |
+                        translate }}
+                    </th>
+                    <td class="col-column" mat-cell *matCellDef="let element">
+                        {{element.movementType |translate}}
+                    </td>
+
                 </ng-container>
                 <ng-container matColumnDef="category">
-                    <th class="col-category" mat-header-cell *matHeaderCellDef mat-sort-header>{{"category" |
+                    <th class="col-column" mat-header-cell *matHeaderCellDef mat-sort-header>{{"category" |
                         translate}} </th>
-                    <td class="col-category" mat-cell *matCellDef="let element">
+                    <td class="col-column" mat-cell *matCellDef="let element">
                         <ng-container *ngFor="let category of element.category; let i = index; let last = last">
                             <span>{{ category | translate }}</span><span *ngIf="!last">, </span>
                         </ng-container>
@@ -60,21 +72,26 @@
                 </ng-container>
 
                 <ng-container matColumnDef="type">
-                    <th class="col-type" mat-header-cell *matHeaderCellDef mat-sort-header>{{"type" | translate}}
+                    <th class="col-column" mat-header-cell *matHeaderCellDef mat-sort-header>{{"type" | translate}}
                     </th>
-                    <td class="col-type" mat-cell *matCellDef="let element">
+                    <td class="col-column" mat-cell *matCellDef="let element">
                         <ng-container *ngFor="let type of element.type; let i = index; let last = last">
                             <span>{{ type | translate }}</span><span *ngIf="!last">, </span>
                         </ng-container>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="exp">
-                    <th class="col-exp" mat-header-cell *matHeaderCellDef mat-sort-header> {{ "exp" | translate }}
+                    <th class="col-column" mat-header-cell *matHeaderCellDef mat-sort-header> {{ "exp" | translate }}
                     </th>
-                    <td class="col-exp" mat-cell *matCellDef="let element"> {{element.exp | translate}} </td>
+                    <td class="col-column" mat-cell *matCellDef="let element">
+                        <ng-container *ngFor="let exp of element.exp; let i = index; let last = last">
+                            <span>{{ exp | translate }}</span><span *ngIf="!last">, </span>
+                        </ng-container>
+                    </td>
                 </ng-container>
 
-                <ng-container matColumnDef="sets">
+
+                <!-- <ng-container matColumnDef="sets">
                     <th class="col-sets" mat-header-cell *matHeaderCellDef>{{"sets" |
                         translate}} </th>
                     <td class="col-sets" mat-cell *matCellDef="let element"><mat-icon style="cursor: pointer;"
@@ -100,7 +117,7 @@
                             </ng-container>
                         </mat-menu>
                     </td>
-                </ng-container>
+                </ng-container> -->
                 <ng-container matColumnDef="expand">
                     <th class="col-expand" mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
                     <td class="col-expand" mat-cell *matCellDef="let element">
@@ -121,16 +138,16 @@
                             <div class="column-details">
                                 <div class="detail-element">
                     <th>{{"bodyPart" | translate}}: </th>
-                    <ng-container *ngFor="let bodyPart of element.bodyPart; let i = index; let last = last">
+                    <div class="detail-td" *ngFor="let bodyPart of element.bodyPart; let i = index; let last = last">
                         <span>{{ bodyPart | translate
                             }}</span><span *ngIf="!last" style="margin-right: 5px;">, </span>
-                    </ng-container>
+                    </div>
         </div>
         <div class="detail-element">
             <th>{{"movementPlane" | translate}}: </th>
             <td>{{element.movementPlane | translate}}</td>
         </div>
-        <div class="detail-element">
+        <div class="detail-element" *ngIf="!displayedColumns.includes('movementType')">
             <th>{{"movementType" | translate}}: </th>
             <td>{{element.movementType | translate}}</td>
         </div>
@@ -140,29 +157,35 @@
         </div>
         <div class="detail-element" *ngIf="!displayedColumns.includes('category')">
             <th>{{"category" | translate}}: </th>
-            <ng-container *ngFor="let category of element.category; let i = index; let last = last">
+            <div class="detail-td" *ngFor="let category of element.category; let i = index; let last = last">
                 <span>{{ category | translate
                     }}</span><span style="margin-right: 5px;" *ngIf="!last">, </span>
-            </ng-container>
+            </div>
         </div>
         <div class="detail-element" *ngIf="!displayedColumns.includes('type')">
             <th>{{"type" | translate}}: </th>
-            <ng-container *ngFor="let type of element.type; let i = index; let last = last">
+            <div class="detail-td" *ngFor="let type of element.type; let i = index; let last = last">
                 <span>{{ type | translate
                     }}</span><span style="margin-right: 5px;" *ngIf="!last">, </span>
-            </ng-container>
+            </div>
         </div>
-
         <div class="detail-element" *ngIf="!displayedColumns.includes('exp')">
-            <th>{{"exp" | translate}}</th>
-            <td>{{element.exp | translate}}</td>
+            <th>{{"exp" | translate}}: </th>
+            <div class="detail-td" *ngFor="let exp of element.exp; let i = index; let last = last">
+                <span>{{ exp | translate
+                    }}</span><span style="margin-right: 5px;" *ngIf="!last">, </span>
+            </div>
         </div>
 
         <div class="detail-element">
             <th>{{"coeff_value" | translate}} </th>
             <td>{{element.coeff}}</td>
         </div>
-        <div class="detail-element" *ngIf="!displayedColumns.includes('sets')">
+        <div class="detail-element">
+            <th>{{"isCompetition" | translate}}: </th>
+            <td>{{element.isCompetitionLift ? ("yes" | translate) : ("no" | translate)}}</td>
+        </div>
+        <!-- <div class="detail-element" *ngIf="!displayedColumns.includes('sets')">
             <th>{{"sets" | translate}}</th>
             <mat-icon [matMenuTriggerFor]="sets">touch_appa</mat-icon>
             <mat-menu #sets="matMenu" class="sets-menu">
@@ -185,7 +208,7 @@
                 </ng-container>
             </mat-menu>
 
-        </div>
+        </div> -->
 
 
     </div>
@@ -199,25 +222,14 @@
 </div>
 </td>
 </ng-container>
-
 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
     [class.example-expanded-row]="expandedElement === element">
 </tr>
 <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 </table>
-<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
+<app-empty-table [dataSource]="dataSource" [displayedColumns]="displayedColumns"></app-empty-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
 </div>
-
-
-
 </div>
-
-
-
-<!-- <div class="svg-card" *ngIf="exercises.length==0">
-    <app-svg [svg]="'NO_DATA'"></app-svg>
-
-</div> -->
 </div>

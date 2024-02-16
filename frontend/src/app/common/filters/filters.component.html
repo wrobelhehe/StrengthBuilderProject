@@ -1,0 +1,37 @@
+<div class="filters-container">
+    <mat-accordion class="custom-expansion-panel" hideToggle multi (click)="$event.stopPropagation()">
+        <mat-expansion-panel [expanded]="isExpanded">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-form-field (click)="$event.stopPropagation()">
+                        <input matInput (keyup)="applyFilter($event)" [placeholder]="'filter' | translate" #input>
+                    </mat-form-field>
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <ng-container *ngFor="let filter of filters">
+                <mat-form-field appearance="fill">
+                    <mat-label>{{filter.key | translate}}</mat-label>
+                    <mat-select [value]="filter.selected" (selectionChange)="onChange($event.value, filter.key)"
+                        multiple>
+                        <mat-option *ngFor="let option of filter.options" [value]="option">
+                            {{ option | translate }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-container>
+            <button mat-button color="primary" (click)="resetFilters()">{{"resetFilters" | translate}}</button>
+
+        </mat-expansion-panel>
+
+    </mat-accordion>
+    <div class="filters-buttons">
+
+        <button mat-icon-button
+            [matTooltip]="isExpanded ? ('hideFilters' | translate) : ('showMoreFilters' | translate)"
+            (click)="toggleAccordion()">
+            <mat-icon>filter_list</mat-icon> </button>
+    </div>
+
+</div>

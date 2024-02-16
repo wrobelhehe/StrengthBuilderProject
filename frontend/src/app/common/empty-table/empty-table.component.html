@@ -1,0 +1,33 @@
+<table mat-table [dataSource]="dataSource2" matSort multiTemplateDataRows class="mat-elevation-z8"
+    *ngIf="!dataSource.data.length">
+
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef
+            [ngClass]="{'col-checkbox': column === 'select', 'col-expand': column === 'expand', 'col-column': column !== 'select' && column !== 'expand'}">
+            <ng-container *ngIf="column === 'select'; else notSpecialColumnHeader">
+                <mat-checkbox></mat-checkbox>
+            </ng-container>
+            <ng-template #notSpecialColumnHeader>
+                <div *ngIf="column !== 'expand'" mat-sort-header>{{ column | translate }}</div>
+                <div *ngIf="column === 'expand'">&nbsp;</div>
+            </ng-template>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="column === 'select'">
+                <mat-checkbox>
+                </mat-checkbox>
+            </ng-container>
+            <ng-container *ngIf="column === 'expand'">
+                <button mat-icon-button aria-label="expand row"
+                    (click)="expandedElement = expandedElement === element ? null : element; $event.stopPropagation()">
+                    <mat-icon>{{expandedElement === element ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon>
+                </button>
+            </ng-container>
+            <div *ngIf="column !== 'select' && column !== 'expand'"
+                style="background-color: #e8e8e8; width: 100%; height: 21px; animation: pulse 2s infinite;"></div>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row">
+    </tr>
+</table>

@@ -2,9 +2,20 @@ app-exercises {
     width: 100%;
     height: 100%;
 
+    @keyframes pulse {
+        0% {
+            background-color: #e8e8e8;
+        }
 
+        50% {
+            background-color: #d0d0d0;
+            /* Zmień na inny odcień szarego dla efektu pulsowania */
+        }
 
-
+        100% {
+            background-color: #e8e8e8;
+        }
+    }
 
     .card-wrapper {
         height: 100%;
@@ -12,15 +23,21 @@ app-exercises {
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
+        overflow-y: auto;
+
 
         .card-content {
-            height: 100%;
+            min-height: 100%;
             width: 90%;
             display: flex;
             justify-content: flex-start;
             align-items: center;
             flex-direction: column;
             padding: 3vh 0;
+            animation-name: fadeInUp;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            opacity: 0;
 
             .table-actions {
                 width: 100%;
@@ -28,11 +45,12 @@ app-exercises {
                 justify-content: space-between;
                 align-items: center;
                 flex-direction: row;
+                padding-bottom: 3vh;
 
 
-                .mat-mdc-form-field {
-                    font-size: 14px;
-                    width: 20%;
+
+                .filters {
+                    width: 90%;
                 }
 
                 .action-buttons {
@@ -75,36 +93,7 @@ app-exercises {
 
             .table-container {
                 width: 100%;
-
-                .col-checkbox {
-                    width: 5%;
-                }
-
-                .col-name {
-                    width: 20%;
-
-                }
-
-                .col-category {
-                    width: 20%;
-                }
-
-                .col-type {
-                    width: 20%;
-                }
-
-                .col-exp {
-                    width: 20%;
-                }
-
-                .col-sets {
-                    width: 10%;
-                }
-
-
-                .col-expand {
-                    width: 5%;
-                }
+                padding-bottom: 3vh;
 
                 table {
                     width: 100%;
@@ -129,6 +118,7 @@ app-exercises {
                 .no-padding {
                     padding: 0;
                 }
+
 
                 .example-element-detail {
                     display: flex;
@@ -183,13 +173,18 @@ app-exercises {
                         width: 100%;
                         display: flex;
                         justify-content: flex-start;
-                        align-items: center;
+                        align-items: flex-start;
                         flex-direction: row;
                         border-top: 1px solid #E0E0E0;
-                        font-size: 1.5rem;
                         position: relative;
                         font-weight: 300;
 
+
+                        .detail-td {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                        }
 
                         th {
                             font-weight: 500;
@@ -224,22 +219,8 @@ app-exercises {
 
             }
 
-
-            .svg-card {
-                grid-area: svg-card;
-                width: 100% !important;
-                height: 100% !important;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                app-svg {
-                    width: 600px
-                }
-
-
-            }
         }
+
     }
 
 }
@@ -271,9 +252,23 @@ app-exercises {
                 flex-direction: column;
                 padding: 3vh 0;
 
-                .mat-mdc-form-field {
-                    font-size: 14px;
+                .table-actions {
                     width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-direction: column;
+
+
+
+
+                    .action-buttons {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        flex-direction: row;
+                    }
                 }
 
                 .header-title-card {
@@ -306,36 +301,6 @@ app-exercises {
                 .table-container {
                     width: 100%;
 
-                    .col-checkbox {
-                        width: 5%;
-                    }
-
-                    .col-name {
-                        width: 20%;
-
-                    }
-
-                    .col-category {
-                        width: 20%;
-                    }
-
-                    .col-type {
-                        width: 20%;
-                    }
-
-                    .col-exp {
-                        width: 20%;
-                    }
-
-                    .col-sets {
-                        width: 10%;
-                    }
-
-
-                    .col-expand {
-                        width: 5%;
-                    }
-
                     table {
                         width: 100%;
                     }
@@ -361,7 +326,6 @@ app-exercises {
                     }
 
                     .example-element-detail {
-                        overflow: hidden;
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -369,6 +333,7 @@ app-exercises {
                         flex-wrap: wrap;
                         width: 100%;
                         height: 100%;
+
 
 
 
@@ -403,10 +368,16 @@ app-exercises {
                             padding: 16px;
                             width: 100%;
                             display: flex;
-                            justify-content: center;
-                            align-items: center;
+                            justify-content: flex-start;
+                            align-items: flex-start;
                             flex-direction: row;
-                            font-size: 14px;
+                            flex-wrap: wrap;
+
+                            .detail-td {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                            }
 
 
                             th {

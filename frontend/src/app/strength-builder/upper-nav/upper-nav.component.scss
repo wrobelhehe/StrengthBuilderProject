@@ -1,4 +1,8 @@
 .upper-header {
+    animation-name: fadeInDown;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
     width: 100%;
     height: 5vh;
     background-color: var(--secondary-color);

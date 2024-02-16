@@ -62,6 +62,9 @@
                     {{ 'required' | translate }}
                 </mat-error>
             </mat-form-field>
+            <mat-checkbox color="primary" formControlName="isCompetitionLift">{{"isCompetition" |
+                translate}}</mat-checkbox>
+
             <div class="buttons-section">
                 <button class="custom-button" matStepperNext>
                     <div class="icon-wrapper">
@@ -104,7 +107,7 @@
             </mat-form-field>
             <mat-form-field class="control-wrapper" appearance="fill">
                 <mat-label>{{"exp" | translate}}</mat-label>
-                <mat-select formControlName="exp">
+                <mat-select formControlName="exp" multiple>
                     <mat-option *ngFor="let exp of experience" [value]="exp">{{exp | translate}}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="secondExerciseFormGroup.get('exp')?.hasError('required')">
@@ -126,7 +129,7 @@
                     secondExerciseFormGroup.get('videoUrl')?.errors?.["maxlength"].requiredLength} }}
                 </mat-error>
             </mat-form-field>
-            <div class="buttons-section">
+            <!-- <div class="buttons-section">
                 <button class="custom-button" matStepperPrevious>
                     <div class="icon-wrapper">
                         <mat-icon>keyboard_backspace</mat-icon>
@@ -139,10 +142,26 @@
                     </div>
                     <span>{{ 'form_next_button' | translate }}</span>
                 </button>
+            </div> -->
+            <div class="buttons-section">
+                <button class="custom-button" matStepperPrevious>
+                    <div class="icon-wrapper">
+                        <mat-icon>keyboard_backspace</mat-icon>
+                    </div>
+                    <span>{{ 'form_back_button' | translate }}</span>
+                </button>
+                <button class="custom-button" (click)="saveExercise()">
+                    <div class="icon-wrapper">
+                        <mat-icon>check</mat-icon>
+                    </div>
+                    <span *ngIf="!exerciseId">{{ 'add' | translate }}</span>
+                    <span *ngIf="exerciseId">{{ 'edit' | translate }}</span>
+
+                </button>
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="exerciseSetForm">
+    <!-- <mat-step [stepControl]="exerciseSetForm">
         <form [formGroup]="exerciseSetForm">
             <ng-template matStepLabel>{{ 'sets_info' | translate }}</ng-template>
             <div formArrayName="sets" cdkDropList class="sets-container" [cdkDropListData]="setsFormArray.controls"
@@ -240,5 +259,5 @@
                 </button>
             </div>
         </form>
-    </mat-step>
+    </mat-step> -->
 </mat-stepper>

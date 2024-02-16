@@ -8,6 +8,10 @@
     flex-direction: column;
     z-index: 1000;
     overflow: hidden;
+    animation-name: fadeInLeft;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
 
     .bottom-header {
         height: 100%;
