@@ -30,25 +30,23 @@ exports.calculateWeakestLift = functions.https.onCall((userData, context) => {
     const fileName = 'filtered_data.json';
 
     return bucket.file(fileName).download().then(data => {
-        const allUsers = JSON.parse(data.toString('utf-8'));
-        const filteredUsers = allUsers.data.filter(user =>
-            user.Age >= userData.age - 3 && user.Age <= userData.age + 3 &&
-            user.BodyweightKg >= userData.bodyweightKg - 5 && user.BodyweightKg <= userData.bodyweightKg + 5 &&
-            user.Sex === userData.sex &&
-            user.Equipment === userData.equipment &&
-            user.Tested === userData.tested);
+        const allData = JSON.parse(data.toString('utf-8'));
+        const filteredData = allData.data.filter(user =>
+            user.age >= userData.age - 1 && user.age <= userData.age + 1 &&
+            user.bodyWeight >= userData.bodyWeight - 2 && user.bodyWeight <= userData.bodyWeight + 2 &&
+            user.sex === userData.sex &&
+            user.tested === userData.tested);
 
-        console.log(filteredUsers.length)
+        console.log(filteredData.length)
+        const medianSquat = calculateMedian(filteredData.map(user => user.squat));
+        const medianBench = calculateMedian(filteredData.map(user => user.bench));
+        const medianDeadlift = calculateMedian(filteredData.map(user => user.deadlift));
 
-        const medianSquat = calculateMedian(filteredUsers.map(user => user.Best3SquatKg));
-        const medianBench = calculateMedian(filteredUsers.map(user => user.Best3BenchKg));
-        const medianDeadlift = calculateMedian(filteredUsers.map(user => user.Best3DeadliftKg));
-
-        const squatRatio = medianSquat / userData.best3SquatKg;
-        const benchRatio = medianBench / userData.best3BenchKg;
-        const deadliftRatio = medianDeadlift / userData.best3DeadliftKg;
+        const squatRatio = medianSquat / userData.squat;
+        const benchRatio = medianBench / userData.bench;
+        const deadliftRatio = medianDeadlift / userData.deadlift;
         const maxRatio = Math.max(squatRatio, benchRatio, deadliftRatio);
-        const weakestLift = maxRatio === squatRatio ? 'Squat' : maxRatio === benchRatio ? 'Bench' : 'Deadlift';
+        const weakestLift = maxRatio === squatRatio ? 'squat' : maxRatio === benchRatio ? 'bench' : 'deadlift';
 
         return {
             weakestLift: weakestLift,

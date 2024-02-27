@@ -1,0 +1,192 @@
+<mat-stepper orientation="vertical" [linear]="true" #stepper>
+    <mat-step [stepControl]="planFormGroup">
+        <form [formGroup]="planFormGroup">
+            <ng-template matStepLabel>{{ 'plan_data_info' | translate }}</ng-template>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"form_age_label" | translate}}</mat-label>
+                <input matInput formControlName="age" type="number">
+                <mat-error *ngIf="planFormGroup.get('age')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('age')?.hasError('min')">
+                    {{ 'min_error' | translate:{min:
+                    planFormGroup.get('age')?.errors?.["min"].min} }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('age')?.hasError('max')">
+                    {{ 'max_error' | translate: {max:
+                    planFormGroup.get('age')?.errors?.["max"].max} }}
+                </mat-error>
+            </mat-form-field>
+            <div class="radios">
+                <mat-radio-group formControlName="sex" aria-label="Select an option">
+                    <mat-radio-button value="m"> {{ 'male' | translate }}</mat-radio-button>
+                    <mat-radio-button value="f"> {{ 'female' | translate }}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"form_weight_label" | translate}}</mat-label>
+                <input matInput formControlName="bodyWeight" type="number">
+                <mat-error *ngIf="planFormGroup.get('bodyWeight')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('bodyWeight')?.hasError('min')">
+                    {{ 'min_error' | translate:{min:
+                    planFormGroup.get('bodyWeight')?.errors?.["min"].min} }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('bodyWeight')?.hasError('max')">
+                    {{ 'max_error' | translate: {max:
+                    planFormGroup.get('bodyWeight')?.errors?.["max"].max} }}
+                </mat-error>
+            </mat-form-field><mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"squat-record" | translate}}</mat-label>
+                <input matInput formControlName="squat" type="number">
+                <mat-error *ngIf="planFormGroup.get('squat')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('squat')?.hasError('min')">
+                    {{ 'min_error' | translate:{min:
+                    planFormGroup.get('squat')?.errors?.["min"].min} }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('squat')?.hasError('max')">
+                    {{ 'max_error' | translate: {max:
+                    planFormGroup.get('squat')?.errors?.["max"].max} }}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"bench-record" | translate}}</mat-label>
+                <input matInput formControlName="bench" type="number">
+                <mat-error *ngIf="planFormGroup.get('bench')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('bench')?.hasError('min')">
+                    {{ 'min_error' | translate:{min:
+                    planFormGroup.get('bench')?.errors?.["min"].min} }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('bench')?.hasError('max')">
+                    {{ 'max_error' | translate: {max:
+                    planFormGroup.get('bench')?.errors?.["max"].max} }}
+                </mat-error>
+            </mat-form-field><mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"deadlift-record" | translate}}</mat-label>
+                <input matInput formControlName="deadlift" type="number">
+                <mat-error *ngIf="planFormGroup.get('deadlift')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('deadlift')?.hasError('min')">
+                    {{ 'min_error' | translate:{min:
+                    planFormGroup.get('deadlift')?.errors?.["min"].requiredLength} }}
+                </mat-error>
+                <mat-error *ngIf="planFormGroup.get('deadlift')?.hasError('max')">
+                    {{ 'max_error' | translate: {max:
+                    planFormGroup.get('deadlift')?.errors?.["max"].max} }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"exp" | translate}}</mat-label>
+                <mat-select formControlName="exp">
+                    <mat-option *ngFor="let exp of experience" [value]="exp">{{exp | translate}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="planFormGroup.get('exp')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-checkbox color="primary" formControlName="tested">{{"tested" |
+                translate}}</mat-checkbox>
+            <div class="buttons-section">
+                <button class="custom-button" matStepperNext (click)="getUserWeakness()">
+                    <div class="icon-wrapper">
+                        <mat-icon>arrow_right_alt</mat-icon>
+                    </div>
+                    <span>{{ 'form_next_button' | translate }}</span>
+                </button>
+            </div>
+        </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondPlanFormGroup">
+        <form [formGroup]="secondPlanFormGroup">
+            <ng-template matStepLabel>{{ 'plan_data_info2' | translate }}</ng-template>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"plan_name_label" | translate}}</mat-label>
+                <input matInput formControlName="planName">
+                <mat-error *ngIf="secondPlanFormGroup.get('planName')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="secondPlanFormGroup.get('planName')?.hasError('minlength')">
+                    {{ 'minLength_error' | translate:{min:
+                    secondPlanFormGroup.get('planName')?.errors?.["minlength"].requiredLength} }}
+                </mat-error>
+                <mat-error *ngIf="secondPlanFormGroup.get('planName')?.hasError('maxlength')">
+                    {{ 'maxLength_error' | translate: {max:
+                    secondPlanFormGroup.get('planName')?.errors?.["maxlength"].requiredLength} }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"planType" | translate}}</mat-label>
+                <mat-select formControlName="planType">
+                    <mat-option *ngFor="let type of types" [value]="type">{{type | translate}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondPlanFormGroup.get('type')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"description_label" | translate}}</mat-label>
+                <input matInput formControlName="description">
+                <mat-error *ngIf="secondPlanFormGroup.get('description')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="secondPlanFormGroup.get('description')?.hasError('minlength')">
+                    {{ 'minLength_error' | translate:{min:
+                    secondPlanFormGroup.get('description')?.errors?.["minlength"].requiredLength} }}
+                </mat-error>
+                <mat-error *ngIf="secondPlanFormGroup.get('description')?.hasError('maxlength')">
+                    {{ 'maxLength_error' | translate: {max:
+                    secondPlanFormGroup.get('description')?.errors?.["maxlength"].requiredLength} }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"numberOfTrainings" | translate}}</mat-label>
+                <mat-select formControlName="numberOfTrainings">
+                    <mat-option *ngFor="let day of trainingDays" [value]="day">{{day}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondPlanFormGroup.get('numberOfTrainings')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="control-wrapper" appearance="fill">
+                <mat-label>{{"durationWeeks" | translate}}</mat-label>
+                <input matInput formControlName="durationWeeks" type="number">
+                <mat-error *ngIf="secondPlanFormGroup.get('durationWeeks')?.hasError('required')">
+                    {{ 'required' | translate }}
+                </mat-error>
+                <mat-error *ngIf="secondPlanFormGroup.get('durationWeeks')?.hasError('min')">
+                    {{ 'min_error' | translate:{min:
+                    secondPlanFormGroup.get('durationWeeks')?.errors?.["min"].requiredLength} }}
+                </mat-error>
+                <mat-error *ngIf="secondPlanFormGroup.get('durationWeeks')?.hasError('max')">
+                    {{ 'max_error' | translate: {max:
+                    secondPlanFormGroup.get('durationWeeks')?.errors?.["max"].max} }}
+                </mat-error>
+            </mat-form-field>
+
+            <div class="buttons-section">
+                <button class="custom-button" matStepperPrevious>
+                    <div class="icon-wrapper">
+                        <mat-icon>keyboard_backspace</mat-icon>
+                    </div>
+                    <span>{{ 'form_back_button' | translate }}</span>
+                </button>
+                <button class="custom-button" matStepperNext>
+                    <div class="icon-wrapper">
+                        <mat-icon>arrow_right_alt</mat-icon>
+                    </div>
+                    <span>{{ 'form_next_button' | translate }}</span>
+                </button>
+            </div>
+        </form>
+    </mat-step>
+</mat-stepper>

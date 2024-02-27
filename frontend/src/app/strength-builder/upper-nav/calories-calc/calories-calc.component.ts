@@ -46,7 +46,7 @@ export class CaloriesCalcComponent extends DialogClose {
   personalFormGroup = this.formBuilder.group({
     weight: ['', [Validators.required, Validators.min(1), Validators.max(500)]],
     height: ['', [Validators.required, Validators.min(1), Validators.max(280)]],
-    age: ['', [Validators.required, Validators.min(1), Validators.max(120)]],
+    age: ['', [Validators.required, Validators.min(10), Validators.max(100)]],
     gender: ['m', Validators.required],
   })
 

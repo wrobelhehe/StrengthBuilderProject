@@ -27,6 +27,10 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { EditExerciseComponent } from './dialogs/edit-exercise/edit-exercise.component';
 import { DeleteExerciseComponent } from './dialogs/delete-exercise/delete-exercise.component';
 import { SmallModalViewComponent } from './dialogs/small-modal-view/small-modal-view.component';
+import { GeneratePlanComponent } from './dialogs/generate-plan/generate-plan.component';
+import { CreatePlanComponent } from './dialogs/create-plan/create-plan.component';
+import { EditPlanComponent } from './dialogs/edit-plan/edit-plan.component';
+import { PlanFormComponent } from './dialogs/plan-form/plan-form.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -53,6 +57,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditExerciseComponent,
     DeleteExerciseComponent,
     SmallModalViewComponent,
+    GeneratePlanComponent,
+    CreatePlanComponent,
+    EditPlanComponent,
+    PlanFormComponent,
   ],
   imports: [
     CommonModule,

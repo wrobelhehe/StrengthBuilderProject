@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Exercise, ExerciseSet } from 'src/app/data/interfaces/exercises.model';
+import { Exercise } from 'src/app/data/interfaces/exercises.model';
 
 
 import { StrengthBuilderService } from 'src/app/data/services/strength-builder.service';
@@ -35,7 +35,6 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
 
   selection = new SelectionModel<Exercise>(true, []);
   dataSource: MatTableDataSource<Exercise> = new MatTableDataSource<Exercise>([]);
-  dataSource2: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   expandedElement!: Exercise | null;
 
   bodyParts = BODY_PARTS
@@ -65,7 +64,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
 
   isExpandedRow = (row: any) => row === this.expandedElement;
 
-  selectedSet: ExerciseSet | null = null;
+  // selectedSet: ExerciseSet | null = null;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -73,7 +72,6 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   constructor(private strengthBuilderService: StrengthBuilderService,
     private modalService: NgbModal, private toast: ToastrService, private translate: TranslateService, private breakpointObserver: BreakpointObserver) {
     this.dataSource = new MatTableDataSource(this.exercises);
-    this.dataSource2 = new MatTableDataSource([{}, {}, {}, {}, {}]);
   }
   ngOnInit(): void {
     this.loadExercises();
@@ -89,6 +87,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
       .subscribe(data => {
         this.exercises = data;
         this.dataSource.data = this.exercises;
+        console.log(this.exercises[0])
       });
   }
 
@@ -139,14 +138,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
     );
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -162,9 +154,9 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
 
     this.selection.select(...this.dataSource.data);
   }
-  selectSet(set: ExerciseSet): void {
-    this.selectedSet = set;
-  }
+  // selectSet(set: ExerciseSet): void {
+  //   this.selectedSet = set;
+  // }
 
   deleteExercise() {
     if (this.selection.selected.length) {
@@ -180,25 +172,6 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
 
     }
   }
-
-
-  onChange(value: string, criterion: string) {
-    this.activeFilters[criterion] = value;
-    this.applyFilters()
-  }
-
-
-
-
-
-  applyFilters(): void {
-    this.dataSource.data = this.exercises.filter(exercise =>
-      Object.keys(this.activeFilters).every(key =>
-        !this.activeFilters[key] || (exercise as any)[key].includes(this.activeFilters[key])
-      )
-    );
-  }
-
 
   editExercise() {
     if (this.selection.selected.length === 1) {

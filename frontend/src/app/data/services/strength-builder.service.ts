@@ -6,13 +6,12 @@ import { Exercise } from '../interfaces/exercises.model';
 
 export interface UserData {
     age: number;
-    bodyweightKg: number;
-    best3SquatKg: number;
-    best3BenchKg: number;
-    best3DeadliftKg: number;
+    bodyWeight: number;
+    squat: number;
+    bench: number;
+    deadlift: number;
     sex: string;
-    equipment: string;
-    tested: string;
+    tested: boolean;
 }
 
 @Injectable({

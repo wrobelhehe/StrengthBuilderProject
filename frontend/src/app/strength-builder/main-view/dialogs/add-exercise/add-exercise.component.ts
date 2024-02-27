@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { createExercise } from "src/app/common/builders/exercise.model";
+import { createExercise } from "src/app/common/builders/exercise-builder.model";
 import { Exercise } from "src/app/data/interfaces/exercises.model";
 
 @Component({

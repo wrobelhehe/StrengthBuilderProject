@@ -163,6 +163,10 @@ a {
 }
 
 
+.toast-success {
+    background-color: #3172C2 !important;
+}
+
 @keyframes fadeInLeft {
     from {
         opacity: 0;
@@ -246,6 +250,8 @@ app-root {
 @import '../src/app/strength-builder/main-view/dialogs/delete-exercise/delete-exercise.component.scss';
 @import '../src/app/common/filters/filters.component.scss';
 @import '../src/app/common/empty-table/empty-table.component.scss';
+@import '../src/app/strength-builder/main-view/dialogs/generate-plan/generate-plan.component.scss';
+@import '../src/app/strength-builder/main-view/dialogs/plan-form/plan-form.component.scss';
 
 html,
 body {

@@ -1,4 +1,4 @@
-import { Exercise, ExerciseSet } from "src/app/data/interfaces/exercises.model";
+import { Exercise } from "src/app/data/interfaces/exercises.model";
 
 export function createExercise(): Exercise {
     return {
@@ -13,18 +13,9 @@ export function createExercise(): Exercise {
         movementType: '',
         videoUrl: '',
         exp: [''],
-        //sets: [createSet()]
     };
 }
 
-function createSet(): ExerciseSet {
-    return {
-        reps: 0,
-        rpe: 0,
-        weight: 0,
-        tempo: ''
-    }
-}
 
 
 export function editExercise(exercise: Exercise): Exercise {

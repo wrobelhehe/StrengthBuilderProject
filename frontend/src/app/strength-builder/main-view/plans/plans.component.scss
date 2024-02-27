@@ -1,3 +1,107 @@
 app-plans {
     width: 100%;
+    height: 100%;
+
+    @keyframes pulse {
+        0% {
+            background-color: #e8e8e8;
+        }
+
+        50% {
+            background-color: #d0d0d0;
+            /* Zmień na inny odcień szarego dla efektu pulsowania */
+        }
+
+        100% {
+            background-color: #e8e8e8;
+        }
+    }
+
+    .card-wrapper {
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: auto;
+
+
+        .card-content {
+            min-height: 100%;
+            width: 90%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            padding: 3vh 0;
+            animation-name: fadeInUp;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            opacity: 0;
+
+            .table-actions {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+                padding-bottom: 3vh;
+
+
+
+                .filters {
+                    width: 90%;
+                }
+
+                .action-buttons {
+                    width: 10%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-direction: row;
+                }
+            }
+
+
+
+            .header-title-card {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                width: 100%;
+                padding-bottom: 3vh;
+
+
+
+                h3 {
+                    font-weight: 700;
+                    margin: 0;
+                }
+
+                .add-section {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                    flex-direction: column;
+
+                    .actions {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding-bottom: 10px;
+
+                        .button-text {
+                            margin-right: 10px;
+                        }
+                    }
+
+
+                }
+
+            }
+
+
+        }
+
+    }
 }

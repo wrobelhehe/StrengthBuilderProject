@@ -39,5 +39,14 @@
         <ng-container *ngIf="headerTitle==='delete-exercise'">
             <app-delete-exercise [exercises]="data" class="content-item"></app-delete-exercise>
         </ng-container>
+        <ng-container *ngIf="headerTitle==='generate-plan'">
+            <app-generate-plan class="content-item"></app-generate-plan>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='create-plan'">
+            <app-create-plan class="content-item"></app-create-plan>
+        </ng-container>
+        <ng-container *ngIf="headerTitle==='edit-exercise'">
+            <app-edit-plan [plan]="data" class="content-item"></app-edit-plan>
+        </ng-container>
     </div>
 </div>
