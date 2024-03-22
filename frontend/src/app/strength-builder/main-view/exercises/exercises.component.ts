@@ -30,6 +30,9 @@ import { delay } from 'rxjs';
   ]
 })
 export class ExercisesComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   exercises: Exercise[] = []
   displayedColumns: string[] = ['select', 'exercise_name', 'movementType', 'category', 'type', 'exp', 'expand'];
 
@@ -66,9 +69,6 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
 
   // selectedSet: ExerciseSet | null = null;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
   constructor(private strengthBuilderService: StrengthBuilderService,
     private modalService: NgbModal, private toast: ToastrService, private translate: TranslateService, private breakpointObserver: BreakpointObserver) {
     this.dataSource = new MatTableDataSource(this.exercises);
@@ -87,7 +87,6 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
       .subscribe(data => {
         this.exercises = data;
         this.dataSource.data = this.exercises;
-        console.log(this.exercises[0])
       });
   }
 
@@ -133,9 +132,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
     const modalRef = this.modalService.open(ModalViewComponent, { fullscreen: true });
     modalRef.componentInstance.headerTitle = 'add-exercise'
     modalRef.result.then(
-      () => this.selection.clear(),
-      () => this.selection.clear()
-    );
+      () => this.selection.clear());
   }
 
 
@@ -160,7 +157,6 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
 
   deleteExercise() {
     if (this.selection.selected.length) {
-      console.log(this.selection.selected)
       const selectedRows = this.selection.selected;
       const modalRef = this.modalService.open(SmallModalViewComponent, { size: 'lg' });
       modalRef.componentInstance.headerTitle = 'delete-exercise'

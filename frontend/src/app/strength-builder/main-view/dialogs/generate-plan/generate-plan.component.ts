@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { ExerciseSet } from 'src/app/data/interfaces/plan.model';
+import { Observable, map } from 'rxjs';
+import { Exercise } from 'src/app/data/interfaces/exercises.model';
+import { ExerciseSet, TrainingExercise } from 'src/app/data/interfaces/plan.model';
 import { EXPERIENCE, TYPES } from 'src/app/data/mocks/plans-mocks';
 import { StrengthBuilderService, UserData } from 'src/app/data/services/strength-builder.service';
 
@@ -39,14 +42,16 @@ export class GeneratePlanComponent {
     durationWeeks: [4, [Validators.required, Validators.min(4), Validators.max(53)]],
   })
 
-  constructor(private fb: FormBuilder, private sbService: StrengthBuilderService, private toast: ToastrService, private modal: NgbModal, private translate: TranslateService) {
+  constructor(private fb: FormBuilder, private sbService: StrengthBuilderService, private toast: ToastrService, private modal: NgbModal, private translate: TranslateService, private firestore: AngularFirestore) {
   }
+
+
 
   getUserWeakness() {
     if (this.planFormGroup.valid) {
       const formData = this.planFormGroup.value
       const userData: UserData = {
-        age: formData.age ?? 0, // Użyj operatora nullish coalescing, aby zapewnić liczbę
+        age: formData.age ?? 0,
         bodyWeight: formData.bodyWeight ?? 0,
         sex: formData.sex ?? '',
         squat: formData.squat ?? 0,
@@ -58,29 +63,142 @@ export class GeneratePlanComponent {
         console.log(res);
       })
     } else {
-      this.generateRandomSeriesSet(0.5, 'advanced', this.seriesParamsMap)
+      this.getRandomExercises().subscribe(exercises => {
+        const experienceLevel: 'beginner' | 'intermediate' | 'advanced' = 'advanced';
+        const trainingExercises = this.generateTrainingExercises(exercises, experienceLevel);
+        console.log(trainingExercises);
+      });
+
     }
   }
 
+  generateTrainingExercises(exercises: Exercise[], experience: 'beginner' | 'intermediate' | 'advanced', userRatios: any = { bench: 1, squat: 1.4, deadlift: 1.7 }): TrainingExercise[] {
+    const trainingExercises: any[] = [];
+    let upperSiSum = 0;
+    let lowerSiSum = 0;
+    let stressForWeakerLiftSum = 0;
+    let stressForStrongerLiftSum = 0;
 
+    const { squat, deadlift } = userRatios;
+    let { upperSi, lowerSi } = this.analyzeLifts(userRatios, experience);
+
+    const strongerLift = squat < deadlift ? 'squat' : 'deadlift';
+    const weakerLift = strongerLift === 'squat' ? 'deadlift' : 'squat';
+
+    const lowerSiSumTargetForStrongerLift = lowerSi * 0.40;
+    const lowerSiSumTargetForWeakerLift = lowerSi * 0.60;
+    const errorMargin = 0.05;
+    const lowerSiWithMarginForStrongerLift = lowerSiSumTargetForStrongerLift * (1 + errorMargin);
+    const lowerSiWithMarginForWeakerLift = lowerSiSumTargetForWeakerLift * (1 + errorMargin);
+
+    exercises.forEach(exercise => {
+      const sets = this.generateRandomSeriesSet(exercise.coeff, experience, this.seriesParamsMap);
+      if (sets) {
+        const exerciseStress = sets.reduce((acc, set) => acc + this.calculateTotalStress(set), 0);
+
+        let addToPlan = false;
+        if (exercise.category.includes('bench') && upperSiSum + exerciseStress <= upperSi) {
+          upperSiSum += exerciseStress;
+          addToPlan = true;
+        } else if (exercise.category.includes(weakerLift) && stressForWeakerLiftSum + exerciseStress <= lowerSiWithMarginForWeakerLift) {
+          stressForWeakerLiftSum += exerciseStress;
+          lowerSiSum += exerciseStress;
+          addToPlan = true;
+        } else if (exercise.category.includes(strongerLift) && stressForStrongerLiftSum + exerciseStress <= lowerSiWithMarginForStrongerLift) {
+          stressForStrongerLiftSum += exerciseStress;
+          lowerSiSum += exerciseStress;
+          addToPlan = true;
+        } else if (!['bench', 'deadlift', 'squat'].some(cat => exercise.category.includes(cat))) {
+          addToPlan = true;
+        }
+
+        if (addToPlan) {
+          trainingExercises.push({
+            name: exercise.name,
+            videoUrl: exercise.videoUrl,
+            description: exercise.description,
+            sets: sets,
+          });
+        }
+      }
+    });
+
+    console.log(`Upper body stress index (upperSiSum): ${upperSiSum}, Target Upper SI: ${upperSi}`);
+    console.log(`Lower body stress index (lowerSiSum): ${lowerSiSum}, ${weakerLift} Stress: ${stressForWeakerLiftSum}, ${strongerLift} Stress: ${stressForStrongerLiftSum}, Target Lower SI: ${lowerSi}`);
+    return trainingExercises;
+  }
+
+  getRandomExercises(): Observable<any[]> {
+    return this.firestore.collection('exercises', ref =>
+      ref.where('type', 'array-contains', 'powerlifting')
+    ).valueChanges().pipe(
+      map(exercises => {
+        const competitionLifts = this.filterAndShuffleExercises(exercises, true, 1);
+        const nonCompetitionLiftsOne = this.filterAndShuffleExercises(exercises, false, 1);
+        const nonCompetitionLiftsTwo = this.filterAndShuffleExercises(exercises, false, 0.75);
+        const nonCompetitionLiftsThree = this.filterAndShuffleExercises(exercises, false, 0.5);
+        const nonCompetitionLiftsFour = this.filterAndShuffleExercises(exercises, false, 0.25);
+
+
+        const selectedExercises = [
+          ...this.selectExercises(competitionLifts, ['squat', 'deadlift', 'bench']),
+          ...this.selectExercises(nonCompetitionLiftsOne, ['squat', 'deadlift', 'bench', 'bench', 'bench']),
+          ...this.selectExercises(nonCompetitionLiftsTwo, ['squat', 'deadlift', 'bench', 'bench', 'bench']),
+          ...this.selectExercises(nonCompetitionLiftsThree, ['squat', 'deadlift', 'bench', 'bench', 'row', 'row', 'row', 'row']),
+          ...this.selectExercises(nonCompetitionLiftsFour, ['squat', 'deadlift', 'bench', 'core', 'core']),
+        ];
+        return selectedExercises;
+      })
+    );
+  }
+
+  private filterAndShuffleExercises(exercises: any[], isCompetitionLift: boolean, coeff: number): Exercise[] {
+    return this.shuffleArray(exercises.filter(exercise =>
+      exercise.isCompetitionLift === isCompetitionLift && exercise.coeff === coeff
+    ));
+  }
+
+  private selectExercises(exercises: Exercise[], categories: string[]): Exercise[] {
+    const selectedExercises: Exercise[] = [];
+
+    categories.forEach(category => {
+      const foundExercise = exercises.find(exercise => exercise.category.includes(category));
+      if (foundExercise) {
+        selectedExercises.push(foundExercise);
+        exercises.splice(exercises.indexOf(foundExercise), 1);
+      }
+    });
+
+
+    return selectedExercises;
+  }
+
+  private shuffleArray(array: any[]): any[] {
+    array.forEach((element, index) => {
+      const j = Math.floor(Math.random() * (index + 1));
+      [array[index], array[j]] = [array[j], array[index]];
+    });
+    return array;
+  }
+
+
+
+  analyzeLifts(ratios: any, experience: any): any {
+    const { squat, bench, deadlift } = ratios;
+    const lowestRatioName = bench <= squat && bench <= deadlift ? 'other' : 'bench';
+
+    console.log(lowestRatioName)
+    const siValuesForExperience = this.siValuesMap[experience];
+    if (!siValuesForExperience) throw new Error('Invalid experience level');
+
+    return siValuesForExperience[lowestRatioName];
+  }
 
 
 
   calculateTotalStress(set: ExerciseSet): number {
     const { reps, rpe } = set
-    const stressTable: StressTable = {
-      "10.0": [1.2, 1.2, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.2, 1.2, 1.2, 1.1, 1.1, 1.0, 1.0],
-      "9.5": [1.0, 1.1, 1.1, 1.2, 1.2, 1.2, 1.2, 1.1, 1.1, 1.1, 1.0, 1.0, 0.9, 0.9, 0.9],
-      "9.0": [0.9, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9, 0.9, 0.9, 0.8, 0.8, 0.7],
-      "8.5": [0.8, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.8, 0.8, 0.8, 0.7, 0.7, 0.6],
-      "8.0": [0.7, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.7, 0.7, 0.7, 0.6, 0.6, 0.6],
-      "7.5": [0.6, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.6, 0.6, 0.6, 0.6, 0.5, 0.5],
-      "7.0": [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5, 0.5, 0.5, 0.5, 0.4],
-      "6.5": [0.5, 0.5, 0.5, 0.6, 0.6, 0.6, 0.5, 0.5, 0.5, 0.5, 0.5, 0.4, 0.4, 0.4, 0.4],
-      "6.0": [0.4, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.4, 0.4, 0.4, 0.4, 0.3, 0.3],
-      "5.5": [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.3, 0.3, 0.3, 0.3],
-      "5.0": [0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.2, 0.2],
-    };
+    const stressTable: StressTable = this.stressTable
 
     const rpeKey: string = rpe.toFixed(1);
 
@@ -101,7 +219,7 @@ export class GeneratePlanComponent {
     const adjustments = {
       'beginner': { stressAdjustment: -0.25, rpeRange: [6, 8] },
       'intermediate': { stressAdjustment: 0, rpeRange: [7, 8] },
-      'advanced': { stressAdjustment: 0.75, rpeRange: [7, 8, 9] },
+      'advanced': { stressAdjustment: 0.5, rpeRange: [7, 8, 9] },
     };
 
     let adjustedSeriesParamsMap = new Map();
@@ -150,13 +268,9 @@ export class GeneratePlanComponent {
       seriesSet.push(newSet);
       totalStress += stress;
     }
-    console.log(totalStress)
-    console.log(seriesSet)
 
     return seriesSet.length > 0 ? seriesSet : null;
   }
-
-
 
   randomIntFromInterval(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -168,6 +282,35 @@ export class GeneratePlanComponent {
   roundToNearest(value: number, nearest: number): number {
     return Math.round(value / nearest) * nearest;
   }
+
+  siValuesMap: Record<any, Record<string, any>> = {
+    beginner: {
+      bench: { upperSi: 18, lowerSi: 13 },
+      other: { upperSi: 15, lowerSi: 17 },
+    },
+    intermediate: {
+      bench: { upperSi: 23, lowerSi: 17 },
+      other: { upperSi: 19, lowerSi: 21 },
+    },
+    advanced: {
+      bench: { upperSi: 30, lowerSi: 23 },
+      other: { upperSi: 23, lowerSi: 26 },
+    },
+  };
+
+  stressTable: StressTable = {
+    "10.0": [1.2, 1.2, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.2, 1.2, 1.2, 1.1, 1.1, 1.0, 1.0],
+    "9.5": [1.0, 1.1, 1.1, 1.2, 1.2, 1.2, 1.2, 1.1, 1.1, 1.1, 1.0, 1.0, 0.9, 0.9, 0.9],
+    "9.0": [0.9, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9, 0.9, 0.9, 0.8, 0.8, 0.7],
+    "8.5": [0.8, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.8, 0.8, 0.8, 0.7, 0.7, 0.6],
+    "8.0": [0.7, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.7, 0.7, 0.7, 0.6, 0.6, 0.6],
+    "7.5": [0.6, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.6, 0.6, 0.6, 0.6, 0.5, 0.5],
+    "7.0": [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5, 0.5, 0.5, 0.5, 0.4],
+    "6.5": [0.5, 0.5, 0.5, 0.6, 0.6, 0.6, 0.5, 0.5, 0.5, 0.5, 0.5, 0.4, 0.4, 0.4, 0.4],
+    "6.0": [0.4, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.4, 0.4, 0.4, 0.4, 0.3, 0.3],
+    "5.5": [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.3, 0.3, 0.3, 0.3],
+    "5.0": [0.3, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.3, 0.3, 0.3, 0.3, 0.3, 0.2, 0.2],
+  };
 
   seriesParamsMap: Map<number, any> = new Map([
     [2, {
@@ -181,7 +324,7 @@ export class GeneratePlanComponent {
     [1, {
       stress: 3,
       rpeRange: [7, 8, 9],
-      repsRange: [3, 12],
+      repsRange: [3, 10],
       tempo: ["2111", "2010", "3010", "2020"],
       weight: 0,
       restRange: [240, 360]

@@ -45,14 +45,11 @@ exports.calculateWeakestLift = functions.https.onCall((userData, context) => {
         const squatRatio = medianSquat / userData.squat;
         const benchRatio = medianBench / userData.bench;
         const deadliftRatio = medianDeadlift / userData.deadlift;
-        const maxRatio = Math.max(squatRatio, benchRatio, deadliftRatio);
-        const weakestLift = maxRatio === squatRatio ? 'squat' : maxRatio === benchRatio ? 'bench' : 'deadlift';
 
         return {
-            weakestLift: weakestLift,
-            squatRatio: squatRatio,
-            benchRatio: benchRatio,
-            deadliftRatio: deadliftRatio
+            squat: squatRatio,
+            bench: benchRatio,
+            deadlift: deadliftRatio
         };
     });
 });

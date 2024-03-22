@@ -28,8 +28,8 @@
             </div>
         </div>
         <div class="table-container">
-            <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8"
-                *ngIf="dataSource.data.length">
+            <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8"
+                *ngIf="dataSource.data.length" matSort>
                 <ng-container matColumnDef="select">
                     <th class="col-checkbox" mat-header-cell *matHeaderCellDef>
                         <mat-checkbox (change)="$event ? toggleAllRows() : null"
