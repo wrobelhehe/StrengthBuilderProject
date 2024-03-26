@@ -94,7 +94,7 @@
             <mat-checkbox color="primary" formControlName="tested">{{"tested" |
                 translate}}</mat-checkbox>
             <div class="buttons-section">
-                <button class="custom-button" matStepperNext (click)="getUserWeakness()">
+                <button class="custom-button" matStepperNext>
                     <div class="icon-wrapper">
                         <mat-icon>arrow_right_alt</mat-icon>
                     </div>
@@ -180,11 +180,11 @@
                     </div>
                     <span>{{ 'form_back_button' | translate }}</span>
                 </button>
-                <button class="custom-button" matStepperNext>
+                <button class="custom-button" (click)="savePlan()">
                     <div class="icon-wrapper">
-                        <mat-icon>arrow_right_alt</mat-icon>
+                        <mat-icon>check</mat-icon>
                     </div>
-                    <span>{{ 'form_next_button' | translate }}</span>
+                    <span>{{ 'add' | translate }}</span>
                 </button>
             </div>
         </form>

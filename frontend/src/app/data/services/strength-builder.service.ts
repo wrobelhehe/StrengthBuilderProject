@@ -3,6 +3,7 @@ import { Observable, forkJoin, from, map } from 'rxjs';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Exercise } from '../interfaces/exercises.model';
+import { TrainingPlan } from '../interfaces/plan.model';
 
 export interface UserData {
     age: number;
@@ -12,6 +13,7 @@ export interface UserData {
     deadlift: number;
     sex: string;
     tested: boolean;
+    experience: string;
 }
 
 @Injectable({
@@ -20,9 +22,9 @@ export interface UserData {
 export class StrengthBuilderService {
     constructor(private firestore: AngularFirestore, private fns: AngularFireFunctions) { }
 
-    public getUserWeakness(userData: UserData): Observable<any> {
+    public generateTrainingExercises(userData: any): Observable<any> {
         // Wywołanie Cloud Function
-        const callable = this.fns.httpsCallable('calculateWeakestLift');
+        const callable = this.fns.httpsCallable('generateTrainingExercises');
         return callable
             (userData);
     }
@@ -33,6 +35,14 @@ export class StrengthBuilderService {
                 return data.map(item => ({ ...item } as Exercise));
             })
         );
+    }
+
+    addPlan(plan: TrainingPlan): Observable<void> {
+        const planId = this.firestore.createId();
+        return from(this.firestore.collection('plans').doc(planId).set({
+            ...plan,
+            planId: planId
+        }));
     }
 
     addExercise(exercise: Exercise): Observable<void> {

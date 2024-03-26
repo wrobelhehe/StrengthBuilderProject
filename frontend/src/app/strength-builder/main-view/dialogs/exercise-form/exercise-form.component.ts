@@ -135,7 +135,7 @@ export class ExerciseFormComponent implements OnInit {
   //   this.setsFormArray.removeAt(index);
   // }
 
-  saveExercise() {
+  saveExercise(): void {
 
     if (this.exerciseFormGroup.valid && this.secondExerciseFormGroup.valid && this.exerciseSetForm.valid) {
 
@@ -188,7 +188,7 @@ export class ExerciseFormComponent implements OnInit {
   // }
 
 
-  drop(event: CdkDragDrop<any[]>) {
+  drop(event: CdkDragDrop<any[]>): void {
     const formArray = this.setsFormArray;
     moveItemInArray(formArray.controls, event.previousIndex, event.currentIndex);
     formArray.updateValueAndValidity();

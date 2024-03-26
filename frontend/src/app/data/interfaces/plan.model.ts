@@ -1,7 +1,7 @@
 export interface TrainingPlan {
-    planId: string;
-    createdBy: string;
-    creationDate: Date;
+    planId?: string;
+    createdBy?: string;
+    creationDate?: Date;
     planName: string;
     planType: string;
     experience: string;
